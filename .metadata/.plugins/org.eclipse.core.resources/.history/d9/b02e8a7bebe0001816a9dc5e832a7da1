@@ -1,0 +1,85 @@
+var item={};
+
+item.init=function(){
+	$("#btnQuery").bind("click",function(){
+		item.query();
+	});
+	item.initGrid();
+	
+};
+
+item.initGrid=function(){
+	$("#itemTable").datagrid({
+		url:'/item/listData',
+		pagination:true,
+		pageSize:20,
+		height:800,
+		columns:[[
+		{field:'id',width:0,checkBox:true},
+		{field:'code',title:'商品编码',width:100},
+		{field:'name',title:'商品名称',width:200},
+		{field:'shortName',title:'简称',width:100},
+		{field:'barCode',title:'条码',width:100},
+		{field:'helpCode',title:'助记码',width:100},
+		{field:'category',title:'商品类别',width:100},
+		{field:'unit',title:'单位',width:100},
+		{field:'supplier',title:'品牌供应商',width:150},
+		{field:'buyingPrice',title:'进货价',width:100},
+		{field:'retailPrice',title:'零售价',width:100}
+    ]]
+	});
+}
+item.query=function(){
+	var name= $("#itemName").textbox("getValue");
+	var barCode=$("#barCode").textbox('getValue');
+	var helpCode=$("#helpCode").textbox('getValue');
+	$("#itemTable").datagrid('reload',{
+		name:name,
+		barCode:barCode,
+		helpCode:helpCode
+	});
+}
+
+
+
+itemUnit.add=function(){
+	var dialog=$("#info_win").dialog({
+		href:"/item/toAddOrEdit",
+		title:"添加单位",
+		width:320,
+		height:320,
+		colsed:true,
+		buttons:[{
+			text:'保存',
+			handler:function(){
+				var code=$("#unitCode").textbox('getValue');
+				if(!code){
+					$.messager.alert('提示','单位编码不能为空!');
+					return;
+				}
+				var name=$("#unitName").textbox("getValue");
+				var description=$("#description").textbox("getValue");
+				if(!name){
+					$.messager.alert('提示','单位名称不能为空!');
+					return;
+				}				
+				var id=$("#id").val();
+				var json={};
+				$.post("/item/submit",json,function(data){
+					if(data && data.status=='SUCCESS'){
+						$.messager.alert('提示','商品添加成功!');
+						$('#info_win').window('close');
+					}else{
+						$.messager.alert('提示','商品添加失败!');
+					}
+				});
+			}
+		},{
+			text:'取消',
+			handler:function(){
+				$('#info_win').window('close');
+			}
+		}]
+	});
+}
+

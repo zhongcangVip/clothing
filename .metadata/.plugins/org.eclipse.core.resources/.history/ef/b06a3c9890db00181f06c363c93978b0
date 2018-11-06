@@ -1,0 +1,58 @@
+<html>
+	<head>		
+		<title>首页</title>
+		<#include "/base/head.ftl"/>
+	</head>
+	<body class="easyui-layout" id="allFrm">
+	<div data-options="region:'north',border:false" style="height:60px;background:#B3DFDA;padding:10px">
+		<div style="font-size: 28;font-weight: bolder;margin-left: 60px;">店铺后台管理系统</div>
+	</div>
+	<div data-options="region:'west',split:true,collapsible:false,title:'功能列表'" style="width:150px;">
+		
+		<div class="easyui-accordion" data-options="fit:true,border:false">
+				<div title="首页" style="padding:10px;width: 100%;text-align: left;" data-options="selected:true">
+					<a href="javascript:void(0)" class="easyui-linkbutton" style="width:100%;text-align: left;" >首页</a>
+				</div>
+				<div title="销售管理" style="padding:10px;" >
+					content1
+				</div>
+				<div title="采购管理"  style="padding:10px;">
+					content2
+				</div>
+				<div title="库存管理" style="padding:10px">
+					content3
+				</div>
+				<div title="基础资料" style="padding:10px">
+					<a href="javascript:void(0)" type="menu"  key="/itemUnit/list" class="easyui-linkbutton" style="width:100%;text-align: left;" >商品单位</a>
+					<a href="javascript:void(0)" type="menu" class="easyui-linkbutton" style="width:100%;text-align: left;" >商品类别</a>
+					<a href="javascript:void(0)" type="menu" class="easyui-linkbutton" key="/itemSupplier/list" style="width:100%;text-align: left;" >商品供应商</a>
+					<a href="javascript:void(0)" class="easyui-linkbutton" style="width:100%;text-align: left;" >商品SKU</a>
+				</div>
+				<div title="系统设置" style="padding:10px" ">
+					content3
+				</div>
+			</div>
+
+	</div>
+	<div data-options="region:'center',title:''" id="import" style="padding-top: 10px;">
+		
+
+	</div>
+	<#include "/base/footer.ftl"/>
+	</body>
+	<script>
+		$(document).ready(function(){
+			$("a[type='menu']").each(function(){
+				$(this).bind("click",function(){
+					var url=$(this).attr("key");
+					var title=$(this).attr("title");
+					$("#import").panel({						
+						href:url,
+						title:title
+					});
+
+				});
+			});
+		});
+	</script>
+</html>

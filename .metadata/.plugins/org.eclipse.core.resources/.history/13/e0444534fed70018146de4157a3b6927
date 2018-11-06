@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clothing.dao.item.ItemOperatorDao">
+	<resultMap id="ItemOperatorResult" type="com.clothing.model.item.ItemOperator">
+		<result property="id" column="fid" />
+		<result property="model" column="fmodel" />
+		<result property="userId" column="fuserid" />
+		<result property="value" column="fvalue" />
+		<result property="description" column="fdescription" />
+		<result property="objectId" column="fobjectid" />
+		<result property="operatorTime" column="foperatortime" />
+	</resultMap>
+	<select id="getItemOperatorById" parameterType="string"
+		resultMap="ItemOperatorResult">
+		SELECT T.*
+		FROM t_clothing_itemoperator T where T.fid=#{id}
+	</select>
+	<select id="getItemOperatorByList" parameterType="map"
+		resultMap="ItemOperatorResult">
+		SELECT data.*
+		FROM t_clothing_itemoperator data
+		<where> 1=1
+		</where>
+	</select>
+	<insert id="insertItemOperator" parameterType="com.clothing.model.item.ItemOperator">
+		insert into
+		t_clothing_itemoperator(fid,fmodel,fuserid,fvalue,fdescription,fobjectid,foperatortime)
+		VALUES(#{id},#{model},#{userId},#{value},#{description},#{objectId},#{operatorTime})
+	</insert>
+
+	<update id="updateItemOperator" parameterType="com.clothing.model.item.ItemOperator">
+		update t_clothing_itemoperator
+		<set>
+			<if test="cu!=null and cu!=''">fcu=#{cu},</if>
+			<if test="model!=null and model!=''">fmodel=#{model},</if>
+			<if test="userId!=null and userId!=''">fuserid=#{userId},</if>
+			<if test="value!=null and value!=''">fvalue=#{value},</if>
+			<if test="description!=null and description!=''">fdescription=#{description},</if>
+			<if test="objectId!=null and objectId!=''">fobjectid=#{objectId},</if>
+			<if test="operatorTime!=null and operatorTime!=''">foperatortime=#{operatorTime},</if>
+		</set>
+		where fid=#{id}
+	</update>
+
+	<delete id="deleteItemOperatorById" parameterType="string">
+		delete from t_clothing_itemoperator where fid=#{id}
+	</delete>
+
+</mapper>

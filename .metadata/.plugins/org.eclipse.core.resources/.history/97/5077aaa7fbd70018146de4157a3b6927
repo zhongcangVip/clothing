@@ -1,0 +1,5 @@
+package com.clothing.controller.item;
+
+public class ItemCategoryController {
+
+}

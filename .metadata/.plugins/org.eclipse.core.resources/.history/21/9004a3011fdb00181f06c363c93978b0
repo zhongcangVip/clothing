@@ -1,0 +1,5 @@
+package com.clothing.common.config;
+
+public class WebConfig {
+
+}

@@ -1,0 +1,5 @@
+package com.clothing.model.user;
+
+public class Role {
+
+}

@@ -1,0 +1,10 @@
+package com.clothing.service;
+
+import com.clothing.model.item.ItemSupplier;
+
+public interface ItemSupplierService {
+
+	public void insertItemSupplier(ItemSupplier info);
+	
+	public void updateItemSupplier(ItemSupplier info);
+}

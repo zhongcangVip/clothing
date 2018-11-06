@@ -1,0 +1,58 @@
+package com.clothing.model.user;
+
+import java.util.Date;
+
+import com.clothing.model.base.Entity;
+
+/**
+ * 用户基础实体
+ * @author yangmin
+ * @date  2018年9月15日
+ */
+public class User extends Entity<Integer>{
+
+	private String userName;
+	
+	private String password;
+	
+	private String name;
+	
+	private String sex;
+	
+	private String mobile;
+	
+	private String idCard;
+	
+	private Shop shop;//所属店铺
+	
+	private Date caeateTime;
+	
+	private Date lastLoginTime;
+	
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Shop getShop() {
+		return shop;
+	}
+
+	public void setShop(Shop shop) {
+		this.shop = shop;
+	}
+	
+	
+}

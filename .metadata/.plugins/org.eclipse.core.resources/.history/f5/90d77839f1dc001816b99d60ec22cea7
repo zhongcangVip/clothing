@@ -1,0 +1,5 @@
+package com.clothing.model.vo;
+
+public class PaginationCondition<T> {
+
+}

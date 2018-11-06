@@ -1,0 +1,46 @@
+package com.clothing.service.impl;
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.stereotype.Service;
+
+import com.clothing.model.base.Pagination;
+import com.clothing.model.item.ItemSupplier;
+import com.clothing.service.ItemSupplierService;
+
+
+@Service
+public class ItemSupplierServiceImpl implements ItemSupplierService{
+
+	@Override
+	public void insertItemSupplier(ItemSupplier info) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateItemSupplier(ItemSupplier info) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ItemSupplier getItemSupplierById(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ItemSupplier> getItemSupplierByList(Map<String, Object> params) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Pagination<ItemSupplier> getItemSupplierByPagination(int page, int pageSize, Map<String, Object> params) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

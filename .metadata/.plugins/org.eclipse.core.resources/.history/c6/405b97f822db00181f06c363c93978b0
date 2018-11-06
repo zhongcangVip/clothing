@@ -1,0 +1,7 @@
+package com.clothing.model.user;
+
+import com.clothing.model.base.Entity;
+
+public class Menu extends Entity<Integer>{
+
+}

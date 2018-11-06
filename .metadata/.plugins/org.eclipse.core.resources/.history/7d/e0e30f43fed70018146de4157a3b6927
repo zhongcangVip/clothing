@@ -1,0 +1,8 @@
+package com.clothing.dao.item;
+
+import com.clothing.model.item.ItemOperator;
+
+public interface ItemOperatorDao {
+
+	public void insertItemOperator(ItemOperator record);
+}

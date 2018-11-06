@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clothing.dao.item.ItemUnitDao">
+
+
+	<resultMap id="ItemUnitResult" type="com.clothing.model.item.ItemUnit">
+		<result property="id" column="fid" />
+		<result property="code" column="fcode" />
+		<result property="name" column="fname" />
+		<result property="description" column="fdescription" />
+		<result property="status" column="fstatus" />
+		<result property="userId" column="fuserid" />
+		<result property="createTime" column="fcreatetime" />
+		<result property="lastupdateUserId" column="flastupdateuserid" />
+		<result property="lastUpdateTime" column="flastupdatetime" />
+	</resultMap>
+	<select id="getItemUnitById" parameterType="string" resultMap="ItemUnitResult">
+		SELECT T.*
+		FROM t_clothing_itemunit T where T.fid=#{id}
+	</select>
+	<select id="getItemUnitByList" parameterType="map" resultMap="ItemUnitResult">
+		SELECT data.*
+		FROM t_clothing_itemunit data
+		<where>
+			1=1
+			<if test="code!=null and code!=''">
+				and data.fcode=#{code}
+			</if>
+			<if test="name!=null and name!=''">
+				and data.fname=#{name}
+			</if>
+			<if test="status!=null and status!=''">
+				and data.fstatus=#{status}
+			</if>
+		</where>
+	</select>
+
+	<select id="getItemUnitByCount" parameterType="map" resultType="int">
+		SELECT count(1)
+		FROM t_clothing_itemunit data
+		<where>
+			1=1
+			<if test="code!=null and code!=''">
+				and data.fcode=#{code}
+			</if>
+			<if test="name!=null and name!=''">
+				and data.fname=#{name}
+			</if>
+			<if test="status!=null and status!=''">
+				and data.fstatus=#{status}
+			</if>
+		</where>
+	</select>
+
+	<insert id="insertItemUnit" parameterType="com.clothing.model.item.ItemUnit">
+		insert into
+		t_clothing_itemunit(fid,fcode,fname,fdescription,fstatus,fuserid,fcreatetime,flastupdateuserid,flastupdatetime)
+		VALUES(#{id},#{code},#{name},#{description},#{status},#{userId},#{createTime},#{lastupdateUserId},#{lastUpdateTime})
+	</insert>
+
+	<update id="updateItemUnit" parameterType="com.clothing.model.item.ItemUnit">
+		update t_clothing_itemunit
+		<set>
+			<if test="code!=null and code!=''">fcode=#{code},</if>
+			<if test="name!=null and name!=''">fname=#{name},</if>
+			<if test="description!=null and description!=''">fdescription=#{description},</if>
+			<if test="status!=null and status!=''">fstatus=#{status},</if>
+			<if test="userId!=null and userId!=''">fuserid=#{userId},</if>
+			<if test="createTime!=null and createTime!=''">fcreatetime=#{createTime},</if>
+			<if test="lastupdateUserId!=null and lastupdateUserId!=''">flastupdateuserid=#{lastupdateUserId},</if>
+			<if test="lastUpdateTime!=null and lastUpdateTime!=''">flastupdatetime=#{lastUpdateTime},</if>
+		</set>
+		where fid=#{id}
+	</update>
+
+</mapper>

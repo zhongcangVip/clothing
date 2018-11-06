@@ -1,0 +1,5 @@
+package com.clothing.model.item.vo;
+
+public class ItemSearchVo {
+
+}

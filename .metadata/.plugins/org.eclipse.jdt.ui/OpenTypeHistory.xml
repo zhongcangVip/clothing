@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<typeInfoHistroy>
+<typeInfo handle="=clothing-web/src\/main\/java&lt;com.clothing.controller.base{BaseController.java[BaseController" modifiers="1" timestamp="1537074232224"/>
+<typeInfo handle="=clothing-web/src\/main\/java&lt;com.clothing.dao.item{ItemUnitDao.java[ItemUnitDao" modifiers="513" timestamp="1540438299621"/>
+<typeInfo handle="=clothing-web/C:\/Users\/win10\/.m2\/repository\/mysql\/mysql-connector-java\/5.1.47\/mysql-connector-java-5.1.47.jar&lt;com.mysql.jdbc(JDBC42PreparedStatement.class[JDBC42PreparedStatement" modifiers="33" timestamp="1538033458791"/>
+<typeInfo handle="=clothing-web/C:\/Users\/win10\/.m2\/repository\/com\/github\/pagehelper\/pagehelper\/4.1.6\/pagehelper-4.1.6.jar&lt;com.github.pagehelper(SqlUtil.class[SqlUtil" modifiers="33" timestamp="1538101449970"/>
+<typeInfo handle="=clothing-web/C:\/Users\/win10\/.m2\/repository\/com\/github\/pagehelper\/pagehelper\/4.1.6\/pagehelper-4.1.6.jar&lt;com.github.pagehelper(PageHelper.class[PageHelper" modifiers="33" timestamp="1538101449970"/>
+<typeInfo handle="=clothing-web/C:\/Users\/win10\/.m2\/repository\/org\/mybatis\/mybatis\/3.4.5\/mybatis-3.4.5.jar&lt;org.apache.ibatis.executor.statement(StatementHandler.class[StatementHandler" modifiers="1537" timestamp="1539517595645"/>
+<typeInfo handle="=clothing-web/C:\/Users\/win10\/.m2\/repository\/org\/mybatis\/mybatis\/3.4.5\/mybatis-3.4.5.jar&lt;org.apache.ibatis.executor(Executor.class[Executor" modifiers="1537" timestamp="1539517595645"/>
+</typeInfoHistroy>

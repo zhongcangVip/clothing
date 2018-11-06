@@ -1,0 +1,41 @@
+var item={};
+
+item.init=function(){
+	$("#btnQuery").bind("click",function(){
+		item.query();
+	});
+	item.initGrid();
+	
+};
+
+item.initGrid=function(){
+	$("#itemTable").datagrid({
+		url:'/item/listData',
+		pagination:true,
+		pageSize:20,
+		height:800,
+		columns:[[
+		{field:'id',width:0,checkBox:true},
+		{field:'code',title:'商品编码',width:100},
+		{field:'name',title:'商品名称',width:200},
+		{field:'shortName',title:'简称',width:100},
+		{field:'barCode',title:'条码',width:100},
+		{field:'helpCode',title:'助记码',width:100},
+		{field:'category',title:'商品类别',width:100},
+		{field:'unit',title:'单位',width:100},
+		{field:'supplier',title:'品牌供应商',width:150},
+		{field:'buyingPrice',title:'进货价',width:100},
+		{field:'retailPrice',title:'零售价',width:100}
+    ]]
+	});
+}
+item.query=function(){
+	var name= $("#itemName").textbox("getValue");
+	var barCode=$("#barCode").textbox('getValue');
+	var helpCode=$("#helpCode").textbox('getValue');
+	$("#itemTable").datagrid('reload',{
+		name:name,
+		barCode:barCode,
+		helpCode:helpCode
+	});
+}

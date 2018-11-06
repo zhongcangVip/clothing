@@ -1,0 +1,56 @@
+package com.clothing.controller.item;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.clothing.controller.base.BaseController;
+import com.clothing.model.base.Pagination;
+import com.clothing.model.item.ItemCategory;
+import com.clothing.service.ItemCategoryService;
+
+/**
+ * 商品类别信息
+ * @author yangmin
+ * @Date:2018年10月25日
+ */
+@Controller
+@RequestMapping(value="itemCategory")
+public class ItemCategoryController extends BaseController{
+	
+	@Autowired
+	private ItemCategoryService categoryService;
+	
+	@RequestMapping(value="list")
+	public String list(){
+		return "item";
+	}
+	
+	@RequestMapping(value="listData")
+	@ResponseBody
+	public Pagination<ItemCategory> listData(){
+		int page=this.getInt("page",0);
+		int pageSize=this.getInt("pageSize",15);
+		String name=this.getString("name");
+		String status=this.getString("status");
+		Map<String,Object> params=new HashMap<String,Object>();
+		params.put("status", status);		
+		Pagination<ItemCategory> pagination=this.categoryService.getItemCategoryByPagination(page, pageSize, params);
+		return pagination;
+	}
+	
+	@RequestMapping(value="toAddOrUpdate")
+	public String toAddOrUpdate(ModelMap model){
+		return "item";
+	}
+	
+	
+	
+	
+
+}
