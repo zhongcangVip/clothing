@@ -78,8 +78,8 @@ item.add=function(id,title){
 				var buyingPrice=$("#itemBuyingPrice").textbox("getValue");
 				var vipPrice=$("#itemVipPrice").textbox("getValue");
 				var minPrice=$("#itemMinPrice").textbox("getValue");
-				var disCount=$("#disCount").checkbox("getValue");
-				var integral=$("#integral").checkbox("getValue");
+				var disCount=$("#disCount").checkbox("check");
+				var integral=$("#integral").checkbox("check");
 
 				var description=$("#description").textbox("getValue");			
 				var json={};
