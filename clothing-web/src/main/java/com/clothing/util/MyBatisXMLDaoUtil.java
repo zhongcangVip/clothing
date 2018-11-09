@@ -22,6 +22,7 @@ import com.clothing.model.item.ItemOperator;
 import com.clothing.model.item.ItemSku;
 import com.clothing.model.item.ItemSupplier;
 import com.clothing.model.item.ItemUnit;
+import com.clothing.model.user.User;
 
 /**
  * 生成sql及xml脚本
@@ -30,10 +31,10 @@ import com.clothing.model.item.ItemUnit;
  * 2018年4月18日 下午3:35:55
  */
 public class MyBatisXMLDaoUtil {
-	private static String tableName = "t_clothing_" + "item"; // 表名BaDistributor
+	private static String tableName = "t_clothing_" + "user"; // 表名BaDistributor
 	private static String projectName = "clothing"; // 项目名称
 	@SuppressWarnings("rawtypes")
-	private static Class className = Item.class;
+	private static Class className = User.class;
 	public static MyBatisXMLDaoUtil object = new MyBatisXMLDaoUtil();
 	private static String modelName = "";
 	private static String packName = "";
@@ -482,8 +483,8 @@ public class MyBatisXMLDaoUtil {
 		Connection cn = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			cn = DriverManager.getConnection("jdbc:mysql://192.168.31.71:3306/clothing?autoReconnect=true&useUnicode=true&characterEncoding=utf8&allowMultiQueries=true",
-					"root", "Yangming@888");
+			cn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/clothing?autoReconnect=true&useUnicode=true&characterEncoding=utf8&allowMultiQueries=true",
+					"root", "Yangming888");
 			Statement st = cn.createStatement();
 			ResultSet rs = st.executeQuery("select * from "+tableName);
 			System.err.println(rs.getFetchSize());

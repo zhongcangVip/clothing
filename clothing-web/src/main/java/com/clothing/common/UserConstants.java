@@ -1,6 +1,6 @@
 package com.clothing.common;
 
-import com.clothing.model.user.User;
+import com.clothing.model.vo.user.UserVo;
 
 /**
  * 用户相关常量
@@ -25,5 +25,5 @@ public class UserConstants {
 	/**
 	 * 当前登录用户
 	 */
-	public static final ThreadLocal<User> USERS = new ThreadLocal<>();
+	public static final ThreadLocal<UserVo> CURRENT_USER = new ThreadLocal<>();
 }

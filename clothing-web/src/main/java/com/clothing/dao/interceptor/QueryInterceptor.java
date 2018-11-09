@@ -21,7 +21,7 @@ import org.springframework.stereotype.Component;
 
 import com.clothing.common.UserConstants;
 import com.clothing.model.base.Entity;
-import com.clothing.model.user.User;
+import com.clothing.model.vo.user.UserVo;
 
 /**
  * mybatis 栏截器
@@ -46,7 +46,7 @@ public class QueryInterceptor implements Interceptor{
 		if(ms==null){
 			return invocation.proceed();
 		}
-		User currentUser=UserConstants.USERS.get();
+		UserVo currentUser=UserConstants.CURRENT_USER.get();
 		if(currentUser==null){
 			return invocation.proceed();
 		}
@@ -54,16 +54,16 @@ public class QueryInterceptor implements Interceptor{
 			ParameterMap pMap=ms.getParameterMap();
 			if(pMap.getType() == HashMap.class){
 				Map<String,Object> param=(Map<String, Object>) obj;
-				param.put("cu", currentUser.getCu());
+				param.put("cu", currentUser.getShopId());
 				ary[1]=param;
 			}
 		}else if(obj instanceof java.util.HashMap){
 			Map<String,Object> param=(Map<String, Object>) obj;
-			param.put("cu", currentUser.getCu());
+			param.put("cu", currentUser.getShopId());
 			ary[1]=param;
 		}else if(obj instanceof Entity){
 			Entity entity=(Entity) obj;
-			entity.setCu(currentUser.getCu());
+			entity.setCu(Integer.valueOf(currentUser.getShopId()));
 			ary[1]=entity;
 		}
 		logger.info("intercept");

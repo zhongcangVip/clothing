@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clothing.dao.user.userDao">
+	<resultMap id="UserResult"	type="com.clothing.model.user.User">
+		<result property="id" column="fid" />
+		<result property="userName" column="fusername" />
+		<result property="password" column="fpassword" />
+		<result property="name" column="fname" />
+		<result property="sex" column="fsex" />
+		<result property="mobile" column="fmobile" />
+		<result property="idCard" column="fidcard" />
+		<result property="firstMobile" column="ffirstmobile" />
+		<result property="shop.id" column="fkshopid" />
+		<result property="caeateTime" column="fcaeatetime" />
+		<result property="lastLoginTime" column="flastlogintime" />
+	</resultMap>
+	<select id="getUserById" parameterType="string"
+		resultMap="UserResult">
+		SELECT T.*
+		FROM t_clothing_user T where T.fid=#{id}
+	</select>
+	<select id="getUserByUserName" parameterType="string"
+		resultMap="UserResult">
+		SELECT T.*
+		FROM t_clothing_user T where T.fusername=#{userName}
+	</select>
+	
+	<select id="getUserByList" parameterType="map"
+		resultMap="UserResult">
+		SELECT data.*
+		FROM t_clothing_user data
+		<where> 1=1
+		</where>
+	</select>
+	<insert id="insertUser"
+		parameterType="com.clothing.model.user.User">
+		insert into
+		t_clothing_user(fid,fusername,fpassword,fname,fsex,fmobile,fidcard,ffirstmobile,
+		fkshopid,fcaeatetime,flastlogintime)
+		VALUES(#{id},#{userName},#{password},#{name},#{sex},#{mobile},#{idCard},#{firstMobile},
+		#{shop.id},#{caeateTime},#{lastLoginTime})
+	</insert>
+
+	<update id="updateUser"
+		parameterType="com.clothing.model.user.User">
+		update t_clothing_user
+		<set>
+			<if test="userName!=null and userName!=''">fusername=#{userName},</if>
+			<if test="password!=null and password!=''">fpassword=#{password},</if>
+			<if test="name!=null and name!=''">fname=#{name},</if>
+			<if test="sex!=null and sex!=''">fsex=#{sex},</if>
+			<if test="mobile!=null and mobile!=''">fmobile=#{mobile},</if>
+			<if test="idCard!=null and idCard!=''">fidcard=#{idCard},</if>
+			<if test="firstMobile!=null and firstMobile!=''">ffirstmobile=#{firstMobile},</if>
+			<if test="shop!=null and shop!=''">fkshopid=#{shop.id},</if>
+			<if test="caeateTime!=null ">fcaeatetime=#{caeateTime},</if>
+			<if test="lastLoginTime!=null ">flastlogintime=#{lastLoginTime},</if>
+		</set>
+		where fid=#{id}
+	</update>
+
+	<delete id="deleteUserById" parameterType="string">
+		delete from t_clothing_user where fid=#{id}
+	</delete>
+</mapper>

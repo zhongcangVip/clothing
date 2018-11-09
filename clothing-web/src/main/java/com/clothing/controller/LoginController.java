@@ -1,30 +1,37 @@
 package com.clothing.controller;
 
-import java.util.Map;
-
-import javax.servlet.http.HttpServletResponse;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.clothing.controller.base.BaseController;
+import com.clothing.model.vo.ResultData;
+import com.clothing.model.vo.user.LoginRequest;
+import com.clothing.service.user.UserService;
 
 @Controller
 @RequestMapping(value="login")
 public class LoginController extends BaseController{
 
+	@Autowired
+	private UserService userService;
+	
 	@RequestMapping(value="toLogin")
-	public String login(){
+	public String login(ModelMap model){
 		return "login";
 	}
 	
 	@RequestMapping(value="submitLogin")
-	public String submitLogin(HttpServletResponse response){
-		String userName=this.getString("userName");
-		String password=this.getString("pwssWord");
-//		response.sendRedirect(arg0);
-		return "redirect:/index";
+	public String submitLogin(@Validated LoginRequest loginInfo,ModelMap model){
+		ResultData<String> result=this.userService.login(loginInfo);
+		if(result.success()) {
+			return "redirect:/index";
+		}else {
+			model.put("msg", result.getMsg());
+			return login(model);
+		}
 	}
 }
 

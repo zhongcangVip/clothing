@@ -25,4 +25,29 @@ public class Role extends Entity<Integer>{
 	 * 额外的权限项
 	 */
 	private String otherMenus;
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public StatusEnum getStatus() {
+		return status;
+	}
+	public void setStatus(StatusEnum status) {
+		this.status = status;
+	}
+	public String getOtherMenus() {
+		return otherMenus;
+	}
+	public void setOtherMenus(String otherMenus) {
+		this.otherMenus = otherMenus;
+	}
 }
