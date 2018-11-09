@@ -1,9 +1,9 @@
 package com.clothing.controller.item;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -17,9 +17,15 @@ import com.clothing.controller.base.BaseController;
 import com.clothing.model.base.Pagination;
 import com.clothing.model.base.Result;
 import com.clothing.model.item.Item;
+import com.clothing.model.item.ItemCategory;
+import com.clothing.model.item.ItemSupplier;
+import com.clothing.model.item.ItemUnit;
 import com.clothing.model.vo.PaginationCondition;
-import com.clothing.model.vo.item.ItemSearchVo;
+import com.clothing.model.vo.item.ItemVo;
+import com.clothing.service.ItemCategoryService;
 import com.clothing.service.ItemService;
+import com.clothing.service.ItemSupplierService;
+import com.clothing.service.ItemUnitService;
 
 @Controller
 @RequestMapping(value="item")
@@ -27,6 +33,12 @@ public class ItemController extends BaseController{
 	
 	@Autowired
 	private ItemService itemService;
+	@Autowired
+	private ItemCategoryService categoryService;
+	@Autowired
+	private ItemUnitService unitService;
+	@Autowired
+	private ItemSupplierService supplierService;
 	
 
 	@RequestMapping(value="list")
@@ -54,12 +66,27 @@ public class ItemController extends BaseController{
 	
 	@RequestMapping(value="submit")
 	@ResponseBody
-	public Result submit(@Validated Item item){
+	public Result submit(@Validated ItemVo item){
 		
-		if(item!=null && StringUtils.isNotBlank(String.valueOf(item.getId()))){
-			
+		Item itemDto=new Item();		
+		BeanUtils.copyProperties(item, itemDto);
+		if(StringUtils.isNotBlank(item.getCategory())){
+			ItemCategory category=this.categoryService.getItemCategoryById(item.getCategory());
+			itemDto.setCategory(category);
 		}
-		
+		if(StringUtils.isNotBlank(item.getSupplier())){
+			ItemSupplier supplier=this.supplierService.getItemSupplierById(item.getSupplier());
+			itemDto.setSupplier(supplier);
+		}
+		if(StringUtils.isNotBlank(item.getUnit())){
+			ItemUnit unit=this.unitService.getItemUnitById(item.getUnit());
+			itemDto.setUnit(unit);
+		}
+		if(StringUtils.isNotBlank(item.getId())){
+			this.itemService.updateIntem(itemDto);
+		}else{
+			this.itemService.insertItem(itemDto);
+		}		
 		return ResultUtil.success();
 	}
 	
