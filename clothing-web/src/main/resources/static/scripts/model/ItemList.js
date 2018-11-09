@@ -74,16 +74,37 @@ item.add=function(id,title){
 				var category=$("#itemCategory").textbox("getValue");
 				var unit=$("#itemUnit").textbox("getValue");
 				var supplier=$("#itemSupplier").textbox("getValue");
-				var retailPrice=$("#itemRetailPrice").textbox("getValue");
-				var buyingPrice=$("#itemBuyingPrice").textbox("getValue");
-				var vipPrice=$("#itemVipPrice").textbox("getValue");
-				var minPrice=$("#itemMinPrice").textbox("getValue");
-				var disCount=$("#disCount").checkbox("check");
-				var integral=$("#integral").checkbox("check");
-
+				var retailPrice=$("#itemRetailPrice").numberbox("getValue");
+				var buyingPrice=$("#itemBuyingPrice").numberbox("getValue");
+				var vipPrice=$("#itemVipPrice").numberbox("getValue");
+				var minPrice=$("#itemMinPrice").numberbox("getValue");
+				var disCount=$("#disCount").val();
+				var integral=$("#integral").val();
+				if(!name){
+					$.messager.alert("提示","商品名称不能为空!");
+					return;
+				}
+				if(!buyingPrice){
+					
+				}
 				var description=$("#description").textbox("getValue");			
 				var json={};
 				json.id=id;
+				json.code=itemCode;
+				json.name=name;
+				json.color=color;
+				json.size=size;
+				json.helpCode=helpCode;
+				json.material=material;
+				json.category=category;
+				json.unit=unit;
+				json.supplier=supplier;
+				json.retailPrice=retailPrice;
+				json.buyingPrice=buyingPrice;
+				json.vipPrice=vipPrice;
+				json.minPrice=minPrice;
+				json.disCount=disCount;
+				json.integral=integral;
 				$.post("/item/submit",json,function(data){
 					if(data && data.status=='SUCCESS'){
 						$.messager.alert('提示','商品添加成功!');

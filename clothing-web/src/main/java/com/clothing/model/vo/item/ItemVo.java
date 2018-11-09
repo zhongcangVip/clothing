@@ -1,0 +1,214 @@
+package com.clothing.model.vo.item;
+
+import java.util.Date;
+
+import com.clothing.model.base.enums.StatusEnum;
+import com.clothing.model.item.ItemCategory;
+import com.clothing.model.item.ItemSupplier;
+import com.clothing.model.item.ItemUnit;
+
+/**
+ * 商品前面映射VO
+ * @author yangmin
+ * @Date:2018年11月8日
+ */
+public class ItemVo {
+	private String id;
+	private String code;//商品编码
+	private String name;//全名
+	private String shortName;//简写
+	private String barCode;//条码
+	private String spec;//规格
+	private String color;//颜色
+	private String size;//尺寸
+	private String material;//材料
+	private String helpCode;//助记码
+	private double retailPrice;//零售价
+	private double buyingPrice;//进货价
+	private double vipPrice;//会员价
+	private double distributionPrice;//配送价
+	private String category;
+	private String unit;//单位
+	private String supplier;//品牌供应商
+	private double minPrice;//最低售价
+	private double twoPrice;//第二件售价
+	private String place;//产地
+	private int integral;//是否参与积分 0/1
+	private int disCount; //是否参与折扣
+	
+	private String description;//说明
+	private StatusEnum status;
+	private String userId;
+	private Date createTime;
+	private String lastUpdateUserId;
+	private Date lastUpdateTime;
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getShortName() {
+		return shortName;
+	}
+	public void setShortName(String shortName) {
+		this.shortName = shortName;
+	}
+	public String getBarCode() {
+		return barCode;
+	}
+	public void setBarCode(String barCode) {
+		this.barCode = barCode;
+	}
+	public String getSpec() {
+		return spec;
+	}
+	public void setSpec(String spec) {
+		this.spec = spec;
+	}
+	public String getColor() {
+		return color;
+	}
+	public void setColor(String color) {
+		this.color = color;
+	}
+	public String getSize() {
+		return size;
+	}
+	public void setSize(String size) {
+		this.size = size;
+	}
+	public String getMaterial() {
+		return material;
+	}
+	public void setMaterial(String material) {
+		this.material = material;
+	}
+	public String getHelpCode() {
+		return helpCode;
+	}
+	public void setHelpCode(String helpCode) {
+		this.helpCode = helpCode;
+	}
+	public double getRetailPrice() {
+		return retailPrice;
+	}
+	public void setRetailPrice(double retailPrice) {
+		this.retailPrice = retailPrice;
+	}
+	public double getBuyingPrice() {
+		return buyingPrice;
+	}
+	public void setBuyingPrice(double buyingPrice) {
+		this.buyingPrice = buyingPrice;
+	}
+	public double getVipPrice() {
+		return vipPrice;
+	}
+	public void setVipPrice(double vipPrice) {
+		this.vipPrice = vipPrice;
+	}
+	public double getDistributionPrice() {
+		return distributionPrice;
+	}
+	public void setDistributionPrice(double distributionPrice) {
+		this.distributionPrice = distributionPrice;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	public String getUnit() {
+		return unit;
+	}
+	public void setUnit(String unit) {
+		this.unit = unit;
+	}
+	public String getSupplier() {
+		return supplier;
+	}
+	public void setSupplier(String supplier) {
+		this.supplier = supplier;
+	}
+	public double getMinPrice() {
+		return minPrice;
+	}
+	public void setMinPrice(double minPrice) {
+		this.minPrice = minPrice;
+	}
+	public double getTwoPrice() {
+		return twoPrice;
+	}
+	public void setTwoPrice(double twoPrice) {
+		this.twoPrice = twoPrice;
+	}
+	public String getPlace() {
+		return place;
+	}
+	public void setPlace(String place) {
+		this.place = place;
+	}
+	public int getIntegral() {
+		return integral;
+	}
+	public void setIntegral(int integral) {
+		this.integral = integral;
+	}
+	public int getDisCount() {
+		return disCount;
+	}
+	public void setDisCount(int disCount) {
+		this.disCount = disCount;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public StatusEnum getStatus() {
+		return status;
+	}
+	public void setStatus(StatusEnum status) {
+		this.status = status;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	public Date getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+	public String getLastUpdateUserId() {
+		return lastUpdateUserId;
+	}
+	public void setLastUpdateUserId(String lastUpdateUserId) {
+		this.lastUpdateUserId = lastUpdateUserId;
+	}
+	public Date getLastUpdateTime() {
+		return lastUpdateTime;
+	}
+	public void setLastUpdateTime(Date lastUpdateTime) {
+		this.lastUpdateTime = lastUpdateTime;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	
+}
