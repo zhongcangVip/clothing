@@ -1,5 +1,0 @@
-package com.clothing.dao.item;
-
-public interface ItemDao {
-
-}

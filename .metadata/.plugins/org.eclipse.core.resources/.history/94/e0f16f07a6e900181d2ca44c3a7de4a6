@@ -1,0 +1,253 @@
+package com.house.module.domain;
+
+import java.math.BigDecimal;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+import com.house.common.base.BaseEntity;
+
+/**
+ * 小区楼盘表 sys_garden
+ * 
+ * @author house
+ * @date 2018-11-16
+ */
+public class Garden extends BaseEntity
+{
+	private static final long serialVersionUID = 1L;
+	
+	/** ID 自增的主键 */
+	private Integer gardenId;
+	/** 小区名称 */
+	private String gardenName;
+	/** 小区地址 */
+	private String gardenAddress;
+	/** 区域外键 */
+	private Integer areaId;
+	/** 建筑类别 */
+	private String gardenBuildCategory;
+	/** 总住户数 */
+	private Integer gardenTotalNum;
+	/** 产权类别 */
+	private String gardenRightCategory;
+	/** 物业费用/m2/month */
+	private String gardenPropertyCost;
+	/** 产权年限 */
+	private String gardenPropertyYears;
+	/** 容积率	 */
+	private BigDecimal gardenPlotRatio;
+	/** 建筑年代 */
+	private String gardenBuiltYear;
+	/** 绿化率	 */
+	private BigDecimal gardenGreenRate;
+	/** 占地面积 */
+	private BigDecimal gardenFloorArea;
+	/** 	建筑面积 */
+	private BigDecimal gardenBuiltArea;
+	/** 停车位 */
+	private BigDecimal gardenParkingSpace;
+	/** 物业公司 */
+	private String gardenPropertyCompany;
+	/** 开发商 */
+	private String gardenDeveloper;
+	/** 经度 */
+	private String gardenLongitude;
+	/** 纬度 */
+	private String gardenLatitude;
+
+	public void setGardenId(Integer gardenId) 
+	{
+		this.gardenId = gardenId;
+	}
+
+	public Integer getGardenId() 
+	{
+		return gardenId;
+	}
+	public void setGardenName(String gardenName) 
+	{
+		this.gardenName = gardenName;
+	}
+
+	public String getGardenName() 
+	{
+		return gardenName;
+	}
+	public void setGardenAddress(String gardenAddress) 
+	{
+		this.gardenAddress = gardenAddress;
+	}
+
+	public String getGardenAddress() 
+	{
+		return gardenAddress;
+	}
+	public void setAreaId(Integer areaId) 
+	{
+		this.areaId = areaId;
+	}
+
+	public Integer getAreaId() 
+	{
+		return areaId;
+	}
+	public void setGardenBuildCategory(String gardenBuildCategory) 
+	{
+		this.gardenBuildCategory = gardenBuildCategory;
+	}
+
+	public String getGardenBuildCategory() 
+	{
+		return gardenBuildCategory;
+	}
+	public void setGardenTotalNum(Integer gardenTotalNum) 
+	{
+		this.gardenTotalNum = gardenTotalNum;
+	}
+
+	public Integer getGardenTotalNum() 
+	{
+		return gardenTotalNum;
+	}
+	public void setGardenRightCategory(String gardenRightCategory) 
+	{
+		this.gardenRightCategory = gardenRightCategory;
+	}
+
+	public String getGardenRightCategory() 
+	{
+		return gardenRightCategory;
+	}
+	public void setGardenPropertyCost(String gardenPropertyCost) 
+	{
+		this.gardenPropertyCost = gardenPropertyCost;
+	}
+
+	public String getGardenPropertyCost() 
+	{
+		return gardenPropertyCost;
+	}
+	public void setGardenPropertyYears(String gardenPropertyYears) 
+	{
+		this.gardenPropertyYears = gardenPropertyYears;
+	}
+
+	public String getGardenPropertyYears() 
+	{
+		return gardenPropertyYears;
+	}
+	public void setGardenPlotRatio(BigDecimal gardenPlotRatio) 
+	{
+		this.gardenPlotRatio = gardenPlotRatio;
+	}
+
+	public BigDecimal getGardenPlotRatio() 
+	{
+		return gardenPlotRatio;
+	}
+	public void setGardenBuiltYear(String gardenBuiltYear) 
+	{
+		this.gardenBuiltYear = gardenBuiltYear;
+	}
+
+	public String getGardenBuiltYear() 
+	{
+		return gardenBuiltYear;
+	}
+	public void setGardenGreenRate(BigDecimal gardenGreenRate) 
+	{
+		this.gardenGreenRate = gardenGreenRate;
+	}
+
+	public BigDecimal getGardenGreenRate() 
+	{
+		return gardenGreenRate;
+	}
+	public void setGardenFloorArea(BigDecimal gardenFloorArea) 
+	{
+		this.gardenFloorArea = gardenFloorArea;
+	}
+
+	public BigDecimal getGardenFloorArea() 
+	{
+		return gardenFloorArea;
+	}
+	public void setGardenBuiltArea(BigDecimal gardenBuiltArea) 
+	{
+		this.gardenBuiltArea = gardenBuiltArea;
+	}
+
+	public BigDecimal getGardenBuiltArea() 
+	{
+		return gardenBuiltArea;
+	}
+	public void setGardenParkingSpace(BigDecimal gardenParkingSpace) 
+	{
+		this.gardenParkingSpace = gardenParkingSpace;
+	}
+
+	public BigDecimal getGardenParkingSpace() 
+	{
+		return gardenParkingSpace;
+	}
+	public void setGardenPropertyCompany(String gardenPropertyCompany) 
+	{
+		this.gardenPropertyCompany = gardenPropertyCompany;
+	}
+
+	public String getGardenPropertyCompany() 
+	{
+		return gardenPropertyCompany;
+	}
+	public void setGardenDeveloper(String gardenDeveloper) 
+	{
+		this.gardenDeveloper = gardenDeveloper;
+	}
+
+	public String getGardenDeveloper() 
+	{
+		return gardenDeveloper;
+	}
+	public void setGardenLongitude(String gardenLongitude) 
+	{
+		this.gardenLongitude = gardenLongitude;
+	}
+
+	public String getGardenLongitude() 
+	{
+		return gardenLongitude;
+	}
+	public void setGardenLatitude(String gardenLatitude) 
+	{
+		this.gardenLatitude = gardenLatitude;
+	}
+
+	public String getGardenLatitude() 
+	{
+		return gardenLatitude;
+	}
+
+    public String toString() {
+        return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
+            .append("gardenId", getGardenId())
+            .append("gardenName", getGardenName())
+            .append("gardenAddress", getGardenAddress())
+            .append("areaId", getAreaId())
+            .append("gardenBuildCategory", getGardenBuildCategory())
+            .append("gardenTotalNum", getGardenTotalNum())
+            .append("gardenRightCategory", getGardenRightCategory())
+            .append("gardenPropertyCost", getGardenPropertyCost())
+            .append("gardenPropertyYears", getGardenPropertyYears())
+            .append("gardenPlotRatio", getGardenPlotRatio())
+            .append("gardenBuiltYear", getGardenBuiltYear())
+            .append("gardenGreenRate", getGardenGreenRate())
+            .append("gardenFloorArea", getGardenFloorArea())
+            .append("gardenBuiltArea", getGardenBuiltArea())
+            .append("gardenParkingSpace", getGardenParkingSpace())
+            .append("gardenPropertyCompany", getGardenPropertyCompany())
+            .append("gardenDeveloper", getGardenDeveloper())
+            .append("gardenLongitude", getGardenLongitude())
+            .append("gardenLatitude", getGardenLatitude())
+            .toString();
+    }
+}

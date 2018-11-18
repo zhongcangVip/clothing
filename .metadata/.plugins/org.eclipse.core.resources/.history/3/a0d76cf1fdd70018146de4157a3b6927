@@ -1,5 +1,0 @@
-package com.clothing.service;
-
-public interface ItemOperatorService {
-
-}

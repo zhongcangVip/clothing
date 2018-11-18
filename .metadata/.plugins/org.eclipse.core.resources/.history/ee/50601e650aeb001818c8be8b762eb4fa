@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.house.module.mapper.CityAreaMapper">
+    
+    <resultMap type="CityArea" id="CityAreaResult">
+        <result property="id"    column="id"    />
+        <result property="name"    column="name"    />
+        <result property="type"    column="type"    />
+        <result property="code"    column="code"    />
+        <result property="description"    column="description"    />
+        <result property="parent"    column="parent"    />
+    </resultMap>
+	
+	<sql id="selectCityAreaVo">
+        select id, name, type, code, description, parent from sys_city_area
+    </sql>
+	
+    <select id="selectCityAreaList" parameterType="CityArea" resultMap="CityAreaResult">
+        <include refid="selectCityAreaVo"/>
+        <where>  
+            <if test="id != null "> and id = #{id}</if>
+             <if test="name != null  and name != '' "> and name = #{name}</if>
+             <if test="type != null  and type != '' "> and type = #{type}</if>
+             <if test="code != null  and code != '' "> and code = #{code}</if>
+             <if test="description != null  and description != '' "> and description = #{description}</if>
+             <if test="parent != null "> and parent = #{parent}</if>
+         </where>
+    </select>
+    
+    <select id="selectCityAreaById" parameterType="Integer" resultMap="CityAreaResult">
+        <include refid="selectCityAreaVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertCityArea" parameterType="CityArea">
+        insert into sys_city_area
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null  ">id,</if>
+			<if test="name != null  and name != ''  ">name,</if>
+			<if test="type != null  and type != ''  ">type,</if>
+			<if test="code != null  and code != ''  ">code,</if>
+			<if test="description != null  and description != ''  ">description,</if>
+			<if test="parent != null  ">parent,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null  ">#{id},</if>
+			<if test="name != null  and name != ''  ">#{name},</if>
+			<if test="type != null  and type != ''  ">#{type},</if>
+			<if test="code != null  and code != ''  ">#{code},</if>
+			<if test="description != null  and description != ''  ">#{description},</if>
+			<if test="parent != null  ">#{parent},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateCityArea" parameterType="CityArea">
+        update sys_city_area
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null  and name != ''  ">name = #{name},</if>
+            <if test="type != null  and type != ''  ">type = #{type},</if>
+            <if test="code != null  and code != ''  ">code = #{code},</if>
+            <if test="description != null  and description != ''  ">description = #{description},</if>
+            <if test="parent != null  ">parent = #{parent},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+	<delete id="deleteCityAreaById" parameterType="Integer">
+        delete from sys_city_area where id = #{id}
+    </delete>
+	
+    <delete id="deleteCityAreaByIds" parameterType="String">
+        delete from sys_city_area where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

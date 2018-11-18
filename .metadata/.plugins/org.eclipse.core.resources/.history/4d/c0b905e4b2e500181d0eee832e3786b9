@@ -1,0 +1,10 @@
+package com.house.web.controller.reptilian;
+
+import org.springframework.stereotype.Controller;
+
+import com.house.web.core.base.BaseController;
+
+@Controller
+public class ReptilianController extends BaseController{
+
+}

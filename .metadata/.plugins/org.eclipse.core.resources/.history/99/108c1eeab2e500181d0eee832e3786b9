@@ -1,0 +1,12 @@
+package com.house.web.controller.reptilian;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.house.web.core.base.BaseController;
+
+@Controller
+@RequestMapping(value="reptilian")
+public class ReptilianController extends BaseController{
+
+}

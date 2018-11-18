@@ -1,0 +1,44 @@
+package com.clothing.model.vo;
+
+import java.util.Date;
+
+import com.clothing.model.base.enums.StatusEnum;
+import com.clothing.model.item.ItemCategory;
+import com.clothing.model.item.ItemSupplier;
+import com.clothing.model.item.ItemUnit;
+
+/**
+ * 商品前面映射VO
+ * @author yangmin
+ * @Date:2018年11月8日
+ */
+public class ItemVo {
+	private String code;//商品编码
+	private String name;//全名
+	private String shortName;//简写
+	private String barCode;//条码
+	private String spec;//规格
+	private String color;//颜色
+	private String size;//尺寸
+	private String material;//材料
+	private String helpCode;//助记码
+	private double retailPrice;//零售价
+	private double buyingPrice;//进货价
+	private double vipPrice;//会员价
+	private double distributionPrice;//配送价
+	private ItemCategory category;
+	private ItemUnit unit;//单位
+	private ItemSupplier supplier;//品牌供应商
+	private double minPrice;//最低售价
+	private double twoPrice;//第二件售价
+	private String place;//产地
+	private int integral;//是否参与积分 0/1
+	private int disCount; //是否参与折扣
+	
+	private String description;//说明
+	private StatusEnum status;
+	private String userId;
+	private Date createTime;
+	private String lastUpdateUserId;
+	private Date lastUpdateTime;
+}

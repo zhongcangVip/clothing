@@ -1,7 +1,0 @@
-package com.clothing.service;
-
-public interface ItemService {
-	
-	
-
-}

@@ -1,0 +1,83 @@
+package com.clothing.module.service;
+
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.clothing.module.mapper.ItemunitMapper;
+import com.clothing.module.domain.Itemunit;
+import com.clothing.module.service.IItemunitService;
+import com.clothing.common.support.Convert;
+
+/**
+ * 商品单 位 服务层实现
+ * 
+ * @author yangmin
+ * @date 2018-11-17
+ */
+@Service
+public class ItemunitServiceImpl implements IItemunitService 
+{
+	@Autowired
+	private ItemunitMapper itemunitMapper;
+
+	/**
+     * 查询商品单 位信息
+     * 
+     * @param fid 商品单 位ID
+     * @return 商品单 位信息
+     */
+    @Override
+	public Itemunit selectItemunitById(Integer fid)
+	{
+	    return itemunitMapper.selectItemunitById(fid);
+	}
+	
+	/**
+     * 查询商品单 位列表
+     * 
+     * @param itemunit 商品单 位信息
+     * @return 商品单 位集合
+     */
+	@Override
+	public List<Itemunit> selectItemunitList(Itemunit itemunit)
+	{
+	    return itemunitMapper.selectItemunitList(itemunit);
+	}
+	
+    /**
+     * 新增商品单 位
+     * 
+     * @param itemunit 商品单 位信息
+     * @return 结果
+     */
+	@Override
+	public int insertItemunit(Itemunit itemunit)
+	{
+	    return itemunitMapper.insertItemunit(itemunit);
+	}
+	
+	/**
+     * 修改商品单 位
+     * 
+     * @param itemunit 商品单 位信息
+     * @return 结果
+     */
+	@Override
+	public int updateItemunit(Itemunit itemunit)
+	{
+	    return itemunitMapper.updateItemunit(itemunit);
+	}
+
+	/**
+     * 删除商品单 位对象
+     * 
+     * @param ids 需要删除的数据ID
+     * @return 结果
+     */
+	@Override
+	public int deleteItemunitByIds(String ids)
+	{
+		return itemunitMapper.deleteItemunitByIds(Convert.toStrArray(ids));
+	}
+	
+}

@@ -1,0 +1,11 @@
+1542453800252	Rename package 'com.ruoyi'
+1542453810390	Rename package 'com.ruoyi.web.controller.common'
+1542453817277	Rename package 'com.ruoyi.web.controller.monitor'
+1542453824000	Rename package 'com.ruoyi.web.controller.system'
+1542453840316	Rename package 'com.ruoyi.web.controller.tool'
+1542453848115	Rename package 'com.ruoyi.web.core.config'
+1542454452577	Rename package 'com.clothing.web.controller.monitor'
+1542454477750	Rename package 'com.ruoyi.web.controller.monitor'
+1542456560475	Rename type 'RuoYiApplication'
+1542456569423	Rename type 'RuoYiServletInitializer'
+1542462751817	Delete element
