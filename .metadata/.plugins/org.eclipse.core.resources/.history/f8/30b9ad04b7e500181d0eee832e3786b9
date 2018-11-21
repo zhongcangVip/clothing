@@ -1,0 +1,7 @@
+package com.house.web.controller.reptilian;
+
+import us.codecraft.webmagic.processor.PageProcessor;
+
+public class OschinaBlogPageProcesser implements PageProcessor{
+
+}

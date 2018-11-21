@@ -1,0 +1,134 @@
+package com.house.web.controller.reptile;
+
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.house.framework.util.SpringUtils;
+import com.house.module.domain.CityArea;
+import com.house.module.domain.Garden;
+import com.house.module.service.impl.*;
+
+import us.codecraft.webmagic.Page;
+import us.codecraft.webmagic.Site;
+import us.codecraft.webmagic.Spider;
+import us.codecraft.webmagic.processor.PageProcessor;
+/**
+ * 小区列表数据采集
+ * @author yangmin
+ * @Date 2018年11月14日
+ */
+public class GardenRepoPageProcessor implements PageProcessor {
+
+	private Site site = Site.me().setRetryTimes(3).setSleepTime(100);
+	
+	private final static Logger logger=LoggerFactory.getLogger(GardenRepoPageProcessor.class);
+	
+
+	@Override
+	public void process(Page page) {
+		// TODO Auto-generated method stub
+		//.regex("<tr>\\S+tr>")
+		String p = "tr>([\\s\\S]*?)<\\/tr>";
+		List<String> tbList=page.getHtml().css("table.tbimg").all();
+		String txt=tbList.get(0);
+		Pattern pattern = Pattern.compile(p);
+		Matcher matcher = pattern.matcher(txt);
+		int i=0;
+		while(matcher.find()) {
+			String o=matcher.group(0);
+//			System.err.println(o);
+			buildGardenData(o);
+			i++;
+		}
+		page.addTargetRequests(page.getHtml().css("div.pagerNumber").links().all());
+	}
+	
+	private void buildGardenData(String trStr) {
+		Pattern pattern = Pattern.compile("li class=\"tli1\".*li>");
+		Pattern pattern2 = Pattern.compile("li class=\"tli2\".*li>");
+		Pattern pattern3 = Pattern.compile("li class=\"tli3\".*li>");
+		Matcher li1=pattern.matcher(trStr);
+		Matcher li2=pattern2.matcher(trStr);
+		Matcher li3=pattern3.matcher(trStr);
+		li1.find();
+		li2.find();
+		li3.find();
+		String urlStr=li1.group(0);
+		String nameStr=li2.group(0);
+		String otherStr=li3.group(0);
+//		System.err.println(urlStr);
+//		System.err.println(nameStr);
+//		System.err.println(otherStr);
+		Garden garden=new Garden();
+		/**
+		 * 小区详情URL
+		 */
+		int begin=urlStr.indexOf("href=")+6;
+		int end=urlStr.indexOf("target=")-2;
+		String url=urlStr.substring(begin, end);
+		/**
+		 * 小区名称
+		 */
+		logger.info("gardenName:"+urlStr);
+		begin=urlStr.indexOf(")\">")+2;
+		end=urlStr.indexOf("</span>")-1;
+		String gardenName=urlStr.substring(begin,end);
+		garden.setGardenName(gardenName);
+		/**
+		 * 小区区域
+		 */
+		logger.info("nameStr:"+nameStr);
+		begin=nameStr.indexOf(">【")+2;
+		end=nameStr.indexOf("&nbsp;");
+		String areaStr=nameStr.substring(begin,end);
+		CityArea areaParams=new CityArea();
+		areaParams.setName(areaStr);
+		List<CityArea> list=SpringUtils.getBean(CityAreaServiceImpl.class).selectCityAreaList(areaParams);
+		CityArea area=null;
+		if(list==null || list.size()==0){
+			area=new CityArea();
+			area.setId(0);
+		}else{
+			area=list.get(0);
+		}
+		//
+		garden.setAreaId(area.getId());
+		/**
+		 * 小区地址
+		 */
+		begin=nameStr.indexOf("】&nbsp;")+7;
+		end=nameStr.indexOf("<");
+		String address=nameStr.substring(begin,end);
+		garden.setGardenAddress(address);
+		/**
+		 * 详情采集
+		 */
+		GardenInfoRepoPageProcessor infoObj=new GardenInfoRepoPageProcessor();
+		infoObj.setGarden(garden);
+		Spider.create(infoObj).addUrl(url).thread(5).run();
+		
+	}
+
+	@Override
+	public Site getSite() {
+		// TODO Auto-generated method stub
+		return site;
+	}
+	
+	public static void main(String[] args) {
+//        Spider.create(new GardenRepoPageProcessor()).addUrl("https://xiangtan.58.com/xiaoqu/?PGTID=0d3090a7-007f-fe39-0435-7d01744c4ce8&ClickID=2").thread(5).run();
+		
+		String urlStr="<li class=\"tli1\">
+				+"<a href=\"https://xiangtan.58.com/xiaoqu/jiangluzhongyangguangchangxiaheyuan/\" target=\"_blank\" class=\"t\" onclick=\"clickLog('from=xiaoqu_list_indetail&amp;psid=7d0d62aa-b840-4143-bf9f-d105a3ca81e3&amp;entityId=2346559&amp;entityType=0')\">江麓中央广场夏荷苑"
+                +"<span style=\"font-size:14px;\">(江麓中央广场夏荷苑)</span>"
+                +"</a>"
+            </li>";
+		int begin=urlStr.indexOf(")\">")+2;
+		int end=urlStr.indexOf("<span>")-1;
+    }
+
+}

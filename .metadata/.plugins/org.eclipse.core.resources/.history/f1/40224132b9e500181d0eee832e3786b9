@@ -1,0 +1,29 @@
+package com.house.web.controller.reptilian;
+
+import java.util.List;
+
+import us.codecraft.webmagic.Page;
+import us.codecraft.webmagic.Site;
+import us.codecraft.webmagic.processor.PageProcessor;
+
+public class OschinaBlogPageProcesser implements PageProcessor {
+
+	private Site site = Site.me().setDomain("zhuzhou.58.com");
+
+	@Override
+	public Site getSite() {
+		// TODO Auto-generated method stub
+		return site;
+	}
+
+	@Override
+	public void process(Page page) {
+		List<String> links = page.getHtml().links().regex("https://m.58.com/xiaoqu/\\S+").all();
+		page.addTargetRequests(links);
+		page.putField("title",page.getHtml().xpath("//div[@class='BlogEntity']/div[@class='BlogTitle']/h1").toString());
+		page.putField("content", page.getHtml().$("div.content").toString());
+		page.putField("tags", page.getHtml().xpath("//div[@class='BlogTags']/a/text()").all());
+
+	}
+
+}

@@ -1,5 +1,0 @@
-package com.clothing.dao.impl;
-
-public class RedisDaoImpl {
-
-}

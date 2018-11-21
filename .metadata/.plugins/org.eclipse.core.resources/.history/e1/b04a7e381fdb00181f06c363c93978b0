@@ -1,5 +1,0 @@
-package com.clothing.common.config;
-
-public class AuthenticationInterceptor {
-
-}

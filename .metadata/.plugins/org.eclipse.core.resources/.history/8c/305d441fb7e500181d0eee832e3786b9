@@ -1,0 +1,28 @@
+package com.house.web.controller.reptilian;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.house.web.core.base.BaseController;
+
+import us.codecraft.webmagic.Site;
+import us.codecraft.webmagic.Spider;
+import us.codecraft.webmagic.pipeline.ConsolePipeline;
+
+/**
+ * 爬虫
+ * @author yangmin
+ * @Date:2018年11月11日
+ */
+@Controller
+@RequestMapping(value="reptilian")
+public class ReptilianController extends BaseController{
+
+	 private Site site = Site.me().setDomain("my.oschina.net");
+	
+	 
+	 public static void main(String[] args) {
+	        Spider.create(new OschinaBlogPageProcesser()).addUrl("http://my.oschina.net/flashsword/blog")
+	             .addPipeline(new ConsolePipeline()).run();
+	    }
+}

@@ -1,4 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workingSetManager>
+<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1541940387432_1" label="house" name="house">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/house-admin" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/house-framework" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/house-quartz" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/house-common" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/house-system" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/house-generator" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/house" type="4"/>
+</workingSet>
+<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1542453726541_2" label="ruoyi" name="ruoyi"/>
+<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1542457354564_3" label="clothing" name="clothing">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/clothing-admin" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/clothing-quartz" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/clothing-common" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/clothing-system" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/clothing-generator" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/clothing-framework" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/clothing" type="4"/>
+</workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1538207168377_0" label="Window Working Set" name="Aggregate for window 1538207168377"/>
+<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1542461316386_5" label="Multiple Working Sets" name="Aggregate:clothing:house:">
+<workingSet IMemento.internal.id="clothing"/>
+<workingSet IMemento.internal.id="house"/>
+</workingSet>
+<mruList name="house"/>
+<mruList name="clothing"/>
 </workingSetManager>

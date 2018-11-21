@@ -1,0 +1,7 @@
+1542455694496	Rename package 'com.ruoyi.quartz.config'
+1542455702201	Rename package 'com.ruoyi.quartz.domain'
+1542455708572	Rename package 'com.ruoyi.quartz.mapper'
+1542455715546	Rename package 'com.ruoyi.quartz.service'
+1542455721429	Rename package 'com.ruoyi.quartz.service.impl'
+1542455727511	Rename package 'com.ruoyi.quartz.task'
+1542455733569	Rename package 'com.ruoyi.quartz.util'

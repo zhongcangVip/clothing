@@ -1,0 +1,59 @@
+package com.house.web.controller.reptile;
+
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import com.house.module.domain.Garden;
+
+import us.codecraft.webmagic.Page;
+import us.codecraft.webmagic.Site;
+import us.codecraft.webmagic.Spider;
+import us.codecraft.webmagic.processor.PageProcessor;
+/**
+ * 小区详细数据采集
+ * @author yangmin
+ * @Date 2018年11月14日
+ */
+public class GardenInfoRepoPageProcessor implements PageProcessor {
+
+	private Site site = Site.me().setRetryTimes(3).setSleepTime(100);
+	
+	private Garden garden;
+	
+
+	@Override
+	public void process(Page page) {
+		// TODO Auto-generated method stub
+		List<String> list=page.getHtml().css("table.info-tb").all();
+		list.forEach(info->{
+			System.err.println(info);
+		});
+	}
+	/**
+	 * 构建小区详细信息
+	 * @param info
+	 */
+	private void buildGardenInfo(String info) {
+		//1.详细地址
+	}
+	
+	
+
+	@Override
+	public Site getSite() {
+		// TODO Auto-generated method stub
+		return site;
+	}
+	
+	
+	public void setGarden(Garden garden) {
+		this.garden=garden;
+		
+	}
+	
+	public static void main(String[] args) {
+		 Spider.create(new GardenInfoRepoPageProcessor()).addUrl("https://xiangtan.58.com/xiaoqu/?PGTID=0d3090a7-007f-fe39-0435-7d01744c4ce8&ClickID=2").thread(5).run();
+	}
+
+}

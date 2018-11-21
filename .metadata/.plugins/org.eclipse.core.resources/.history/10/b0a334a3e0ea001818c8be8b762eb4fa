@@ -1,0 +1,81 @@
+package com.house.web.controller.reptile;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.house.framework.util.OssFileUtils;
+import com.house.framework.util.SpringUtils;
+import com.house.module.domain.CityArea;
+import com.house.module.domain.Garden;
+import com.house.module.domain.GardenImg;
+import com.house.module.service.ICityAreaService;
+import com.house.module.service.impl.CityAreaServiceImpl;
+import com.house.module.service.impl.GardenServiceImpl;
+import com.house.module.service.impl.GardenImgServiceImpl;
+
+import us.codecraft.webmagic.Page;
+import us.codecraft.webmagic.Site;
+import us.codecraft.webmagic.Spider;
+import us.codecraft.webmagic.processor.PageProcessor;
+
+/**
+ * 全国城市采集
+ * @author yangmin
+ * @Date 2018年11月14日
+ */
+public class GardenImgPageProcessor implements PageProcessor {
+
+	private Site site = Site.me().setRetryTimes(3).setSleepTime(100);
+	private int parent = 1;
+	private Garden garden;
+	@Override
+	public void process(Page page) {
+		// TODO Auto-generated method stub
+		String bodyStr=page.getHtml().xpath("/html/body").toString();
+		bodyStr=bodyStr.substring(6, bodyStr.length()-7).trim();
+		JSONObject json=JSONObject.parseObject(bodyStr.trim());
+		JSONObject jsonObj=json.getJSONObject("data");
+		System.err.println(bodyStr);
+		Garden gardenObj=SpringUtils.getBean(GardenServiceImpl.class).selectGardenList(garden).get(0);
+		JSONArray imgAry=jsonObj.getJSONArray("shijingtu");
+		for(int i=0;i<imgAry.size();i++) {
+			JSONObject obj=imgAry.getJSONObject(i);
+			String url=(String) obj.get("picurl");
+			GardenImg gardenImg=new GardenImg();
+			gardenImg.setGardenId(gardenObj.getGardenId());
+			gardenImg.setGardenImgUrl(url);
+			gardenImg.setGardenImgIsmain(0);
+			gardenImg.setGardenImgName(UUID.randomUUID().toString());
+			
+			String resultUrl=OssFileUtils.getOssFileObject().uploadFileByUrl(gardenImg.getGardenImgName(), url, false);
+		}
+	}
+
+	
+
+	@Override
+	public Site getSite() {
+		// TODO Auto-generated method stub
+		return site;
+	}
+	
+	
+	public void setGarden(Garden garden) {
+		this.garden=garden;
+	}
+
+
+	public static void main(String[] args) {
+		Spider.create(new GardenImgPageProcessor()).addUrl("https://m.58.com/xiaoquweb/getXiaoquPics/?infoid=854823").thread(5)
+				.run();
+	}
+
+}

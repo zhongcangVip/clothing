@@ -1,5 +1,0 @@
-package com.clothing.dao;
-
-public interface RedisDao {
-
-}
