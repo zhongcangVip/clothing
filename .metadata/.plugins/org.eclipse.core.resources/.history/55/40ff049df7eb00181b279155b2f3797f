@@ -1,0 +1,83 @@
+package com.house.system.service;
+
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.house.system.mapper.SysLicenseConfigMapper;
+import com.house.system.domain.SysLicenseConfig;
+import com.house.system.service.ISysLicenseConfigService;
+import com.house.common.support.Convert;
+
+/**
+ * license配置 服务层实现
+ * 
+ * @author house
+ * @date 2018-11-18
+ */
+@Service
+public class SysLicenseConfigServiceImpl implements ISysLicenseConfigService 
+{
+	@Autowired
+	private SysLicenseConfigMapper sysLicenseConfigMapper;
+
+	/**
+     * 查询license配置信息
+     * 
+     * @param licenseConfigId license配置ID
+     * @return license配置信息
+     */
+    @Override
+	public SysLicenseConfig selectSysLicenseConfigById(String licenseConfigId)
+	{
+	    return sysLicenseConfigMapper.selectSysLicenseConfigById(licenseConfigId);
+	}
+	
+	/**
+     * 查询license配置列表
+     * 
+     * @param sysLicenseConfig license配置信息
+     * @return license配置集合
+     */
+	@Override
+	public List<SysLicenseConfig> selectSysLicenseConfigList(SysLicenseConfig sysLicenseConfig)
+	{
+	    return sysLicenseConfigMapper.selectSysLicenseConfigList(sysLicenseConfig);
+	}
+	
+    /**
+     * 新增license配置
+     * 
+     * @param sysLicenseConfig license配置信息
+     * @return 结果
+     */
+	@Override
+	public int insertSysLicenseConfig(SysLicenseConfig sysLicenseConfig)
+	{
+	    return sysLicenseConfigMapper.insertSysLicenseConfig(sysLicenseConfig);
+	}
+	
+	/**
+     * 修改license配置
+     * 
+     * @param sysLicenseConfig license配置信息
+     * @return 结果
+     */
+	@Override
+	public int updateSysLicenseConfig(SysLicenseConfig sysLicenseConfig)
+	{
+	    return sysLicenseConfigMapper.updateSysLicenseConfig(sysLicenseConfig);
+	}
+
+	/**
+     * 删除license配置对象
+     * 
+     * @param ids 需要删除的数据ID
+     * @return 结果
+     */
+	@Override
+	public int deleteSysLicenseConfigByIds(String ids)
+	{
+		return sysLicenseConfigMapper.deleteSysLicenseConfigByIds(Convert.toStrArray(ids));
+	}
+	
+}

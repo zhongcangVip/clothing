@@ -1,0 +1,112 @@
+package com.house.system.web.controller;
+
+import java.util.List;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import com.house.common.annotation.Log;
+import com.house.common.enums.BusinessType;
+import com.house.system.domain.SysLicense;
+import com.house.system.service.ISysLicenseService;
+import com.house.web.core.base.BaseController;
+import com.house.framework.web.page.TableDataInfo;
+import com.house.common.base.AjaxResult;
+
+/**
+ * license生成 信息操作处理
+ * 
+ * @author house
+ * @date 2018-11-18
+ */
+@Controller
+@RequestMapping("/system/sysLicense")
+public class SysLicenseController extends BaseController
+{
+    private String prefix = "system/sysLicense";
+	
+	@Autowired
+	private ISysLicenseService sysLicenseService;
+	
+	@RequiresPermissions("system:sysLicense:view")
+	@GetMapping()
+	public String sysLicense()
+	{
+	    return prefix + "/sysLicense";
+	}
+	
+	/**
+	 * 查询license生成列表
+	 */
+	@RequiresPermissions("system:sysLicense:list")
+	@PostMapping("/list")
+	@ResponseBody
+	public TableDataInfo list(SysLicense sysLicense)
+	{
+		startPage();
+        List<SysLicense> list = sysLicenseService.selectSysLicenseList(sysLicense);
+		return getDataTable(list);
+	}
+	
+	/**
+	 * 新增license生成
+	 */
+	@GetMapping("/add")
+	public String add()
+	{
+	    return prefix + "/add";
+	}
+	
+	/**
+	 * 新增保存license生成
+	 */
+	@RequiresPermissions("system:sysLicense:add")
+	@Log(title = "license生成", businessType = BusinessType.INSERT)
+	@PostMapping("/add")
+	@ResponseBody
+	public AjaxResult addSave(SysLicense sysLicense)
+	{		
+		return toAjax(sysLicenseService.insertSysLicense(sysLicense));
+	}
+
+	/**
+	 * 修改license生成
+	 */
+	@GetMapping("/edit/{tid}")
+	public String edit(@PathVariable("tid") String tid, ModelMap mmap)
+	{
+		SysLicense sysLicense = sysLicenseService.selectSysLicenseById(tid);
+		mmap.put("sysLicense", sysLicense);
+	    return prefix + "/edit";
+	}
+	
+	/**
+	 * 修改保存license生成
+	 */
+	@RequiresPermissions("system:sysLicense:edit")
+	@Log(title = "license生成", businessType = BusinessType.UPDATE)
+	@PostMapping("/edit")
+	@ResponseBody
+	public AjaxResult editSave(SysLicense sysLicense)
+	{		
+		return toAjax(sysLicenseService.updateSysLicense(sysLicense));
+	}
+	
+	/**
+	 * 删除license生成
+	 */
+	@RequiresPermissions("system:sysLicense:remove")
+	@Log(title = "license生成", businessType = BusinessType.DELETE)
+	@PostMapping( "/remove")
+	@ResponseBody
+	public AjaxResult remove(String ids)
+	{		
+		return toAjax(sysLicenseService.deleteSysLicenseByIds(ids));
+	}
+	
+}

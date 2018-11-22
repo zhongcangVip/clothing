@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clothing.module.mapper.ItemsupplierMapper">
+    
+    <resultMap type="Itemsupplier" id="ItemsupplierResult">
+        <result property="fid"    column="fid"    />
+        <result property="fcode"    column="fcode"    />
+        <result property="fname"    column="fname"    />
+        <result property="faddress"    column="faddress"    />
+        <result property="fcontacts"    column="fcontacts"    />
+        <result property="fmobile"    column="fmobile"    />
+        <result property="fqq"    column="fqq"    />
+        <result property="fwx"    column="fwx"    />
+        <result property="femail"    column="femail"    />
+        <result property="fstatus"    column="fstatus"    />
+        <result property="fuserid"    column="fuserid"    />
+        <result property="fcreatetime"    column="fcreatetime"    />
+        <result property="flastupdateuserid"    column="flastupdateuserid"    />
+        <result property="flastupdatetime"    column="flastupdatetime"    />
+        <result property="fcu"    column="fcu"    />
+    </resultMap>
+	
+	<sql id="selectItemsupplierVo">
+        select fid, fcode, fname, faddress, fcontacts, fmobile, fqq, fwx, femail, fstatus, fuserid, fcreatetime, flastupdateuserid, flastupdatetime, fcu from sys_itemsupplier
+    </sql>
+	
+    <select id="selectItemsupplierList" parameterType="Itemsupplier" resultMap="ItemsupplierResult">
+        <include refid="selectItemsupplierVo"/>
+        <where>  
+            <if test="fid != null "> and fid = #{fid}</if>
+             <if test="fcode != null  and fcode != '' "> and fcode = #{fcode}</if>
+             <if test="fname != null  and fname != '' "> and fname = #{fname}</if>
+             <if test="faddress != null  and faddress != '' "> and faddress = #{faddress}</if>
+             <if test="fcontacts != null  and fcontacts != '' "> and fcontacts = #{fcontacts}</if>
+             <if test="fmobile != null  and fmobile != '' "> and fmobile = #{fmobile}</if>
+             <if test="fqq != null  and fqq != '' "> and fqq = #{fqq}</if>
+             <if test="fwx != null  and fwx != '' "> and fwx = #{fwx}</if>
+             <if test="femail != null  and femail != '' "> and femail = #{femail}</if>
+             <if test="fstatus != null  and fstatus != '' "> and fstatus = #{fstatus}</if>
+             <if test="fuserid != null  and fuserid != '' "> and fuserid = #{fuserid}</if>
+             <if test="fcreatetime != null "> and fcreatetime = #{fcreatetime}</if>
+             <if test="flastupdateuserid != null  and flastupdateuserid != '' "> and flastupdateuserid = #{flastupdateuserid}</if>
+             <if test="flastupdatetime != null "> and flastupdatetime = #{flastupdatetime}</if>
+             <if test="fcu != null  and fcu != '' "> and fcu = #{fcu}</if>
+         </where>
+    </select>
+    
+    <select id="selectItemsupplierById" parameterType="Integer" resultMap="ItemsupplierResult">
+        <include refid="selectItemsupplierVo"/>
+        where fid = #{fid}
+    </select>
+        
+    <insert id="insertItemsupplier" parameterType="Itemsupplier">
+        insert into sys_itemsupplier
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="fid != null  ">fid,</if>
+			<if test="fcode != null  and fcode != ''  ">fcode,</if>
+			<if test="fname != null  and fname != ''  ">fname,</if>
+			<if test="faddress != null  and faddress != ''  ">faddress,</if>
+			<if test="fcontacts != null  and fcontacts != ''  ">fcontacts,</if>
+			<if test="fmobile != null  and fmobile != ''  ">fmobile,</if>
+			<if test="fqq != null  and fqq != ''  ">fqq,</if>
+			<if test="fwx != null  and fwx != ''  ">fwx,</if>
+			<if test="femail != null  and femail != ''  ">femail,</if>
+			<if test="fstatus != null  and fstatus != ''  ">fstatus,</if>
+			<if test="fuserid != null  and fuserid != ''  ">fuserid,</if>
+			<if test="fcreatetime != null  ">fcreatetime,</if>
+			<if test="flastupdateuserid != null  and flastupdateuserid != ''  ">flastupdateuserid,</if>
+			<if test="flastupdatetime != null  ">flastupdatetime,</if>
+			<if test="fcu != null  and fcu != ''  ">fcu,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="fid != null  ">#{fid},</if>
+			<if test="fcode != null  and fcode != ''  ">#{fcode},</if>
+			<if test="fname != null  and fname != ''  ">#{fname},</if>
+			<if test="faddress != null  and faddress != ''  ">#{faddress},</if>
+			<if test="fcontacts != null  and fcontacts != ''  ">#{fcontacts},</if>
+			<if test="fmobile != null  and fmobile != ''  ">#{fmobile},</if>
+			<if test="fqq != null  and fqq != ''  ">#{fqq},</if>
+			<if test="fwx != null  and fwx != ''  ">#{fwx},</if>
+			<if test="femail != null  and femail != ''  ">#{femail},</if>
+			<if test="fstatus != null  and fstatus != ''  ">#{fstatus},</if>
+			<if test="fuserid != null  and fuserid != ''  ">#{fuserid},</if>
+			<if test="fcreatetime != null  ">#{fcreatetime},</if>
+			<if test="flastupdateuserid != null  and flastupdateuserid != ''  ">#{flastupdateuserid},</if>
+			<if test="flastupdatetime != null  ">#{flastupdatetime},</if>
+			<if test="fcu != null  and fcu != ''  ">#{fcu},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateItemsupplier" parameterType="Itemsupplier">
+        update sys_itemsupplier
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="fcode != null  and fcode != ''  ">fcode = #{fcode},</if>
+            <if test="fname != null  and fname != ''  ">fname = #{fname},</if>
+            <if test="faddress != null  and faddress != ''  ">faddress = #{faddress},</if>
+            <if test="fcontacts != null  and fcontacts != ''  ">fcontacts = #{fcontacts},</if>
+            <if test="fmobile != null  and fmobile != ''  ">fmobile = #{fmobile},</if>
+            <if test="fqq != null  and fqq != ''  ">fqq = #{fqq},</if>
+            <if test="fwx != null  and fwx != ''  ">fwx = #{fwx},</if>
+            <if test="femail != null  and femail != ''  ">femail = #{femail},</if>
+            <if test="fstatus != null  and fstatus != ''  ">fstatus = #{fstatus},</if>
+            <if test="fuserid != null  and fuserid != ''  ">fuserid = #{fuserid},</if>
+            <if test="fcreatetime != null  ">fcreatetime = #{fcreatetime},</if>
+            <if test="flastupdateuserid != null  and flastupdateuserid != ''  ">flastupdateuserid = #{flastupdateuserid},</if>
+            <if test="flastupdatetime != null  ">flastupdatetime = #{flastupdatetime},</if>
+            <if test="fcu != null  and fcu != ''  ">fcu = #{fcu},</if>
+        </trim>
+        where fid = #{fid}
+    </update>
+
+	<delete id="deleteItemsupplierById" parameterType="Integer">
+        delete from sys_itemsupplier where fid = #{fid}
+    </delete>
+	
+    <delete id="deleteItemsupplierByIds" parameterType="String">
+        delete from sys_itemsupplier where fid in 
+        <foreach item="fid" collection="array" open="(" separator="," close=")">
+            #{fid}
+        </foreach>
+    </delete>
+    
+</mapper>

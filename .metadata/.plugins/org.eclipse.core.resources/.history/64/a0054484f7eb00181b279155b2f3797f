@@ -1,0 +1,112 @@
+package com.house.system.web.controller;
+
+import java.util.List;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import com.house.common.annotation.Log;
+import com.house.common.enums.BusinessType;
+import com.house.system.domain.SysLicenseConfig;
+import com.house.system.service.ISysLicenseConfigService;
+import com.house.web.core.base.BaseController;
+import com.house.framework.web.page.TableDataInfo;
+import com.house.common.base.AjaxResult;
+
+/**
+ * license配置 信息操作处理
+ * 
+ * @author house
+ * @date 2018-11-18
+ */
+@Controller
+@RequestMapping("/system/sysLicenseConfig")
+public class SysLicenseConfigController extends BaseController
+{
+    private String prefix = "system/sysLicenseConfig";
+	
+	@Autowired
+	private ISysLicenseConfigService sysLicenseConfigService;
+	
+	@RequiresPermissions("system:sysLicenseConfig:view")
+	@GetMapping()
+	public String sysLicenseConfig()
+	{
+	    return prefix + "/sysLicenseConfig";
+	}
+	
+	/**
+	 * 查询license配置列表
+	 */
+	@RequiresPermissions("system:sysLicenseConfig:list")
+	@PostMapping("/list")
+	@ResponseBody
+	public TableDataInfo list(SysLicenseConfig sysLicenseConfig)
+	{
+		startPage();
+        List<SysLicenseConfig> list = sysLicenseConfigService.selectSysLicenseConfigList(sysLicenseConfig);
+		return getDataTable(list);
+	}
+	
+	/**
+	 * 新增license配置
+	 */
+	@GetMapping("/add")
+	public String add()
+	{
+	    return prefix + "/add";
+	}
+	
+	/**
+	 * 新增保存license配置
+	 */
+	@RequiresPermissions("system:sysLicenseConfig:add")
+	@Log(title = "license配置", businessType = BusinessType.INSERT)
+	@PostMapping("/add")
+	@ResponseBody
+	public AjaxResult addSave(SysLicenseConfig sysLicenseConfig)
+	{		
+		return toAjax(sysLicenseConfigService.insertSysLicenseConfig(sysLicenseConfig));
+	}
+
+	/**
+	 * 修改license配置
+	 */
+	@GetMapping("/edit/{licenseConfigId}")
+	public String edit(@PathVariable("licenseConfigId") String licenseConfigId, ModelMap mmap)
+	{
+		SysLicenseConfig sysLicenseConfig = sysLicenseConfigService.selectSysLicenseConfigById(licenseConfigId);
+		mmap.put("sysLicenseConfig", sysLicenseConfig);
+	    return prefix + "/edit";
+	}
+	
+	/**
+	 * 修改保存license配置
+	 */
+	@RequiresPermissions("system:sysLicenseConfig:edit")
+	@Log(title = "license配置", businessType = BusinessType.UPDATE)
+	@PostMapping("/edit")
+	@ResponseBody
+	public AjaxResult editSave(SysLicenseConfig sysLicenseConfig)
+	{		
+		return toAjax(sysLicenseConfigService.updateSysLicenseConfig(sysLicenseConfig));
+	}
+	
+	/**
+	 * 删除license配置
+	 */
+	@RequiresPermissions("system:sysLicenseConfig:remove")
+	@Log(title = "license配置", businessType = BusinessType.DELETE)
+	@PostMapping( "/remove")
+	@ResponseBody
+	public AjaxResult remove(String ids)
+	{		
+		return toAjax(sysLicenseConfigService.deleteSysLicenseConfigByIds(ids));
+	}
+	
+}

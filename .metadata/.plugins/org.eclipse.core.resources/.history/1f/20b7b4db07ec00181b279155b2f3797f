@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.house.module.mapper.GardenMapper">
+    
+    <resultMap type="Garden" id="GardenResult">
+        <result property="gardenId"    column="garden_id"    />
+        <result property="gardenName"    column="garden_name"    />
+        <result property="gardenAddress"    column="garden_address"    />
+        <result property="areaId"    column="area_id"    />
+        <result property="gardenBuildCategory"    column="garden_build_category"    />
+        <result property="gardenTotalNum"    column="garden_total_num"    />
+        <result property="gardenRightCategory"    column="garden_right_category"    />
+        <result property="gardenPropertyCost"    column="garden_property_cost"    />
+        <result property="gardenPropertyYears"    column="garden_property_years"    />
+        <result property="gardenPlotRatio"    column="garden_plot_ratio"    />
+        <result property="gardenBuiltYear"    column="garden_built_year"    />
+        <result property="gardenGreenRate"    column="garden_green_rate"    />
+        <result property="gardenFloorArea"    column="garden_floor_area"    />
+        <result property="gardenBuiltArea"    column="garden_built_area"    />
+        <result property="gardenParkingSpace"    column="garden_parking_space"    />
+        <result property="gardenPropertyCompany"    column="garden_property_company"    />
+        <result property="gardenDeveloper"    column="garden_developer"    />
+        <result property="gardenLongitude"    column="garden_longitude"    />
+        <result property="gardenLatitude"    column="garden_latitude"    />
+        <result property="gardenImgInfoId"    column="garden_img_infoId"    />
+        <result property="gardenInfoUrl"    column="garden_img_infoId"    />
+        
+    </resultMap>
+	
+	<sql id="selectGardenVo">
+        select garden_id, garden_name, garden_address, area_id, garden_build_category, garden_total_num, garden_right_category, 
+        garden_property_cost, garden_property_years, garden_plot_ratio, garden_built_year, garden_green_rate, garden_floor_area, 
+        garden_built_area, garden_parking_space, garden_property_company, garden_developer, garden_longitude, garden_latitude,garden_img_infoId
+        from sys_garden
+    </sql>
+	
+    <select id="selectGardenList" parameterType="Garden" resultMap="GardenResult">
+        <include refid="selectGardenVo"/>
+        <where>  
+            <if test="gardenId != null "> and garden_id = #{gardenId}</if>
+             <if test="gardenName != null  and gardenName != '' "> and garden_name = #{gardenName}</if>
+             <if test="gardenAddress != null  and gardenAddress != '' "> and garden_address = #{gardenAddress}</if>
+             <if test="areaId != null "> and area_id = #{areaId}</if>
+             <if test="gardenBuildCategory != null  and gardenBuildCategory != '' "> and garden_build_category = #{gardenBuildCategory}</if>
+             <if test="gardenTotalNum != null "> and garden_total_num = #{gardenTotalNum}</if>
+             <if test="gardenRightCategory != null  and gardenRightCategory != '' "> and garden_right_category = #{gardenRightCategory}</if>
+             <if test="gardenPropertyCost != null "> and garden_property_cost = #{gardenPropertyCost}</if>
+             <if test="gardenPropertyYears != null  and gardenPropertyYears != '' "> and garden_property_years = #{gardenPropertyYears}</if>
+             <if test="gardenPlotRatio != null "> and garden_plot_ratio = #{gardenPlotRatio}</if>
+             <if test="gardenBuiltYear != null  and gardenBuiltYear != '' "> and garden_built_year = #{gardenBuiltYear}</if>
+             <if test="gardenGreenRate != null "> and garden_green_rate = #{gardenGreenRate}</if>
+             <if test="gardenFloorArea != null "> and garden_floor_area = #{gardenFloorArea}</if>
+             <if test="gardenBuiltArea != null "> and garden_built_area = #{gardenBuiltArea}</if>
+             <if test="gardenParkingSpace != null "> and garden_parking_space = #{gardenParkingSpace}</if>
+             <if test="gardenPropertyCompany != null  and gardenPropertyCompany != '' "> and garden_property_company = #{gardenPropertyCompany}</if>
+             <if test="gardenDeveloper != null  and gardenDeveloper != '' "> and garden_developer = #{gardenDeveloper}</if>
+             <if test="gardenLongitude != null  and gardenLongitude != '' "> and garden_longitude = #{gardenLongitude}</if>
+             <if test="gardenLatitude != null  and gardenLatitude != '' "> and garden_latitude = #{gardenLatitude}</if>
+         </where>
+    </select>
+    
+    <select id="selectGardenById" parameterType="Integer" resultMap="GardenResult">
+        <include refid="selectGardenVo"/>
+        where garden_id = #{gardenId}
+    </select>
+        
+    <insert id="insertGarden" parameterType="Garden">
+        insert into sys_garden
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="gardenId != null  ">garden_id,</if>
+			<if test="gardenName != null  and gardenName != ''  ">garden_name,</if>
+			<if test="gardenAddress != null  and gardenAddress != ''  ">garden_address,</if>
+			<if test="areaId != null  ">area_id,</if>
+			<if test="gardenBuildCategory != null  and gardenBuildCategory != ''  ">garden_build_category,</if>
+			<if test="gardenTotalNum != null  ">garden_total_num,</if>
+			<if test="gardenRightCategory != null  and gardenRightCategory != ''  ">garden_right_category,</if>
+			<if test="gardenPropertyCost != null  ">garden_property_cost,</if>
+			<if test="gardenPropertyYears != null  and gardenPropertyYears != ''  ">garden_property_years,</if>
+			<if test="gardenPlotRatio != null  ">garden_plot_ratio,</if>
+			<if test="gardenBuiltYear != null  and gardenBuiltYear != ''  ">garden_built_year,</if>
+			<if test="gardenGreenRate != null  ">garden_green_rate,</if>
+			<if test="gardenFloorArea != null  ">garden_floor_area,</if>
+			<if test="gardenBuiltArea != null  ">garden_built_area,</if>
+			<if test="gardenParkingSpace != null  ">garden_parking_space,</if>
+			<if test="gardenPropertyCompany != null  and gardenPropertyCompany != ''  ">garden_property_company,</if>
+			<if test="gardenDeveloper != null  and gardenDeveloper != ''  ">garden_developer,</if>
+			<if test="gardenLongitude != null  and gardenLongitude != ''  ">garden_longitude,</if>
+			<if test="gardenLatitude != null  and gardenLatitude != ''  ">garden_latitude,</if>
+			<if test="gardenImgInfoId != null  and gardenImgInfoId != ''  ">garden_img_infoId,</if>
+			
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="gardenId != null  ">#{gardenId},</if>
+			<if test="gardenName != null  and gardenName != ''  ">#{gardenName},</if>
+			<if test="gardenAddress != null  and gardenAddress != ''  ">#{gardenAddress},</if>
+			<if test="areaId != null  ">#{areaId},</if>
+			<if test="gardenBuildCategory != null  and gardenBuildCategory != ''  ">#{gardenBuildCategory},</if>
+			<if test="gardenTotalNum != null  ">#{gardenTotalNum},</if>
+			<if test="gardenRightCategory != null  and gardenRightCategory != ''  ">#{gardenRightCategory},</if>
+			<if test="gardenPropertyCost != null  ">#{gardenPropertyCost},</if>
+			<if test="gardenPropertyYears != null  and gardenPropertyYears != ''  ">#{gardenPropertyYears},</if>
+			<if test="gardenPlotRatio != null  ">#{gardenPlotRatio},</if>
+			<if test="gardenBuiltYear != null  and gardenBuiltYear != ''  ">#{gardenBuiltYear},</if>
+			<if test="gardenGreenRate != null  ">#{gardenGreenRate},</if>
+			<if test="gardenFloorArea != null  ">#{gardenFloorArea},</if>
+			<if test="gardenBuiltArea != null  ">#{gardenBuiltArea},</if>
+			<if test="gardenParkingSpace != null  ">#{gardenParkingSpace},</if>
+			<if test="gardenPropertyCompany != null  and gardenPropertyCompany != ''  ">#{gardenPropertyCompany},</if>
+			<if test="gardenDeveloper != null  and gardenDeveloper != ''  ">#{gardenDeveloper},</if>
+			<if test="gardenLongitude != null  and gardenLongitude != ''  ">#{gardenLongitude},</if>
+			<if test="gardenLatitude != null  and gardenLatitude != ''  ">#{gardenLatitude},</if>
+			<if test="gardenImgInfoId != null  and gardenImgInfoId != ''  ">#{gardenImgInfoId},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateGarden" parameterType="Garden">
+        update sys_garden
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="gardenName != null  and gardenName != ''  ">garden_name = #{gardenName},</if>
+            <if test="gardenAddress != null  and gardenAddress != ''  ">garden_address = #{gardenAddress},</if>
+            <if test="areaId != null  ">area_id = #{areaId},</if>
+            <if test="gardenBuildCategory != null  and gardenBuildCategory != ''  ">garden_build_category = #{gardenBuildCategory},</if>
+            <if test="gardenTotalNum != null  ">garden_total_num = #{gardenTotalNum},</if>
+            <if test="gardenRightCategory != null  and gardenRightCategory != ''  ">garden_right_category = #{gardenRightCategory},</if>
+            <if test="gardenPropertyCost != null  ">garden_property_cost = #{gardenPropertyCost},</if>
+            <if test="gardenPropertyYears != null  and gardenPropertyYears != ''  ">garden_property_years = #{gardenPropertyYears},</if>
+            <if test="gardenPlotRatio != null  ">garden_plot_ratio = #{gardenPlotRatio},</if>
+            <if test="gardenBuiltYear != null  and gardenBuiltYear != ''  ">garden_built_year = #{gardenBuiltYear},</if>
+            <if test="gardenGreenRate != null  ">garden_green_rate = #{gardenGreenRate},</if>
+            <if test="gardenFloorArea != null  ">garden_floor_area = #{gardenFloorArea},</if>
+            <if test="gardenBuiltArea != null  ">garden_built_area = #{gardenBuiltArea},</if>
+            <if test="gardenParkingSpace != null  ">garden_parking_space = #{gardenParkingSpace},</if>
+            <if test="gardenPropertyCompany != null  and gardenPropertyCompany != ''  ">garden_property_company = #{gardenPropertyCompany},</if>
+            <if test="gardenDeveloper != null  and gardenDeveloper != ''  ">garden_developer = #{gardenDeveloper},</if>
+            <if test="gardenLongitude != null  and gardenLongitude != ''  ">garden_longitude = #{gardenLongitude},</if>
+            <if test="gardenLatitude != null  and gardenLatitude != ''  ">garden_latitude = #{gardenLatitude},</if>
+        </trim>
+        where garden_id = #{gardenId}
+    </update>
+
+	<delete id="deleteGardenById" parameterType="Integer">
+        delete from sys_garden where garden_id = #{gardenId}
+    </delete>
+	
+    <delete id="deleteGardenByIds" parameterType="String">
+        delete from sys_garden where garden_id in 
+        <foreach item="gardenId" collection="array" open="(" separator="," close=")">
+            #{gardenId}
+        </foreach>
+    </delete>
+    
+</mapper>

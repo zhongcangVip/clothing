@@ -1,0 +1,83 @@
+package com.clothing.module.service;
+
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.clothing.module.mapper.ItemsupplierMapper;
+import com.clothing.module.domain.Itemsupplier;
+import com.clothing.module.service.IItemsupplierService;
+import com.clothing.common.support.Convert;
+
+/**
+ * 商品供应商 服务层实现
+ * 
+ * @author yangmin
+ * @date 2018-11-21
+ */
+@Service
+public class ItemsupplierServiceImpl implements IItemsupplierService 
+{
+	@Autowired
+	private ItemsupplierMapper itemsupplierMapper;
+
+	/**
+     * 查询商品供应商信息
+     * 
+     * @param fid 商品供应商ID
+     * @return 商品供应商信息
+     */
+    @Override
+	public Itemsupplier selectItemsupplierById(Integer fid)
+	{
+	    return itemsupplierMapper.selectItemsupplierById(fid);
+	}
+	
+	/**
+     * 查询商品供应商列表
+     * 
+     * @param itemsupplier 商品供应商信息
+     * @return 商品供应商集合
+     */
+	@Override
+	public List<Itemsupplier> selectItemsupplierList(Itemsupplier itemsupplier)
+	{
+	    return itemsupplierMapper.selectItemsupplierList(itemsupplier);
+	}
+	
+    /**
+     * 新增商品供应商
+     * 
+     * @param itemsupplier 商品供应商信息
+     * @return 结果
+     */
+	@Override
+	public int insertItemsupplier(Itemsupplier itemsupplier)
+	{
+	    return itemsupplierMapper.insertItemsupplier(itemsupplier);
+	}
+	
+	/**
+     * 修改商品供应商
+     * 
+     * @param itemsupplier 商品供应商信息
+     * @return 结果
+     */
+	@Override
+	public int updateItemsupplier(Itemsupplier itemsupplier)
+	{
+	    return itemsupplierMapper.updateItemsupplier(itemsupplier);
+	}
+
+	/**
+     * 删除商品供应商对象
+     * 
+     * @param ids 需要删除的数据ID
+     * @return 结果
+     */
+	@Override
+	public int deleteItemsupplierByIds(String ids)
+	{
+		return itemsupplierMapper.deleteItemsupplierByIds(Convert.toStrArray(ids));
+	}
+	
+}

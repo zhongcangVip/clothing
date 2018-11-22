@@ -1,0 +1,83 @@
+package com.house.module.service;
+
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.house.module.mapper.LicenseConfigMapper;
+import com.house.module.domain.LicenseConfig;
+import com.house.module.service.ILicenseConfigService;
+import com.house.common.support.Convert;
+
+/**
+ * license配置 服务层实现
+ * 
+ * @author house
+ * @date 2018-11-18
+ */
+@Service
+public class LicenseConfigServiceImpl implements ILicenseConfigService 
+{
+	@Autowired
+	private LicenseConfigMapper licenseConfigMapper;
+
+	/**
+     * 查询license配置信息
+     * 
+     * @param licenseConfigId license配置ID
+     * @return license配置信息
+     */
+    @Override
+	public LicenseConfig selectLicenseConfigById(String licenseConfigId)
+	{
+	    return licenseConfigMapper.selectLicenseConfigById(licenseConfigId);
+	}
+	
+	/**
+     * 查询license配置列表
+     * 
+     * @param licenseConfig license配置信息
+     * @return license配置集合
+     */
+	@Override
+	public List<LicenseConfig> selectLicenseConfigList(LicenseConfig licenseConfig)
+	{
+	    return licenseConfigMapper.selectLicenseConfigList(licenseConfig);
+	}
+	
+    /**
+     * 新增license配置
+     * 
+     * @param licenseConfig license配置信息
+     * @return 结果
+     */
+	@Override
+	public int insertLicenseConfig(LicenseConfig licenseConfig)
+	{
+	    return licenseConfigMapper.insertLicenseConfig(licenseConfig);
+	}
+	
+	/**
+     * 修改license配置
+     * 
+     * @param licenseConfig license配置信息
+     * @return 结果
+     */
+	@Override
+	public int updateLicenseConfig(LicenseConfig licenseConfig)
+	{
+	    return licenseConfigMapper.updateLicenseConfig(licenseConfig);
+	}
+
+	/**
+     * 删除license配置对象
+     * 
+     * @param ids 需要删除的数据ID
+     * @return 结果
+     */
+	@Override
+	public int deleteLicenseConfigByIds(String ids)
+	{
+		return licenseConfigMapper.deleteLicenseConfigByIds(Convert.toStrArray(ids));
+	}
+	
+}

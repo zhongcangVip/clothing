@@ -1,0 +1,123 @@
+package com.house.web.controller.front;
+
+import java.util.List;
+
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.house.common.annotation.Log;
+import com.house.common.base.AjaxResult;
+import com.house.common.enums.BusinessType;
+import com.house.framework.web.page.TableDataInfo;
+import com.house.module.domain.Garden;
+import com.house.module.service.IGardenService;
+import com.house.module.service.*;;
+import com.house.web.controller.reptile.GardenRepoPageProcessor;
+import com.house.web.core.base.BaseController;
+
+/**
+ * 小区楼盘 信息操作处理
+ * 
+ * @author house
+ * @date 2018-11-16
+ */
+@Controller
+@RequestMapping("/module/garden")
+public class GardenController extends BaseController
+{
+    private String prefix = "system/dept";
+	
+	@Autowired
+	private IGardenService gardenService;
+	@Autowired
+	private ICityAreaService cityAreaService;
+	
+	@RequiresPermissions("module:garden:view")
+	@GetMapping()
+	public String garden()
+	{
+		
+//		Cit
+		Spider.create(new GardenRepoPageProcessor()).addUrl("https://zhuzhou.58.com/xiaoqu/")
+				.thread(10).run();
+			
+	    return prefix + "/dept";
+	}
+	
+	/**
+	 * 查询小区楼盘列表
+	 */
+	@RequiresPermissions("module:garden:list")
+	@PostMapping("/list")
+	@ResponseBody
+	public TableDataInfo list(Garden garden)
+	{
+		startPage();
+        List<Garden> list = gardenService.selectGardenList(garden);
+		return getDataTable(list);
+	}
+	
+	/**
+	 * 新增小区楼盘
+	 */
+	@GetMapping("/add")
+	public String add()
+	{
+	    return prefix + "/add";
+	}
+	
+	/**
+	 * 新增保存小区楼盘
+	 */
+	@RequiresPermissions("module:garden:add")
+	@Log(title = "小区楼盘", businessType = BusinessType.INSERT)
+	@PostMapping("/add")
+	@ResponseBody
+	public AjaxResult addSave(Garden garden)
+	{		
+		return toAjax(gardenService.insertGarden(garden));
+	}
+
+	/**
+	 * 修改小区楼盘
+	 */
+	@GetMapping("/edit/{gardenId}")
+	public String edit(@PathVariable("gardenId") Integer gardenId, ModelMap mmap)
+	{
+		Garden garden = gardenService.selectGardenById(gardenId);
+		mmap.put("garden", garden);
+	    return prefix + "/edit";
+	}
+	
+	/**
+	 * 修改保存小区楼盘
+	 */
+	@RequiresPermissions("module:garden:edit")
+	@Log(title = "小区楼盘", businessType = BusinessType.UPDATE)
+	@PostMapping("/edit")
+	@ResponseBody
+	public AjaxResult editSave(Garden garden)
+	{		
+		return toAjax(gardenService.updateGarden(garden));
+	}
+	
+	/**
+	 * 删除小区楼盘
+	 */
+	@RequiresPermissions("module:garden:remove")
+	@Log(title = "小区楼盘", businessType = BusinessType.DELETE)
+	@PostMapping( "/remove")
+	@ResponseBody
+	public AjaxResult remove(String ids)
+	{		
+		return toAjax(gardenService.deleteGardenByIds(ids));
+	}
+	
+}

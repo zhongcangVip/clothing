@@ -24,6 +24,6 @@
 <workingSet IMemento.internal.id="clothing"/>
 <workingSet IMemento.internal.id="house"/>
 </workingSet>
-<mruList name="house"/>
 <mruList name="clothing"/>
+<mruList name="house"/>
 </workingSetManager>

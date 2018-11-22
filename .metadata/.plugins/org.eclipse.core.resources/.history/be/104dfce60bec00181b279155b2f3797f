@@ -1,0 +1,164 @@
+package com.house.web.controller.reptile;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.alibaba.druid.util.StringUtils;
+import com.house.framework.util.SpringUtils;
+import com.house.module.domain.Garden;
+import com.house.module.service.impl.GardenServiceImpl;
+
+import us.codecraft.webmagic.Page;
+import us.codecraft.webmagic.Site;
+import us.codecraft.webmagic.Spider;
+import us.codecraft.webmagic.processor.PageProcessor;
+
+/**
+ * 小区详细数据采集
+ * 
+ * @author yangmin
+ * @Date 2018年11月14日
+ */
+public class GardenInfoRepoPageProcessor implements PageProcessor {
+
+	private Site site = Site.me().setRetryTimes(3).setSleepTime(100);
+
+	private Garden garden;
+
+	@Override
+	public void process(Page page) {
+		// TODO Auto-generated method stub
+		List<String> list = page.getHtml().css("td.desc").all();
+		buildGardenInfo(list);
+		String infoStr = page.getHtml().xpath("/html/head/script[1]").toString();
+		if (infoStr.indexOf("infoid") != -1) {
+			System.err.println(infoStr);
+			int begin = infoStr.indexOf("lat:") + 6;
+			int end = begin + 9;
+			String lat = infoStr.substring(begin, end);
+			begin = infoStr.indexOf("comListname") -2;
+			end = begin + 9;
+			String lon = infoStr.substring(begin, end);
+			begin = infoStr.indexOf("infoid:") + 9;
+			end = infoStr.indexOf("lat:") - 2;
+			String infoId= infoStr.substring(begin, end);
+			garden.setGardenLongitude(lon);
+			garden.setGardenLatitude(lat);
+			garden.setGardenImgInfoId(infoId);
+			//持 久化小区数据
+			List<Garden> gardenList=SpringUtils.getBean(GardenServiceImpl.class).selectGardenList(garden);
+			if(gardenList!=null && gardenList.size()>0){
+				System.err.println("重复!");
+			}else{
+				SpringUtils.getBean(GardenServiceImpl.class).insertGarden(garden);
+				// 小区图片
+//				String imgUrl="https://m.58.com/xiaoquweb/getXiaoquPics/?infoid="+infoId;
+//				GardenImgPageProcessor imgObj= new GardenImgPageProcessor();
+//				imgObj.setGarden(garden);
+//				Spider.create(imgObj).addUrl("https://m.58.com/xiaoquweb/getXiaoquPics/?infoid=854823").thread(5).run();
+			}
+		}
+	}
+
+	/**
+	 * 
+	 * 1
+	 * <td class="desc" title="霞光中路">霞光中路</td>
+	 * <td class="desc" title="小高层">小高层</td>
+	 * <td class="desc" title="暂无数据">暂无数据</td>
+	 * <td class="desc" title="商品房住宅">商品房住宅</td>
+	 * <td class="desc" title="1.30元/平/月">1.30元/平/月</td>
+	 * <td class="desc" title="暂无数据">暂无数据</td>
+	 * <td class="desc" title="2.15">2.15</td>
+	 * <td class="desc" title="暂无数据">暂无数据</td>
+	 * <td class="desc" title="暂无数据">暂无数据</td>
+	 * <td class="desc" title="暂无数据">暂无数据</td>
+	 * <td class="desc" title="暂无数据">暂无数据</td>
+	 * <td class="desc" colspan="3" title="暂无数据">暂无数据</td>
+	 * <td class="desc" colspan="3" title="湘潭乐家物业管理有限公司">湘潭乐家物业管理有限公司</td>
+	 * <td class="desc" colspan="3" title="湘潭城郊置业有限公司">湘潭城郊置业有限公司</td> 构建小区详细信息
+	 * 
+	 * @param info
+	 */
+	private void buildGardenInfo(List<String> list) {
+		// 1.详细地址
+		for (int i = 0; i < list.size(); i++) {
+			String info = list.get(i);
+			int begin = info.indexOf(">") + 1;
+			int end = info.length() - 5;
+			String obj = info.substring(begin, end);
+			switch (i) {
+			case 1:
+				garden.setGardenAddress(garden.getGardenAddress() + " " + obj);
+				break;
+			case 2:
+				garden.setGardenBuildCategory(obj);
+				break;
+			case 3:
+				if (StringUtils.isNumber(obj)) {
+					garden.setGardenTotalNum(Integer.valueOf(obj));
+				}
+				break;
+			case 4:
+				garden.setGardenRightCategory(obj);
+				break;
+			case 5:
+				garden.setGardenPropertyCost(obj);
+				break;
+			case 6:
+				garden.setGardenPropertyYears(obj);
+				break;
+			case 7:
+				if (StringUtils.isNumber(obj)) {
+					garden.setGardenPlotRatio(new BigDecimal(obj));
+				}
+			case 8:
+				garden.setGardenBuiltYear(obj);
+				break;
+			case 9:
+				garden.setGardenGreenRate(obj);
+				break;
+			case 10:
+				garden.setGardenFloorArea(obj);
+				break;
+			case 11:
+				garden.setGardenBuiltArea(obj);
+				break;
+			case 12:
+				garden.setGardenParkingSpace(obj);
+				break;
+			case 13:
+				garden.setGardenPropertyCompany(obj);
+				break;
+			case 14:
+				garden.setGardenDeveloper(obj);
+			default:
+				break;
+			}
+		}
+	}
+
+	@Override
+	public Site getSite() {
+		// TODO Auto-generated method stub
+//		site.setHttpProxy(httpProxy);
+		List<String[]> poolHosts = new ArrayList<String[]>();
+		poolHosts.add(new String[]{"username","password","101.101.101.101","8888"});
+		poolHosts.add(new String[]{"username","password","102.102.102.102","8888"});
+//		site.setHttpProxyPool(poolHosts, false);
+		return site;
+	}
+
+	public void setGarden(Garden garden) {
+		this.garden = garden;
+
+	}
+
+	public static void main(String[] args) {
+		Spider.create(new GardenInfoRepoPageProcessor())
+				.addUrl("https://changde.58.com/xiaoqu/shuixiehuachengxicheng1")
+				.thread(5).run();
+	}
+
+}

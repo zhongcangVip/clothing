@@ -1,0 +1,5 @@
+#Tue Nov 20 21:20:08 CST 2018
+__DEFAULT__=false
+org.eclipse.sdk.Eclipse.master=true
+org.eclipse.help.ui.localSearch.master=true
+expression=aptana

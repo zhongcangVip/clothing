@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;StatusEnum.java&apos; to &apos;clothing-system/src/main/java/com.clothing.module.domain&apos;&#x0D;&#x0A;- Original project: &apos;clothing-web&apos;&#x0D;&#x0A;- Destination element: &apos;clothing-system/src/main/java/com.clothing.module.domain&apos;&#x0D;&#x0A;- Original element: &apos;com.clothing.model.base.enums.StatusEnum.java&apos;" description="Copy compilation unit" destination="=clothing-system/src\/main\/java&lt;com.clothing.module.domain" element1="/src\/main\/java&lt;com.clothing.model.base.enums{StatusEnum.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1542719254192" units="1" version="1.0"/>
+</session>

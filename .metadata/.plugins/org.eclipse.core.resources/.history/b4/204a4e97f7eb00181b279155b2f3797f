@@ -1,0 +1,83 @@
+package com.house.module.service;
+
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.house.module.mapper.LicenseMapper;
+import com.house.module.domain.License;
+import com.house.module.service.ILicenseService;
+import com.house.common.support.Convert;
+
+/**
+ * license生成 服务层实现
+ * 
+ * @author house
+ * @date 2018-11-18
+ */
+@Service
+public class LicenseServiceImpl implements ILicenseService 
+{
+	@Autowired
+	private LicenseMapper licenseMapper;
+
+	/**
+     * 查询license生成信息
+     * 
+     * @param tid license生成ID
+     * @return license生成信息
+     */
+    @Override
+	public License selectLicenseById(String tid)
+	{
+	    return licenseMapper.selectLicenseById(tid);
+	}
+	
+	/**
+     * 查询license生成列表
+     * 
+     * @param license license生成信息
+     * @return license生成集合
+     */
+	@Override
+	public List<License> selectLicenseList(License license)
+	{
+	    return licenseMapper.selectLicenseList(license);
+	}
+	
+    /**
+     * 新增license生成
+     * 
+     * @param license license生成信息
+     * @return 结果
+     */
+	@Override
+	public int insertLicense(License license)
+	{
+	    return licenseMapper.insertLicense(license);
+	}
+	
+	/**
+     * 修改license生成
+     * 
+     * @param license license生成信息
+     * @return 结果
+     */
+	@Override
+	public int updateLicense(License license)
+	{
+	    return licenseMapper.updateLicense(license);
+	}
+
+	/**
+     * 删除license生成对象
+     * 
+     * @param ids 需要删除的数据ID
+     * @return 结果
+     */
+	@Override
+	public int deleteLicenseByIds(String ids)
+	{
+		return licenseMapper.deleteLicenseByIds(Convert.toStrArray(ids));
+	}
+	
+}

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clothing.module.mapper.ItemcategoryMapper">
+    
+    <resultMap type="Itemcategory" id="ItemcategoryResult">
+        <result property="fid"    column="fid"    />
+        <result property="fcode"    column="fcode"    />
+        <result property="fname"    column="fname"    />
+        <result property="fstatus"    column="fstatus"    />
+        <result property="fkparentid"    column="fkparentid"    />
+        <result property="fuserid"    column="fuserid"    />
+        <result property="fcreatetime"    column="fcreatetime"    />
+        <result property="flastupdateuserid"    column="flastupdateuserid"    />
+        <result property="flastupdatetime"    column="flastupdatetime"    />
+        <result property="fcu"    column="fcu"    />
+    </resultMap>
+	
+	<sql id="selectItemcategoryVo">
+        select fid, fcode, fname, fstatus, fkparentid, fuserid, fcreatetime, flastupdateuserid, flastupdatetime, fcu from sys_itemcategory
+    </sql>
+	
+    <select id="selectItemcategoryList" parameterType="Itemcategory" resultMap="ItemcategoryResult">
+        <include refid="selectItemcategoryVo"/>
+        <where>  
+            <if test="fid != null "> and fid = #{fid}</if>
+             <if test="fcode != null  and fcode != '' "> and fcode = #{fcode}</if>
+             <if test="fname != null  and fname != '' "> and fname = #{fname}</if>
+             <if test="fstatus != null  and fstatus != '' "> and fstatus = #{fstatus}</if>
+             <if test="fkparentid != null  and fkparentid != '' "> and fkparentid = #{fkparentid}</if>
+             <if test="fuserid != null  and fuserid != '' "> and fuserid = #{fuserid}</if>
+             <if test="fcreatetime != null "> and fcreatetime = #{fcreatetime}</if>
+             <if test="flastupdateuserid != null  and flastupdateuserid != '' "> and flastupdateuserid = #{flastupdateuserid}</if>
+             <if test="flastupdatetime != null "> and flastupdatetime = #{flastupdatetime}</if>
+             <if test="fcu != null  and fcu != '' "> and fcu = #{fcu}</if>
+         </where>
+    </select>
+    
+    <select id="selectItemcategoryById" parameterType="Integer" resultMap="ItemcategoryResult">
+        <include refid="selectItemcategoryVo"/>
+        where fid = #{fid}
+    </select>
+        
+    <insert id="insertItemcategory" parameterType="Itemcategory">
+        insert into sys_itemcategory
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="fid != null  ">fid,</if>
+			<if test="fcode != null  and fcode != ''  ">fcode,</if>
+			<if test="fname != null  and fname != ''  ">fname,</if>
+			<if test="fstatus != null  and fstatus != ''  ">fstatus,</if>
+			<if test="fkparentid != null  and fkparentid != ''  ">fkparentid,</if>
+			<if test="fuserid != null  and fuserid != ''  ">fuserid,</if>
+			<if test="fcreatetime != null  ">fcreatetime,</if>
+			<if test="flastupdateuserid != null  and flastupdateuserid != ''  ">flastupdateuserid,</if>
+			<if test="flastupdatetime != null  ">flastupdatetime,</if>
+			<if test="fcu != null  and fcu != ''  ">fcu,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="fid != null  ">#{fid},</if>
+			<if test="fcode != null  and fcode != ''  ">#{fcode},</if>
+			<if test="fname != null  and fname != ''  ">#{fname},</if>
+			<if test="fstatus != null  and fstatus != ''  ">#{fstatus},</if>
+			<if test="fkparentid != null  and fkparentid != ''  ">#{fkparentid},</if>
+			<if test="fuserid != null  and fuserid != ''  ">#{fuserid},</if>
+			<if test="fcreatetime != null  ">#{fcreatetime},</if>
+			<if test="flastupdateuserid != null  and flastupdateuserid != ''  ">#{flastupdateuserid},</if>
+			<if test="flastupdatetime != null  ">#{flastupdatetime},</if>
+			<if test="fcu != null  and fcu != ''  ">#{fcu},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateItemcategory" parameterType="Itemcategory">
+        update sys_itemcategory
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="fcode != null  and fcode != ''  ">fcode = #{fcode},</if>
+            <if test="fname != null  and fname != ''  ">fname = #{fname},</if>
+            <if test="fstatus != null  and fstatus != ''  ">fstatus = #{fstatus},</if>
+            <if test="fkparentid != null  and fkparentid != ''  ">fkparentid = #{fkparentid},</if>
+            <if test="fuserid != null  and fuserid != ''  ">fuserid = #{fuserid},</if>
+            <if test="fcreatetime != null  ">fcreatetime = #{fcreatetime},</if>
+            <if test="flastupdateuserid != null  and flastupdateuserid != ''  ">flastupdateuserid = #{flastupdateuserid},</if>
+            <if test="flastupdatetime != null  ">flastupdatetime = #{flastupdatetime},</if>
+            <if test="fcu != null  and fcu != ''  ">fcu = #{fcu},</if>
+        </trim>
+        where fid = #{fid}
+    </update>
+
+	<delete id="deleteItemcategoryById" parameterType="Integer">
+        delete from sys_itemcategory where fid = #{fid}
+    </delete>
+	
+    <delete id="deleteItemcategoryByIds" parameterType="String">
+        delete from sys_itemcategory where fid in 
+        <foreach item="fid" collection="array" open="(" separator="," close=")">
+            #{fid}
+        </foreach>
+    </delete>
+    
+</mapper>

@@ -1,0 +1,83 @@
+package com.house.system.service;
+
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.house.system.mapper.SysLicenseMapper;
+import com.house.system.domain.SysLicense;
+import com.house.system.service.ISysLicenseService;
+import com.house.common.support.Convert;
+
+/**
+ * license生成 服务层实现
+ * 
+ * @author house
+ * @date 2018-11-18
+ */
+@Service
+public class SysLicenseServiceImpl implements ISysLicenseService 
+{
+	@Autowired
+	private SysLicenseMapper sysLicenseMapper;
+
+	/**
+     * 查询license生成信息
+     * 
+     * @param tid license生成ID
+     * @return license生成信息
+     */
+    @Override
+	public SysLicense selectSysLicenseById(String tid)
+	{
+	    return sysLicenseMapper.selectSysLicenseById(tid);
+	}
+	
+	/**
+     * 查询license生成列表
+     * 
+     * @param sysLicense license生成信息
+     * @return license生成集合
+     */
+	@Override
+	public List<SysLicense> selectSysLicenseList(SysLicense sysLicense)
+	{
+	    return sysLicenseMapper.selectSysLicenseList(sysLicense);
+	}
+	
+    /**
+     * 新增license生成
+     * 
+     * @param sysLicense license生成信息
+     * @return 结果
+     */
+	@Override
+	public int insertSysLicense(SysLicense sysLicense)
+	{
+	    return sysLicenseMapper.insertSysLicense(sysLicense);
+	}
+	
+	/**
+     * 修改license生成
+     * 
+     * @param sysLicense license生成信息
+     * @return 结果
+     */
+	@Override
+	public int updateSysLicense(SysLicense sysLicense)
+	{
+	    return sysLicenseMapper.updateSysLicense(sysLicense);
+	}
+
+	/**
+     * 删除license生成对象
+     * 
+     * @param ids 需要删除的数据ID
+     * @return 结果
+     */
+	@Override
+	public int deleteSysLicenseByIds(String ids)
+	{
+		return sysLicenseMapper.deleteSysLicenseByIds(Convert.toStrArray(ids));
+	}
+	
+}
