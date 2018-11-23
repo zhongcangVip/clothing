@@ -8105,3 +8105,183 @@ org.eclipse.core.runtime.CoreException: Launch configuration ClothingApplication
 2018-11-17 22:15:05,479 [Worker-123] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
 2018-11-17 22:15:05,481 [Worker-123] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2018-11-17 22:15:05,481 [Worker-123] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\WorkSpace\clothing\clothing-admin\src\test\resources
+2018-11-22 22:18:36,778 [Worker-3] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using NULL lifecycle mapping for MavenProject: com.clothing:clothing:3.0 @ D:\WorkSpace\clothing\pom.xml.
+2018-11-22 22:18:39,251 [Worker-3] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.clothing:clothing-common:3.0 @ D:\WorkSpace\clothing\clothing-common\pom.xml.
+2018-11-22 22:18:40,194 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:18:40,194 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\WorkSpace\clothing\clothing-common\src\main\resources
+2018-11-22 22:18:40,196 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:18:40,196 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\WorkSpace\clothing\clothing-common\src\test\resources
+2018-11-22 22:18:40,567 [Worker-3] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.clothing:clothing-generator:3.0 @ D:\WorkSpace\clothing\clothing-generator\pom.xml.
+2018-11-22 22:18:41,260 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:18:41,263 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 11 resources
+2018-11-22 22:18:41,284 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:18:41,285 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\WorkSpace\clothing\clothing-generator\src\test\resources
+2018-11-22 22:18:41,655 [Worker-3] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.clothing:clothing-quartz:3.0 @ D:\WorkSpace\clothing\clothing-quartz\pom.xml.
+2018-11-22 22:18:42,347 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:18:42,348 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2018-11-22 22:18:42,353 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:18:42,353 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\WorkSpace\clothing\clothing-quartz\src\test\resources
+2018-11-22 22:18:42,820 [Worker-3] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.clothing:clothing-system:3.0 @ D:\WorkSpace\clothing\clothing-system\pom.xml.
+2018-11-22 22:18:43,462 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:18:43,463 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 18 resources
+2018-11-22 22:18:43,488 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:18:43,488 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\WorkSpace\clothing\clothing-system\src\test\resources
+2018-11-22 22:18:44,042 [Worker-3] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.clothing:clothing-framework:3.0 @ D:\WorkSpace\clothing\clothing-framework\pom.xml.
+2018-11-22 22:18:45,378 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:18:45,379 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\WorkSpace\clothing\clothing-framework\src\main\resources
+2018-11-22 22:18:45,379 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:18:45,379 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\WorkSpace\clothing\clothing-framework\src\test\resources
+2018-11-22 22:18:46,077 [Worker-3] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.clothing:clothing-admin:3.0 @ D:\WorkSpace\clothing\clothing-admin\pom.xml.
+2018-11-22 22:18:47,541 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:18:47,544 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 202 resources
+2018-11-22 22:18:47,866 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:18:47,866 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\WorkSpace\clothing\clothing-admin\src\test\resources
+2018-11-22 22:18:49,843 [Worker-3] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.clothing:clothing-web:0.0.1-SNAPSHOT @ D:\WorkSpace\clothing_temp\clothing-web\pom.xml.
+2018-11-22 22:18:51,428 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:18:51,432 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2018-11-22 22:18:51,447 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 919 resources
+2018-11-22 22:18:52,801 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:18:52,801 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\WorkSpace\clothing_temp\clothing-web\src\test\resources
+2018-11-22 22:18:53,052 [Worker-3] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using NULL lifecycle mapping for MavenProject: com.house:house:1.0 @ D:\houseWorkSpace\house\pom.xml.
+2018-11-22 22:18:53,864 [Worker-3] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.house:house-common:1.0 @ D:\houseWorkSpace\house\house-common\pom.xml.
+2018-11-22 22:18:54,625 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:18:54,625 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\houseWorkSpace\house\house-common\src\main\resources
+2018-11-22 22:18:54,626 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:18:54,626 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\houseWorkSpace\house\house-common\src\test\resources
+2018-11-22 22:18:54,933 [Worker-3] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.house:house-generator:1.0 @ D:\houseWorkSpace\house\house-generator\pom.xml.
+2018-11-22 22:18:55,737 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:18:55,739 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 11 resources
+2018-11-22 22:18:55,754 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:18:55,754 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\houseWorkSpace\house\house-generator\src\test\resources
+2018-11-22 22:18:56,098 [Worker-3] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.house:house-quartz:1.0 @ D:\houseWorkSpace\house\house-quartz\pom.xml.
+2018-11-22 22:18:57,009 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:18:57,010 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2018-11-22 22:18:57,014 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:18:57,014 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\houseWorkSpace\house\house-quartz\src\test\resources
+2018-11-22 22:18:57,471 [Worker-3] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.house:house-system:1.0 @ D:\houseWorkSpace\house\house-system\pom.xml.
+2018-11-22 22:18:58,209 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:18:58,209 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 23 resources
+2018-11-22 22:18:58,239 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:18:58,239 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\houseWorkSpace\house\house-system\src\test\resources
+2018-11-22 22:18:58,727 [Worker-3] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.house:house-framework:1.0 @ D:\houseWorkSpace\house\house-framework\pom.xml.
+2018-11-22 22:19:00,536 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:19:00,536 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\houseWorkSpace\house\house-framework\src\main\resources
+2018-11-22 22:19:00,537 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:19:00,537 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\houseWorkSpace\house\house-framework\src\test\resources
+2018-11-22 22:19:01,189 [Worker-3] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.house:house-admin:1.0 @ D:\houseWorkSpace\house\house-admin\pom.xml.
+2018-11-22 22:19:02,864 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:19:02,865 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 208 resources
+2018-11-22 22:19:03,182 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:19:03,183 [Worker-3] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\houseWorkSpace\house\house-admin\src\test\resources
+2018-11-22 22:19:06,231 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:19:06,231 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\houseWorkSpace\house\house-common\src\main\resources
+2018-11-22 22:19:06,232 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:19:06,232 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\houseWorkSpace\house\house-common\src\test\resources
+2018-11-22 22:19:07,126 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:19:07,131 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 11 resources
+2018-11-22 22:19:07,145 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:19:07,145 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\houseWorkSpace\house\house-generator\src\test\resources
+2018-11-22 22:19:08,008 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:19:08,009 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2018-11-22 22:19:08,013 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:19:08,013 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\houseWorkSpace\house\house-quartz\src\test\resources
+2018-11-22 22:19:09,047 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:19:09,049 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 23 resources
+2018-11-22 22:19:09,073 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:19:09,073 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\houseWorkSpace\house\house-system\src\test\resources
+2018-11-22 22:19:10,515 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:19:10,515 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\houseWorkSpace\house\house-framework\src\main\resources
+2018-11-22 22:19:10,516 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:19:10,516 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\houseWorkSpace\house\house-framework\src\test\resources
+2018-11-22 22:20:28,092 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:20:28,121 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 202 resources
+2018-11-22 22:20:28,142 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:20:28,142 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\WorkSpace\clothing\clothing-admin\src\test\resources
+2018-11-22 22:20:40,117 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:20:40,120 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 18 resources
+2018-11-22 22:20:40,122 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:20:40,123 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\WorkSpace\clothing\clothing-system\src\test\resources
+2018-11-22 22:20:40,180 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:20:40,209 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 202 resources
+2018-11-22 22:20:40,231 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:20:40,232 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\WorkSpace\clothing\clothing-admin\src\test\resources
+2018-11-22 22:20:48,543 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:20:48,545 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 18 resources
+2018-11-22 22:20:48,548 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:20:48,548 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\WorkSpace\clothing\clothing-system\src\test\resources
+2018-11-22 22:20:55,274 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:20:55,277 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 18 resources
+2018-11-22 22:20:55,279 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:20:55,279 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\WorkSpace\clothing\clothing-system\src\test\resources
+2018-11-22 22:20:55,331 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:20:55,361 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 202 resources
+2018-11-22 22:20:55,383 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:20:55,383 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\WorkSpace\clothing\clothing-admin\src\test\resources
+2018-11-22 22:21:00,126 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:21:00,128 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 18 resources
+2018-11-22 22:21:00,130 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:21:00,131 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\WorkSpace\clothing\clothing-system\src\test\resources
+2018-11-22 22:21:05,401 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:21:05,403 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 18 resources
+2018-11-22 22:21:05,405 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:21:05,406 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\WorkSpace\clothing\clothing-system\src\test\resources
+2018-11-22 22:21:14,532 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:21:14,560 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 202 resources
+2018-11-22 22:21:14,582 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:21:14,582 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\WorkSpace\clothing\clothing-admin\src\test\resources
+2018-11-22 22:21:34,215 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:21:34,216 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2018-11-22 22:21:34,219 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:21:34,219 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\WorkSpace\clothing\clothing-system\src\test\resources
+2018-11-22 22:21:52,020 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:21:52,021 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 3 resources
+2018-11-22 22:21:52,025 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:21:52,025 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\WorkSpace\clothing\clothing-admin\src\test\resources
+2018-11-22 22:22:09,161 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:22:09,161 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2018-11-22 22:22:09,164 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:22:09,164 [Worker-11] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\WorkSpace\clothing\clothing-admin\src\test\resources
+2018-11-22 22:23:36,349 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:23:36,349 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 3 resources
+2018-11-22 22:23:36,353 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:23:36,353 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\WorkSpace\clothing\clothing-admin\src\test\resources
+2018-11-22 22:23:46,224 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:23:46,225 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2018-11-22 22:23:46,227 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:23:46,227 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\WorkSpace\clothing\clothing-system\src\test\resources
+2018-11-22 22:24:00,968 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:24:00,998 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 208 resources
+2018-11-22 22:24:01,021 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:24:01,021 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\WorkSpace\clothing\clothing-admin\src\test\resources
+2018-11-22 22:24:11,266 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:24:11,269 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 20 resources
+2018-11-22 22:24:11,272 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:24:11,272 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\WorkSpace\clothing\clothing-system\src\test\resources
+2018-11-22 22:24:11,330 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:24:11,360 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 208 resources
+2018-11-22 22:24:11,382 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:24:11,382 [Worker-0] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\WorkSpace\clothing\clothing-admin\src\test\resources
+2018-11-22 22:24:17,984 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:24:17,987 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 20 resources
+2018-11-22 22:24:17,989 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:24:17,990 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\WorkSpace\clothing\clothing-system\src\test\resources
+2018-11-22 22:24:31,730 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:24:31,733 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 20 resources
+2018-11-22 22:24:31,736 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:24:31,736 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\WorkSpace\clothing\clothing-system\src\test\resources
+2018-11-22 22:24:31,791 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:24:31,820 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 208 resources
+2018-11-22 22:24:31,844 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:24:31,844 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\WorkSpace\clothing\clothing-admin\src\test\resources
+2018-11-22 22:24:36,650 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:24:36,653 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 20 resources
+2018-11-22 22:24:36,655 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:24:36,655 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\WorkSpace\clothing\clothing-system\src\test\resources
+2018-11-22 22:24:41,427 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:24:41,430 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 20 resources
+2018-11-22 22:24:41,432 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:24:41,432 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\WorkSpace\clothing\clothing-system\src\test\resources
+2018-11-22 22:24:47,175 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:24:47,203 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 208 resources
+2018-11-22 22:24:47,224 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-11-22 22:24:47,224 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\WorkSpace\clothing\clothing-admin\src\test\resources

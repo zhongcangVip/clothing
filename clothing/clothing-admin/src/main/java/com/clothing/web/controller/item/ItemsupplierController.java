@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.clothing.common.annotation.Log;
 import com.clothing.common.enums.BusinessType;
 import com.clothing.module.domain.Itemsupplier;
+import com.clothing.module.enums.StatusEnum;
 import com.clothing.module.service.IItemsupplierService;
+import com.clothing.system.domain.SysUser;
+import com.clothing.framework.util.ShiroUtils;
 import com.clothing.framework.web.base.BaseController;
 import com.clothing.framework.web.page.TableDataInfo;
 import com.clothing.common.base.AjaxResult;
@@ -48,8 +51,16 @@ public class ItemsupplierController extends BaseController
 	@ResponseBody
 	public TableDataInfo list(Itemsupplier itemsupplier)
 	{
+		SysUser user=ShiroUtils.getUser();
+		if(!user.isAdmin()){
+			itemsupplier.setFcu(user.getDeptId()+"");
+		}
 		startPage();
         List<Itemsupplier> list = itemsupplierService.selectItemsupplierList(itemsupplier);
+        list.forEach(obj->{
+        	StatusEnum status=StatusEnum.valueOf(obj.getFstatus());
+        	obj.setFstatus(status.getDescription());
+        });
 		return getDataTable(list);
 	}
 	
@@ -70,7 +81,9 @@ public class ItemsupplierController extends BaseController
 	@PostMapping("/add")
 	@ResponseBody
 	public AjaxResult addSave(Itemsupplier itemsupplier)
-	{		
+	{	
+		itemsupplier.setFcu(ShiroUtils.getUser().getDeptId()+"");
+		itemsupplier.setFstatus(StatusEnum.NORMAL.getKey());
 		return toAjax(itemsupplierService.insertItemsupplier(itemsupplier));
 	}
 

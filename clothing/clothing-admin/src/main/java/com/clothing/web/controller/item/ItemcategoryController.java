@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.clothing.common.annotation.Log;
 import com.clothing.common.enums.BusinessType;
 import com.clothing.module.domain.Itemcategory;
+import com.clothing.module.enums.StatusEnum;
 import com.clothing.module.service.IItemcategoryService;
+import com.clothing.framework.util.ShiroUtils;
 import com.clothing.framework.web.base.BaseController;
 import com.clothing.framework.web.page.TableDataInfo;
 import com.clothing.common.base.AjaxResult;
@@ -48,8 +50,17 @@ public class ItemcategoryController extends BaseController
 	@ResponseBody
 	public TableDataInfo list(Itemcategory itemcategory)
 	{
+		if(!ShiroUtils.getUser().isAdmin()){
+			itemcategory.setFcu(ShiroUtils.getUser().getDeptId()+"");
+		}
 		startPage();
         List<Itemcategory> list = itemcategoryService.selectItemcategoryList(itemcategory);
+        list.forEach(obj->{
+        	StatusEnum status=StatusEnum.valueOf(obj.getFstatus());
+        	if(status!=null){
+        		obj.setFstatus(status.getDescription());
+        	}
+        });
 		return getDataTable(list);
 	}
 	
@@ -71,6 +82,8 @@ public class ItemcategoryController extends BaseController
 	@ResponseBody
 	public AjaxResult addSave(Itemcategory itemcategory)
 	{		
+		itemcategory.setFcu(ShiroUtils.getUser().getDeptId()+"");
+		itemcategory.setFstatus(StatusEnum.NORMAL.getKey());
 		return toAjax(itemcategoryService.insertItemcategory(itemcategory));
 	}
 
