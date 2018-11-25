@@ -35,6 +35,8 @@ public class Itemunit extends BaseEntity
 	private Date flastupdatetime;
 	/**  */
 	private String fcu;
+	/***默认的选中项**/
+	private boolean flag;//
 
 	public void setFid(Integer fid) 
 	{
@@ -126,8 +128,17 @@ public class Itemunit extends BaseEntity
 	{
 		return fcu;
 	}
+	
 
-    public String toString() {
+    public boolean isFlag() {
+		return flag;
+	}
+
+	public void setFlag(boolean flag) {
+		this.flag = flag;
+	}
+
+	public String toString() {
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
             .append("fid", getFid())
             .append("fcode", getFcode())

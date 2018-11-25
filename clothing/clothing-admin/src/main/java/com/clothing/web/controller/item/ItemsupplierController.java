@@ -63,6 +63,19 @@ public class ItemsupplierController extends BaseController
         });
 		return getDataTable(list);
 	}
+	/**
+	 * 选择供应商弹窗
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/selectSupplier")
+	public String selectSupplier(ModelMap model){
+		SysUser user=ShiroUtils.getUser();
+		Itemsupplier supplier=new Itemsupplier();
+		supplier.setFcu(user.getDeptId()+"");
+		model.put("supplierList", this.itemsupplierService.selectItemsupplierList(supplier));
+		return prefix+"/selectlist";
+	}
 	
 	/**
 	 * 新增商品供应商

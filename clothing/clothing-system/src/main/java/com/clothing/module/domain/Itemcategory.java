@@ -35,6 +35,8 @@ public class Itemcategory extends BaseEntity
 	private Date flastupdatetime;
 	/**  */
 	private String fcu;
+	
+	private boolean flag;//是否选择。不存放数据库
 
 	public void setFid(Integer fid) 
 	{
@@ -127,7 +129,16 @@ public class Itemcategory extends BaseEntity
 		return fcu;
 	}
 
-    public String toString() {
+	
+    public boolean isFlag() {
+		return flag;
+	}
+
+	public void setFlag(boolean flag) {
+		this.flag = flag;
+	}
+
+	public String toString() {
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
             .append("fid", getFid())
             .append("fcode", getFcode())

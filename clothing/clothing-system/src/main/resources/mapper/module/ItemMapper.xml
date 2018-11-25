@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clothing.module.mapper.ItemMapper">
+    
+    <resultMap type="Item" id="ItemResult">
+        <result property="fid"    column="fid"    />
+        <result property="fcode"    column="fcode"    />
+        <result property="fcu"    column="fcu"    />
+        <result property="fname"    column="fname"    />
+        <result property="fshortname"    column="fshortname"    />
+        <result property="fbarcode"    column="fbarcode"    />
+        <result property="fspec"    column="fspec"    />
+        <result property="fcolor"    column="fcolor"    />
+        <result property="fsize"    column="fsize"    />
+        <result property="fmaterial"    column="fmaterial"    />
+        <result property="fhelpcode"    column="fhelpcode"    />
+        <result property="fretailprice"    column="fretailprice"    />
+        <result property="fbuyingprice"    column="fbuyingprice"    />
+        <result property="fvipprice"    column="fvipprice"    />
+        <result property="fdistributionprice"    column="fdistributionprice"    />
+        <result property="fkcategoryid"    column="fkcategoryid"    />
+        <result property="fkunitid"    column="fkunitid"    />
+        <result property="fksupplierid"    column="fksupplierid"    />
+        <result property="fminprice"    column="fminprice"    />
+        <result property="ftwoprice"    column="ftwoprice"    />
+        <result property="fplace"    column="fplace"    />
+        <result property="fstatus"    column="fstatus"    />
+        <result property="fintegral"    column="fintegral"    />
+        <result property="fdescription"    column="fdescription"    />
+        <result property="fuserid"    column="fuserid"    />
+        <result property="fcreatetime"    column="fcreatetime"    />
+        <result property="flastupdateuserid"    column="flastupdateuserid"    />
+        <result property="flastupdatetime"    column="flastupdatetime"    />
+        <result property="fdisCount"    column="FdisCount"    />
+    </resultMap>
+	
+	<sql id="selectItemVo">
+        select fid, fcode, fcu, fname, fshortname, fbarcode, fspec, fcolor, fsize, fmaterial, fhelpcode, fretailprice, fbuyingprice, fvipprice, fdistributionprice, fkcategoryid, fkunitid, fksupplierid, fminprice, ftwoprice, fplace, fstatus, fintegral, fdescription, fuserid, fcreatetime, flastupdateuserid, flastupdatetime, FdisCount from sys_item
+    </sql>
+	
+    <select id="selectItemList" parameterType="Item" resultMap="ItemResult">
+        <include refid="selectItemVo"/>
+        <where>  
+            <if test="fid != null "> and fid = #{fid}</if>
+             <if test="fcode != null  and fcode != '' "> and fcode = #{fcode}</if>
+             <if test="fcu != null  and fcu != '' "> and fcu = #{fcu}</if>
+             <if test="fname != null  and fname != '' "> and fname = #{fname}</if>
+             <if test="fshortname != null  and fshortname != '' "> and fshortname = #{fshortname}</if>
+             <if test="fbarcode != null  and fbarcode != '' "> and fbarcode = #{fbarcode}</if>
+             <if test="fspec != null  and fspec != '' "> and fspec = #{fspec}</if>
+             <if test="fcolor != null  and fcolor != '' "> and fcolor = #{fcolor}</if>
+             <if test="fsize != null  and fsize != '' "> and fsize = #{fsize}</if>
+             <if test="fmaterial != null  and fmaterial != '' "> and fmaterial = #{fmaterial}</if>
+             <if test="fhelpcode != null  and fhelpcode != '' "> and fhelpcode = #{fhelpcode}</if>
+             <if test="fretailprice != null "> and fretailprice = #{fretailprice}</if>
+             <if test="fbuyingprice != null "> and fbuyingprice = #{fbuyingprice}</if>
+             <if test="fvipprice != null "> and fvipprice = #{fvipprice}</if>
+             <if test="fdistributionprice != null "> and fdistributionprice = #{fdistributionprice}</if>
+             <if test="fkcategoryid != null  and fkcategoryid != '' "> and fkcategoryid = #{fkcategoryid}</if>
+             <if test="fkunitid != null  and fkunitid != '' "> and fkunitid = #{fkunitid}</if>
+             <if test="fksupplierid != null  and fksupplierid != '' "> and fksupplierid = #{fksupplierid}</if>
+             <if test="fminprice != null "> and fminprice = #{fminprice}</if>
+             <if test="ftwoprice != null "> and ftwoprice = #{ftwoprice}</if>
+             <if test="fplace != null  and fplace != '' "> and fplace = #{fplace}</if>
+             <if test="fstatus != null  and fstatus != '' "> and fstatus = #{fstatus}</if>
+             <if test="fintegral != null "> and fintegral = #{fintegral}</if>
+             <if test="fdescription != null  and fdescription != '' "> and fdescription = #{fdescription}</if>
+             <if test="fuserid != null  and fuserid != '' "> and fuserid = #{fuserid}</if>
+             <if test="fcreatetime != null "> and fcreatetime = #{fcreatetime}</if>
+             <if test="flastupdateuserid != null  and flastupdateuserid != '' "> and flastupdateuserid = #{flastupdateuserid}</if>
+             <if test="flastupdatetime != null "> and flastupdatetime = #{flastupdatetime}</if>
+             <if test="fdisCount != null  and fdisCount != '' "> and FdisCount = #{fdisCount}</if>
+         </where>
+    </select>
+    
+    <select id="selectItemById" parameterType="Integer" resultMap="ItemResult">
+        <include refid="selectItemVo"/>
+        where fid = #{fid}
+    </select>
+        
+    <insert id="insertItem" parameterType="Item">
+        insert into sys_item
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="fid != null  ">fid,</if>
+			<if test="fcode != null  and fcode != ''  ">fcode,</if>
+			<if test="fcu != null  and fcu != ''  ">fcu,</if>
+			<if test="fname != null  and fname != ''  ">fname,</if>
+			<if test="fshortname != null  and fshortname != ''  ">fshortname,</if>
+			<if test="fbarcode != null  and fbarcode != ''  ">fbarcode,</if>
+			<if test="fspec != null  and fspec != ''  ">fspec,</if>
+			<if test="fcolor != null  and fcolor != ''  ">fcolor,</if>
+			<if test="fsize != null  and fsize != ''  ">fsize,</if>
+			<if test="fmaterial != null  and fmaterial != ''  ">fmaterial,</if>
+			<if test="fhelpcode != null  and fhelpcode != ''  ">fhelpcode,</if>
+			<if test="fretailprice != null  ">fretailprice,</if>
+			<if test="fbuyingprice != null  ">fbuyingprice,</if>
+			<if test="fvipprice != null  ">fvipprice,</if>
+			<if test="fdistributionprice != null  ">fdistributionprice,</if>
+			<if test="fkcategoryid != null  and fkcategoryid != ''  ">fkcategoryid,</if>
+			<if test="fkunitid != null  and fkunitid != ''  ">fkunitid,</if>
+			<if test="fksupplierid != null  and fksupplierid != ''  ">fksupplierid,</if>
+			<if test="fminprice != null  ">fminprice,</if>
+			<if test="ftwoprice != null  ">ftwoprice,</if>
+			<if test="fplace != null  and fplace != ''  ">fplace,</if>
+			<if test="fstatus != null  and fstatus != ''  ">fstatus,</if>
+			<if test="fintegral != null  ">fintegral,</if>
+			<if test="fdescription != null  and fdescription != ''  ">fdescription,</if>
+			<if test="fuserid != null  and fuserid != ''  ">fuserid,</if>
+			<if test="fcreatetime != null  ">fcreatetime,</if>
+			<if test="flastupdateuserid != null  and flastupdateuserid != ''  ">flastupdateuserid,</if>
+			<if test="flastupdatetime != null  ">flastupdatetime,</if>
+			<if test="fdisCount != null  and fdisCount != ''  ">FdisCount,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="fid != null  ">#{fid},</if>
+			<if test="fcode != null  and fcode != ''  ">#{fcode},</if>
+			<if test="fcu != null  and fcu != ''  ">#{fcu},</if>
+			<if test="fname != null  and fname != ''  ">#{fname},</if>
+			<if test="fshortname != null  and fshortname != ''  ">#{fshortname},</if>
+			<if test="fbarcode != null  and fbarcode != ''  ">#{fbarcode},</if>
+			<if test="fspec != null  and fspec != ''  ">#{fspec},</if>
+			<if test="fcolor != null  and fcolor != ''  ">#{fcolor},</if>
+			<if test="fsize != null  and fsize != ''  ">#{fsize},</if>
+			<if test="fmaterial != null  and fmaterial != ''  ">#{fmaterial},</if>
+			<if test="fhelpcode != null  and fhelpcode != ''  ">#{fhelpcode},</if>
+			<if test="fretailprice != null  ">#{fretailprice},</if>
+			<if test="fbuyingprice != null  ">#{fbuyingprice},</if>
+			<if test="fvipprice != null  ">#{fvipprice},</if>
+			<if test="fdistributionprice != null  ">#{fdistributionprice},</if>
+			<if test="fkcategoryid != null  and fkcategoryid != ''  ">#{fkcategoryid},</if>
+			<if test="fkunitid != null  and fkunitid != ''  ">#{fkunitid},</if>
+			<if test="fksupplierid != null  and fksupplierid != ''  ">#{fksupplierid},</if>
+			<if test="fminprice != null  ">#{fminprice},</if>
+			<if test="ftwoprice != null  ">#{ftwoprice},</if>
+			<if test="fplace != null  and fplace != ''  ">#{fplace},</if>
+			<if test="fstatus != null  and fstatus != ''  ">#{fstatus},</if>
+			<if test="fintegral != null  ">#{fintegral},</if>
+			<if test="fdescription != null  and fdescription != ''  ">#{fdescription},</if>
+			<if test="fuserid != null  and fuserid != ''  ">#{fuserid},</if>
+			<if test="fcreatetime != null  ">#{fcreatetime},</if>
+			<if test="flastupdateuserid != null  and flastupdateuserid != ''  ">#{flastupdateuserid},</if>
+			<if test="flastupdatetime != null  ">#{flastupdatetime},</if>
+			<if test="fdisCount != null  and fdisCount != ''  ">#{fdisCount},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateItem" parameterType="Item">
+        update sys_item
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="fcode != null  and fcode != ''  ">fcode = #{fcode},</if>
+            <if test="fcu != null  and fcu != ''  ">fcu = #{fcu},</if>
+            <if test="fname != null  and fname != ''  ">fname = #{fname},</if>
+            <if test="fshortname != null  and fshortname != ''  ">fshortname = #{fshortname},</if>
+            <if test="fbarcode != null  and fbarcode != ''  ">fbarcode = #{fbarcode},</if>
+            <if test="fspec != null  and fspec != ''  ">fspec = #{fspec},</if>
+            <if test="fcolor != null  and fcolor != ''  ">fcolor = #{fcolor},</if>
+            <if test="fsize != null  and fsize != ''  ">fsize = #{fsize},</if>
+            <if test="fmaterial != null  and fmaterial != ''  ">fmaterial = #{fmaterial},</if>
+            <if test="fhelpcode != null  and fhelpcode != ''  ">fhelpcode = #{fhelpcode},</if>
+            <if test="fretailprice != null  ">fretailprice = #{fretailprice},</if>
+            <if test="fbuyingprice != null  ">fbuyingprice = #{fbuyingprice},</if>
+            <if test="fvipprice != null  ">fvipprice = #{fvipprice},</if>
+            <if test="fdistributionprice != null  ">fdistributionprice = #{fdistributionprice},</if>
+            <if test="fkcategoryid != null  and fkcategoryid != ''  ">fkcategoryid = #{fkcategoryid},</if>
+            <if test="fkunitid != null  and fkunitid != ''  ">fkunitid = #{fkunitid},</if>
+            <if test="fksupplierid != null  and fksupplierid != ''  ">fksupplierid = #{fksupplierid},</if>
+            <if test="fminprice != null  ">fminprice = #{fminprice},</if>
+            <if test="ftwoprice != null  ">ftwoprice = #{ftwoprice},</if>
+            <if test="fplace != null  and fplace != ''  ">fplace = #{fplace},</if>
+            <if test="fstatus != null  and fstatus != ''  ">fstatus = #{fstatus},</if>
+            <if test="fintegral != null  ">fintegral = #{fintegral},</if>
+            <if test="fdescription != null  and fdescription != ''  ">fdescription = #{fdescription},</if>
+            <if test="fuserid != null  and fuserid != ''  ">fuserid = #{fuserid},</if>
+            <if test="fcreatetime != null  ">fcreatetime = #{fcreatetime},</if>
+            <if test="flastupdateuserid != null  and flastupdateuserid != ''  ">flastupdateuserid = #{flastupdateuserid},</if>
+            <if test="flastupdatetime != null  ">flastupdatetime = #{flastupdatetime},</if>
+            <if test="fdisCount != null  and fdisCount != ''  ">FdisCount = #{fdisCount},</if>
+        </trim>
+        where fid = #{fid}
+    </update>
+
+	<delete id="deleteItemById" parameterType="Integer">
+        delete from sys_item where fid = #{fid}
+    </delete>
+	
+    <delete id="deleteItemByIds" parameterType="String">
+        delete from sys_item where fid in 
+        <foreach item="fid" collection="array" open="(" separator="," close=")">
+            #{fid}
+        </foreach>
+    </delete>
+    
+</mapper>
