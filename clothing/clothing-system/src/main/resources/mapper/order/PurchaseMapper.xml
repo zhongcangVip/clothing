@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clothing.module.mapper.PurchaseMapper">
+    
+    <resultMap type="Purchase" id="PurchaseResult">
+        <result property="purchaseId"    column="purchase_id"    />
+        <result property="purchaseOrderno"    column="purchase_orderno"    />
+        <result property="purchaseSupplierId"    column="purchase_supplier_id"    />
+        <result property="deptId"    column="dept_id"    />
+        <result property="purchaseSourceId"    column="purchase_source_id"    />
+        <result property="purchaseDescription"    column="purchase_description"    />
+        <result property="purchaseStatus"    column="purchase_status"    />
+        <result property="createtime"    column="createtime"    />
+        <result property="createby"    column="createby"    />
+        <result property="lastupdatetime"    column="lastupdatetime"    />
+        <result property="lastupdateby"    column="lastupdateby"    />
+    </resultMap>
+	
+	<sql id="selectPurchaseVo">
+        select purchase_id, purchase_orderno, purchase_supplier_id, dept_id, purchase_source_id, purchase_description, purchase_status, createtime, createby, lastupdatetime, lastupdateby from sys_purchase
+    </sql>
+	
+    <select id="selectPurchaseList" parameterType="Purchase" resultMap="PurchaseResult">
+        <include refid="selectPurchaseVo"/>
+        <where>  
+            <if test="purchaseId != null "> and purchase_id = #{purchaseId}</if>
+             <if test="purchaseOrderno != null  and purchaseOrderno != '' "> and purchase_orderno = #{purchaseOrderno}</if>
+             <if test="purchaseSupplierId != null "> and purchase_supplier_id = #{purchaseSupplierId}</if>
+             <if test="deptId != null "> and dept_id = #{deptId}</if>
+             <if test="purchaseSourceId != null "> and purchase_source_id = #{purchaseSourceId}</if>
+             <if test="purchaseDescription != null  and purchaseDescription != '' "> and purchase_description = #{purchaseDescription}</if>
+             <if test="purchaseStatus != null  and purchaseStatus != '' "> and purchase_status = #{purchaseStatus}</if>
+             <if test="createtime != null "> and createtime = #{createtime}</if>
+             <if test="createby != null "> and createby = #{createby}</if>
+             <if test="lastupdatetime != null "> and lastupdatetime = #{lastupdatetime}</if>
+             <if test="lastupdateby != null "> and lastupdateby = #{lastupdateby}</if>
+         </where>
+    </select>
+    
+    <select id="selectPurchaseById" parameterType="Integer" resultMap="PurchaseResult">
+        <include refid="selectPurchaseVo"/>
+        where purchase_id = #{purchaseId}
+    </select>
+        
+    <insert id="insertPurchase" parameterType="Purchase">
+        insert into sys_purchase
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="purchaseId != null  ">purchase_id,</if>
+			<if test="purchaseOrderno != null  and purchaseOrderno != ''  ">purchase_orderno,</if>
+			<if test="purchaseSupplierId != null  ">purchase_supplier_id,</if>
+			<if test="deptId != null  ">dept_id,</if>
+			<if test="purchaseSourceId != null  ">purchase_source_id,</if>
+			<if test="purchaseDescription != null  and purchaseDescription != ''  ">purchase_description,</if>
+			<if test="purchaseStatus != null  and purchaseStatus != ''  ">purchase_status,</if>
+			<if test="createtime != null  ">createtime,</if>
+			<if test="createby != null  ">createby,</if>
+			<if test="lastupdatetime != null  ">lastupdatetime,</if>
+			<if test="lastupdateby != null  ">lastupdateby,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="purchaseId != null  ">#{purchaseId},</if>
+			<if test="purchaseOrderno != null  and purchaseOrderno != ''  ">#{purchaseOrderno},</if>
+			<if test="purchaseSupplierId != null  ">#{purchaseSupplierId},</if>
+			<if test="deptId != null  ">#{deptId},</if>
+			<if test="purchaseSourceId != null  ">#{purchaseSourceId},</if>
+			<if test="purchaseDescription != null  and purchaseDescription != ''  ">#{purchaseDescription},</if>
+			<if test="purchaseStatus != null  and purchaseStatus != ''  ">#{purchaseStatus},</if>
+			<if test="createtime != null  ">#{createtime},</if>
+			<if test="createby != null  ">#{createby},</if>
+			<if test="lastupdatetime != null  ">#{lastupdatetime},</if>
+			<if test="lastupdateby != null  ">#{lastupdateby},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updatePurchase" parameterType="Purchase">
+        update sys_purchase
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="purchaseOrderno != null  and purchaseOrderno != ''  ">purchase_orderno = #{purchaseOrderno},</if>
+            <if test="purchaseSupplierId != null  ">purchase_supplier_id = #{purchaseSupplierId},</if>
+            <if test="deptId != null  ">dept_id = #{deptId},</if>
+            <if test="purchaseSourceId != null  ">purchase_source_id = #{purchaseSourceId},</if>
+            <if test="purchaseDescription != null  and purchaseDescription != ''  ">purchase_description = #{purchaseDescription},</if>
+            <if test="purchaseStatus != null  and purchaseStatus != ''  ">purchase_status = #{purchaseStatus},</if>
+            <if test="createtime != null  ">createtime = #{createtime},</if>
+            <if test="createby != null  ">createby = #{createby},</if>
+            <if test="lastupdatetime != null  ">lastupdatetime = #{lastupdatetime},</if>
+            <if test="lastupdateby != null  ">lastupdateby = #{lastupdateby},</if>
+        </trim>
+        where purchase_id = #{purchaseId}
+    </update>
+
+	<delete id="deletePurchaseById" parameterType="Integer">
+        delete from sys_purchase where purchase_id = #{purchaseId}
+    </delete>
+	
+    <delete id="deletePurchaseByIds" parameterType="String">
+        delete from sys_purchase where purchase_id in 
+        <foreach item="purchaseId" collection="array" open="(" separator="," close=")">
+            #{purchaseId}
+        </foreach>
+    </delete>
+    
+</mapper>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clothing.module.mapper.PurchaseDetailMapper">
+    
+    <resultMap type="PurchaseDetail" id="PurchaseDetailResult">
+        <result property="detailId"    column="detail_id"    />
+        <result property="detailNo"    column="detail_no"    />
+        <result property="detailItemId"    column="detail_item_id"    />
+        <result property="detailItemQuantity"    column="detail_item_quantity"    />
+        <result property="detailItemGiveQuantity"    column="detail_item_give_quantity"    />
+        <result property="detailPrice"    column="detail_price"    />
+        <result property="detailDescription"    column="detail_description"    />
+    </resultMap>
+	
+	<sql id="selectPurchaseDetailVo">
+        select detail_id, detail_no, detail_item_id, detail_item_quantity, detail_item_give_quantity, detail_price, detail_description from sys_purchase_detail
+    </sql>
+	
+    <select id="selectPurchaseDetailList" parameterType="PurchaseDetail" resultMap="PurchaseDetailResult">
+        <include refid="selectPurchaseDetailVo"/>
+        <where>  
+            <if test="detailId != null "> and detail_id = #{detailId}</if>
+             <if test="detailNo != null "> and detail_no = #{detailNo}</if>
+             <if test="detailItemId != null "> and detail_item_id = #{detailItemId}</if>
+             <if test="detailItemQuantity != null "> and detail_item_quantity = #{detailItemQuantity}</if>
+             <if test="detailItemGiveQuantity != null "> and detail_item_give_quantity = #{detailItemGiveQuantity}</if>
+             <if test="detailPrice != null "> and detail_price = #{detailPrice}</if>
+             <if test="detailDescription != null  and detailDescription != '' "> and detail_description = #{detailDescription}</if>
+         </where>
+    </select>
+    
+    <select id="selectPurchaseDetailById" parameterType="Integer" resultMap="PurchaseDetailResult">
+        <include refid="selectPurchaseDetailVo"/>
+        where detail_id = #{detailId}
+    </select>
+        
+    <insert id="insertPurchaseDetail" parameterType="PurchaseDetail">
+        insert into sys_purchase_detail
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="detailId != null  ">detail_id,</if>
+			<if test="detailNo != null  ">detail_no,</if>
+			<if test="detailItemId != null  ">detail_item_id,</if>
+			<if test="detailItemQuantity != null  ">detail_item_quantity,</if>
+			<if test="detailItemGiveQuantity != null  ">detail_item_give_quantity,</if>
+			<if test="detailPrice != null  ">detail_price,</if>
+			<if test="detailDescription != null  and detailDescription != ''  ">detail_description,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="detailId != null  ">#{detailId},</if>
+			<if test="detailNo != null  ">#{detailNo},</if>
+			<if test="detailItemId != null  ">#{detailItemId},</if>
+			<if test="detailItemQuantity != null  ">#{detailItemQuantity},</if>
+			<if test="detailItemGiveQuantity != null  ">#{detailItemGiveQuantity},</if>
+			<if test="detailPrice != null  ">#{detailPrice},</if>
+			<if test="detailDescription != null  and detailDescription != ''  ">#{detailDescription},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updatePurchaseDetail" parameterType="PurchaseDetail">
+        update sys_purchase_detail
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="detailNo != null  ">detail_no = #{detailNo},</if>
+            <if test="detailItemId != null  ">detail_item_id = #{detailItemId},</if>
+            <if test="detailItemQuantity != null  ">detail_item_quantity = #{detailItemQuantity},</if>
+            <if test="detailItemGiveQuantity != null  ">detail_item_give_quantity = #{detailItemGiveQuantity},</if>
+            <if test="detailPrice != null  ">detail_price = #{detailPrice},</if>
+            <if test="detailDescription != null  and detailDescription != ''  ">detail_description = #{detailDescription},</if>
+        </trim>
+        where detail_id = #{detailId}
+    </update>
+
+	<delete id="deletePurchaseDetailById" parameterType="Integer">
+        delete from sys_purchase_detail where detail_id = #{detailId}
+    </delete>
+	
+    <delete id="deletePurchaseDetailByIds" parameterType="String">
+        delete from sys_purchase_detail where detail_id in 
+        <foreach item="detailId" collection="array" open="(" separator="," close=")">
+            #{detailId}
+        </foreach>
+    </delete>
+    
+</mapper>
