@@ -3,6 +3,7 @@ package com.clothing.web.controller.order;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +20,10 @@ import com.clothing.common.enums.BusinessType;
 import com.clothing.framework.util.ShiroUtils;
 import com.clothing.framework.web.base.BaseController;
 import com.clothing.framework.web.page.TableDataInfo;
+import com.clothing.module.domain.Itemsupplier;
 import com.clothing.module.domain.Purchase;
+import com.clothing.module.service.IItemsupplierService;
+import com.clothing.module.service.IItemunitService;
 import com.clothing.module.service.IPurchaseDetailService;
 import com.clothing.module.service.IPurchaseService;
 import com.clothing.system.domain.SysUser;
@@ -40,6 +44,10 @@ public class PurchaseController extends BaseController
 	private IPurchaseService purchaseService;
 	@Autowired
 	private IPurchaseDetailService  purchaseDetailService;
+	@Autowired
+	private IItemunitService unitService;
+	@Autowired
+	private IItemsupplierService supplierService;
 	
 	@RequiresPermissions("module:purchase:view")
 	@GetMapping()
@@ -58,12 +66,16 @@ public class PurchaseController extends BaseController
 	{
 		SysUser user=ShiroUtils.getUser();
 		if(!user.isAdmin()){
-			purchase.setDeptId(user.getDeptId().intValue());
+			purchase.setDeptId(user.getDeptId()+"");
 		}
 		startPage();
         List<Purchase> list = purchaseService.selectPurchaseList(purchase);
         list.forEach(obj->{
         	//重构或是二次查询数据
+        	if(StringUtils.isNotBlank(obj.getPurchaseSupplierId())){
+        		Itemsupplier supplier=this.supplierService.selectItemsupplierById(Integer.valueOf(obj.getPurchaseSupplierId()));
+        		obj.setPurchaseSupplierId(supplier.getFname());
+        	}
         });
 		return getDataTable(list);
 	}

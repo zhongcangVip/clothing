@@ -23,9 +23,9 @@ public class Purchase extends BaseEntity
 	/** 采购单号 */
 	private String purchaseOrderno;
 	/** 供应商编号 */
-	private Integer purchaseSupplierId;
+	private String purchaseSupplierId;
 	/** 所属门店编号 */
-	private Integer deptId;
+	private String deptId;
 	/** 来源单据编号 */
 	private Integer purchaseSourceId;
 	/** 描述 */
@@ -61,21 +61,21 @@ public class Purchase extends BaseEntity
 	{
 		return purchaseOrderno;
 	}
-	public void setPurchaseSupplierId(Integer purchaseSupplierId) 
+	public void setPurchaseSupplierId(String purchaseSupplierId) 
 	{
 		this.purchaseSupplierId = purchaseSupplierId;
 	}
 
-	public Integer getPurchaseSupplierId() 
+	public String getPurchaseSupplierId() 
 	{
 		return purchaseSupplierId;
 	}
-	public void setDeptId(Integer deptId) 
+	public void setDeptId(String deptId) 
 	{
 		this.deptId = deptId;
 	}
 
-	public Integer getDeptId() 
+	public String getDeptId() 
 	{
 		return deptId;
 	}
