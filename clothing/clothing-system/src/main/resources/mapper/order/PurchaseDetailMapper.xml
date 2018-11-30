@@ -12,10 +12,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="detailItemGiveQuantity"    column="detail_item_give_quantity"    />
         <result property="detailPrice"    column="detail_price"    />
         <result property="detailDescription"    column="detail_description"    />
+        <result property="detailAmount"    column="detail_amount"    />
     </resultMap>
 	
 	<sql id="selectPurchaseDetailVo">
-        select detail_id, detail_no, detail_item_id, detail_item_quantity, detail_item_give_quantity, detail_price, detail_description from sys_purchase_detail
+        select detail_id, detail_no, detail_item_id, detail_item_quantity, detail_item_give_quantity, detail_price, detail_description, detail_amount from sys_purchase_detail
     </sql>
 	
     <select id="selectPurchaseDetailList" parameterType="PurchaseDetail" resultMap="PurchaseDetailResult">
@@ -28,6 +29,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
              <if test="detailItemGiveQuantity != null "> and detail_item_give_quantity = #{detailItemGiveQuantity}</if>
              <if test="detailPrice != null "> and detail_price = #{detailPrice}</if>
              <if test="detailDescription != null  and detailDescription != '' "> and detail_description = #{detailDescription}</if>
+             <if test="detailAmount != null "> and detail_amount = #{detailAmount}</if>
          </where>
     </select>
     
@@ -46,6 +48,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="detailItemGiveQuantity != null  ">detail_item_give_quantity,</if>
 			<if test="detailPrice != null  ">detail_price,</if>
 			<if test="detailDescription != null  and detailDescription != ''  ">detail_description,</if>
+			<if test="detailAmount != null  ">detail_amount,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="detailId != null  ">#{detailId},</if>
@@ -55,6 +58,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="detailItemGiveQuantity != null  ">#{detailItemGiveQuantity},</if>
 			<if test="detailPrice != null  ">#{detailPrice},</if>
 			<if test="detailDescription != null  and detailDescription != ''  ">#{detailDescription},</if>
+			<if test="detailAmount != null  ">#{detailAmount},</if>
          </trim>
     </insert>
 	 
@@ -67,6 +71,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="detailItemGiveQuantity != null  ">detail_item_give_quantity = #{detailItemGiveQuantity},</if>
             <if test="detailPrice != null  ">detail_price = #{detailPrice},</if>
             <if test="detailDescription != null  and detailDescription != ''  ">detail_description = #{detailDescription},</if>
+            <if test="detailAmount != null  ">detail_amount = #{detailAmount},</if>
         </trim>
         where detail_id = #{detailId}
     </update>

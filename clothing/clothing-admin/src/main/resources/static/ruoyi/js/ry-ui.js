@@ -375,8 +375,16 @@
             		shade: 0.3,
             		title: title,
             		content: url,
-            		// 弹层外区域关闭
-            		shadeClose: true
+            		btn: ['确定', '关闭'],
+            	    // 弹层外区域关闭
+            		shadeClose: true,
+            		yes: function(index, layero) {
+            	        var iframeWin = layero.find('iframe')[0];
+            	        iframeWin.contentWindow.submitHandler();
+            	    },
+            	    cancel: function(index) {
+            	        return true;
+            	    }
             	});
                 layer.full(index);
             },

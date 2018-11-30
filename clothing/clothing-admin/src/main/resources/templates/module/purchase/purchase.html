@@ -5,10 +5,10 @@
 <body class="gray-bg">
     <div class="container-div">
 		<div class="btn-group-sm hidden-xs" id="toolbar" role="group">
-			<a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="module:purchase:add">
+			<a class="btn btn-success" onclick="$.operate.addFull()" shiro:hasPermission="module:purchase:add">
 				<i class="fa fa-plus"></i> 添加
 			</a>
-			<a class="btn btn-primary btn-edit disabled" onclick="$.operate.edit()" shiro:hasPermission="module:purchase:edit">
+			<a class="btn btn-primary btn-edit disabled" onclick="$.operate.editFull()" shiro:hasPermission="module:purchase:edit">
 	            <i class="fa fa-edit"></i> 修改
 	        </a>
 			<a class="btn btn-danger btn-del btn-del disabled" onclick="$.operate.removeAll()" shiro:hasPermission="module:purchase:remove">
@@ -72,14 +72,6 @@
 				{
 					field : 'createby', 
 					title : '创建人' 
-				},
-				{
-					field : 'lastupdatetime', 
-					title : '最后修改时间' 
-				},
-				{
-					field : 'lastupdateby', 
-					title : '最后修改人' 
 				},
 		        {
 		            title: '操作',

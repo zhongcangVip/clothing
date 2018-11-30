@@ -95,7 +95,7 @@
 					<label class="col-sm-3 control-label">单位：</label>
 					<div class="col-sm-8">
 						<select id="fkunitid" name="fkunitid" class="form-control select2-hidden-accessible" multiple="">
-							<option th:each="obj:${unit}" th:value="${obj.fid}" th:text="${obj.fname}" th:disabled="${obj.status == 'NORMAL'}"></option>
+							<option th:each="obj:${unit}" th:value="${obj.fid}" th:text="${obj.fname}" th:selected="${obj.fstatus == 'NORMAL'}"></option>
 						</select>
 					</div>
 				</div>

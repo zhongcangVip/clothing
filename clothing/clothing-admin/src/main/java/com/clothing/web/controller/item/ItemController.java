@@ -55,6 +55,15 @@ public class ItemController extends BaseController
 	}
 	
 	/**
+	 * 商品弹出选择框
+	 * @return
+	 */
+	@RequestMapping(value="selectItem")
+	public String selectItem(){
+		return prefix+"/selectItem";
+	}
+	
+	/**
 	 * 查询商品列表
 	 */
 	@RequiresPermissions("module:item:list")

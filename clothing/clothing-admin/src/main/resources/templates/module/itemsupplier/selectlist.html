@@ -1,61 +1,79 @@
 <!DOCTYPE html>
 <html lang="zh" xmlns:th="http://www.thymeleaf.org" >
-<meta charset="utf-8">
-<head th:include="include :: header"></head>
-<style>
-body{height:auto;font-family: "Microsoft YaHei";}
-button{font-family: "SimSun","Helvetica Neue",Helvetica,Arial;}
-</style>
-<body class="hold-transition box box-main">
-	<input id="treeId"   name="treeId"    type="hidden" />
-	<input id="treeName" name="treeName"  type="hidden" />
-	<div class="col-sm-12 select-table table-striped">
+	<meta charset="utf-8">
+	<head th:include="include :: header"></head>
+	<style>
+		body {
+			height: auto;
+			font-family: "Microsoft YaHei";
+		}
+		button {
+			font-family: "SimSun", "Helvetica Neue", Helvetica, Arial;
+		}
+	</style>
+	<body class="hold-transition box box-main">
+		<input id="treeId"   name="treeId"    type="hidden" />
+		<input id="treeName" name="treeName"  type="hidden" />
+		<div class="col-sm-12 select-table table-striped">
 			<table id="bootstrap-table" data-mobile-responsive="true"></table>
 		</div>
-	</div>
-	<div th:include="include::footer"></div>
-	
-	<script th:inline="javascript">
-		  var prefix = ctx + "module/itemsupplier";
-        $(function() {
-            var options = {
-                url: prefix + "/list",
-                modalName: "商品供应商",
-                columns: [
-				{
-					field : 'fid', 
-					title : '' ,
-					hidden:true
-				},
-				{
-					field : 'fcode', 
-					title : '供应商编码' 
-				},
-				{
-					field : 'fname', 
-					title : '供应商名称' 
-				},
-		        {
-		            title: '操作',
-		            align: 'center',
-		            formatter: function(value, row, index) {
-		            	var actions = [];
-		            	var actions = [];
-		            	actions.push('<a class="btn btn-success btn-xs " href="#" onclick="doSelect(\'' + row.fid + '\',\''+row.fname+'\')"><i class="fa" key='+row.fid+'>选择</i></a> ');
-						return actions.join('');
-		            }
-		        }]
-            };
-            $.table.init(options);
-        });
-        function doSelect(id,name){
-        	$("#treeId").val(id);
-		    $("#treeName").val(name);
-		    $("i[class='fa']").each(function(){
-		    	$(this).html("选择");
-		    });
-		    $("i[key="+id+"]").html("已选择");
-        }
-	</script>
-</body>
+		</div>
+		<div th:include="include::footer"></div>
+
+		<script th:inline="javascript">
+			var prefix = ctx + "module/itemsupplier";
+			$(function() {
+				var options = {
+					url : prefix + "/list",
+					modalName : "商品供应商",
+					striped : true,
+					clickToSelect : true,
+					singleSelect : true,
+					showExport : false,
+					showToggle : false,
+					showColumns : false,
+					
+					columns : [{
+						field : 'fid',
+						title : '',
+						visible : false
+					}, {
+						field : 'fcode',
+						title : '供应商编码'
+					}, {
+						field : 'fname',
+						title : '供应商名称'
+					}, {
+						title : '操作',
+						align : 'center',
+						formatter : function(value, row, index) {
+							var actions = [];
+							var actions = [];
+							actions.push('<a class="btn btn-success btn-xs " href="#" onclick="doSelect(\'' + row.fid + '\',\'' + row.fname + '\')"><i class="fa" key=' + row.fid + '>选择</i></a> ');
+							return actions.join('');
+						}
+					}]
+				};
+				$.table.init(options);
+
+				$('#bootstrap-table').on('click-row.bs.table', function(e, row, element) {
+					doSelect(row.fid, row.fname);
+				});
+
+			});
+			function doSelect(id, name) {
+				$("#treeId").val(id);
+				$("#treeName").val(name);
+				$("i[class='fa']").each(function() {
+					$(this).html("选择");
+					$(this).parent().parent().parent().css("background-color", "#F9F9F9");
+				});
+				$("i[key=" + id + "]").html("已选择");
+				$("i[key=" + id + "]").parent().parent().parent().css({
+					"background-color" : "#48B0E3",
+					"font-size" : "16px;"
+				});
+			}
+		</script>
+	</body>
 </html>

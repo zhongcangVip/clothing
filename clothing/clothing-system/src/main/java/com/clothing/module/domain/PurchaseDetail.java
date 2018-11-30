@@ -4,13 +4,14 @@ import java.math.BigDecimal;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+
 import com.clothing.common.base.BaseEntity;
 
 /**
  * 采购单据明细表 sys_purchase_detail
  * 
  * @author yangmin
- * @date 2018-11-26
+ * @date 2018-11-30
  */
 public class PurchaseDetail extends BaseEntity
 {
@@ -30,6 +31,8 @@ public class PurchaseDetail extends BaseEntity
 	private BigDecimal detailPrice;
 	/** 采购描述 */
 	private String detailDescription;
+	/** 采购金额 */
+	private BigDecimal detailAmount;
 
 	public void setDetailId(Integer detailId) 
 	{
@@ -94,6 +97,15 @@ public class PurchaseDetail extends BaseEntity
 	{
 		return detailDescription;
 	}
+	public void setDetailAmount(BigDecimal detailAmount) 
+	{
+		this.detailAmount = detailAmount;
+	}
+
+	public BigDecimal getDetailAmount() 
+	{
+		return detailAmount;
+	}
 
     public String toString() {
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
@@ -104,6 +116,7 @@ public class PurchaseDetail extends BaseEntity
             .append("detailItemGiveQuantity", getDetailItemGiveQuantity())
             .append("detailPrice", getDetailPrice())
             .append("detailDescription", getDetailDescription())
+            .append("detailAmount", getDetailAmount())
             .toString();
     }
 }
