@@ -73,6 +73,8 @@ public class Item extends BaseEntity
 	private Date flastupdatetime;
 	/** 是否参与折扣 */
 	private String fdisCount;
+	
+	private boolean integralFlag;
 
 	public void setFid(Integer fid) 
 	{
@@ -336,7 +338,18 @@ public class Item extends BaseEntity
 		return fdisCount;
 	}
 
-    public String toString() {
+	
+	
+	
+    public boolean isIntegralFlag() {
+		return integralFlag;
+	}
+
+	public void setIntegralFlag(boolean integralFlag) {
+		this.integralFlag = integralFlag;
+	}
+
+	public String toString() {
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
             .append("fid", getFid())
             .append("fcode", getFcode())

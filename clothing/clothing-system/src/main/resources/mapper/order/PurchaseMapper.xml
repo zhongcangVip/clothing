@@ -50,7 +50,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="purchaseId != null  ">purchase_id,</if>
 			<if test="purchaseOrderno != null  and purchaseOrderno != ''  ">purchase_orderno,</if>
 			<if test="purchaseSupplierId != null  ">purchase_supplier_id,</if>
-			<if test="deptId != null  ">dept_id,</if>
+			<if test="deptId != null and deptId!='' ">dept_id,</if>
 			<if test="purchaseSourceId != null  ">purchase_source_id,</if>
 			<if test="purchaseDescription != null  and purchaseDescription != ''  ">purchase_description,</if>
 			<if test="purchaseStatus != null  and purchaseStatus != ''  ">purchase_status,</if>
@@ -63,9 +63,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="purchaseId != null  ">#{purchaseId},</if>
 			<if test="purchaseOrderno != null  and purchaseOrderno != ''  ">#{purchaseOrderno},</if>
 			<if test="purchaseSupplierId != null  ">#{purchaseSupplierId},</if>
-			<if test="deptId != null  ">#{deptId},</if>
+			<if test="deptId != null and deptId!='' ">#{deptId},</if>
 			<if test="purchaseSourceId != null  ">#{purchaseSourceId},</if>
-			<if test="purchaseDescription != null  and purchaseDescription != ''  ">#{purchaseDescription},</if>
+			<if test="purchaseDescription != null  and purchaseDescription != ''">#{purchaseDescription},</if>
 			<if test="purchaseStatus != null  and purchaseStatus != ''  ">#{purchaseStatus},</if>
 			<if test="createtime != null  ">#{createtime},</if>
 			<if test="createby != null  ">#{createby},</if>

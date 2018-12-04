@@ -11,7 +11,7 @@ import com.clothing.common.base.BaseEntity;
  * 采购单据明细表 sys_purchase_detail
  * 
  * @author yangmin
- * @date 2018-11-30
+ * @date 2018-12-01
  */
 public class PurchaseDetail extends BaseEntity
 {
@@ -33,6 +33,8 @@ public class PurchaseDetail extends BaseEntity
 	private String detailDescription;
 	/** 采购金额 */
 	private BigDecimal detailAmount;
+	/** 采购单号 */
+	private Integer purchaseId;
 
 	public void setDetailId(Integer detailId) 
 	{
@@ -106,6 +108,15 @@ public class PurchaseDetail extends BaseEntity
 	{
 		return detailAmount;
 	}
+	public void setPurchaseId(Integer purchaseId) 
+	{
+		this.purchaseId = purchaseId;
+	}
+
+	public Integer getPurchaseId() 
+	{
+		return purchaseId;
+	}
 
     public String toString() {
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
@@ -117,6 +128,7 @@ public class PurchaseDetail extends BaseEntity
             .append("detailPrice", getDetailPrice())
             .append("detailDescription", getDetailDescription())
             .append("detailAmount", getDetailAmount())
+            .append("purchaseId", getPurchaseId())
             .toString();
     }
 }

@@ -43,7 +43,8 @@
 				</table>
 
 				<div class="col-sm-12 select-table table-striped">
-					<table id="bootstrap-table" data-toggle="table" data-striped="true"  >
+					<table id="bootstrap-table_add" data-toggle="table" data-striped="true"  
+					data-showRefresh="true" data-cache="false">
 						<thead>
 						<tr data-height="26">
 							<th data-field="id">序号</th>
@@ -61,14 +62,14 @@
 						</tr>
 						</thead>
 						<tbody>
-							<tr>
+							<tr data-uniqueid="1">
 								<td >1</td>
 								<td >
 									<a class="btn btn-success btn-xs " href="#" onclick="addRow(this);"><i class="fa fa-add"></i>+</a>
 									<a class="btn btn-success btn-xs " href="#" onclick="remove(this);"><i class="fa fa-remove"></i></a></td>
 								<td>
-									<input id="item_barCode" name="item_barCode" class="form-control" type="text" th:readOnly="true" style="width:100px;" onclick="selectItem(this);">
-									<input type="hidden"  id="item_id" name="item_id"/>
+									<input id="item_barCode_1" name="item_barCode" class="form-control" type="text" th:readOnly="true" style="width:100px;" onclick="selectItem(1);">
+									<input type="hidden"  id="item_id_1" name="item_id"/>
 								</td>
 								<td key="itemName"></td>
 								<td  key="size"></td>
@@ -89,6 +90,8 @@
 		<div th:include="include::footer"></div>
 		<script type="text/javascript">
 			var prefix = ctx + "module/purchase"
+			
+			var rowIndex=0;
 			
 			 $("#form-purchase-add").validate({
 				rules : {
@@ -112,6 +115,7 @@
 					callBack : doSubmit
 				};
 				$.modal.openOptions(options);
+				
 			}
 
 			function doSubmit(index, layero) {
@@ -129,31 +133,46 @@
 					callBack : doItemSubmit
 				};
 				$.modal.openOptions(options);
+				rowIndex=obj;
+				
 			}
 			
 			function doItemSubmit(index,layero){
-				
+				var body = layer.getChildFrame('body', index);
+				var id=body.find("#treeId").val();
+				var name=body.find("#treeName").val()
+				var barCode=body.find("#itemBarCode").val();
+				var itemSpec=body.find("#itemSpec").val();
+				var itemUnit=body.find("#itemUnit").val();
+				var row=$("tr[data-index='"+(rowIndex-1)+"']");
+				$(row).find("#item_id_"+rowIndex).val(id);
+				$(row).find("#item_barCode_"+rowIndex).val(barCode);
+				$($(row).find("td")[3]).html(name);
+				$($(row).find("td")[4]).html(itemSpec);
+				$($(row).find("td")[5]).html(itemUnit);
+				layer.close(index);
 			}
 			function addRow(obj){
 				var tds=$(obj).parent().parent().parent().find("tr");
 				var index=tds.length+1;
 				var row={
 					id:index,
-					operator:'<a class="btn btn-success btn-xs " href="#" onclick="addRow(this);"><i class="fa fa-add"></i>+</a>'+
+					uniqueId:index,
+					operator:'<a  class="btn btn-success btn-xs " href="#" onclick="addRow(this);"><i class="fa fa-add"></i>+</a>'+
 							 '<a class="btn btn-success btn-xs " href="#" onclick="remove(this);"><i class="fa fa-remove"></i></a></td>',
-					code:'<input id="item_barCode" name="item_barCode" class="form-control" type="text" readOnly="true" style="width:100px;" onclick="selectItem(this);">'+
-									'<input type="hidden"  id="item_id" name="item_id"/>',
+					code:'<input id="item_barCode_'+index+'" name="item_barCode" class="form-control" type="text" readOnly="true" style="width:100px;" onclick="selectItem('+index+');">'+
+									'<input type="hidden"  id="item_id_'+index+'" name="item_id"/>',
 					itemName:'',
 					size:'',
 					unit:'',
-					num:'<input id="num" name="num" class="form-control" type="number" style="width:80px;"  value="1"  >',
-					quantity:'<input id="quantity" name="quantity" class="form-control" type="number"  style="width:80px;"  value="1" >',
-					give_quantity:'<input id="giveQuantity" name="giveQuantity" class="form-control" type="number"  style="width:80px;"  value="1" >',
-					price:'<input id="price" name="price" class="form-control" type="number"  style="width:80px;"  value="0" >',
+					num:'<input id="num_'+index+'" name="num" class="form-control" type="number" style="width:80px;"  value="1"  >',
+					quantity:'<input id="quantity_'+index+'" name="quantity" class="form-control" type="number"  style="width:80px;"  value="1" >',
+					give_quantity:'<input id="giveQuantity"_'+index+' name="giveQuantity" class="form-control" type="number"  style="width:80px;"  value="1" >',
+					price:'<input id="price_'+index+'" name="price" class="form-control" type="number"  style="width:80px;"  value="0" >',
 					amount:'',
-					description:'<input id="description" name="description" class="form-control" type="text"  >'
+					description:'<input id="description_'+index+'" name="description" class="form-control" type="text"  >'
 				}
-				$("#bootstrap-table").bootstrapTable('append',row);
+				$("#bootstrap-table_add").bootstrapTable('insertRow',{index:index,row:row});
 			}
 		</script>
 	</body>

@@ -1,8 +1,12 @@
 package com.clothing.module.service.impl;
 
 import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.clothing.module.mapper.PurchaseDetailMapper;
 import com.clothing.module.mapper.PurchaseMapper;
 import com.clothing.module.domain.Purchase;
 import com.clothing.module.service.IPurchaseService;
@@ -19,6 +23,8 @@ public class PurchaseServiceImpl implements IPurchaseService
 {
 	@Autowired
 	private PurchaseMapper purchaseMapper;
+	@Autowired
+	private PurchaseDetailMapper detailMapper;
 
 	/**
      * 查询采购单据信息
@@ -53,7 +59,19 @@ public class PurchaseServiceImpl implements IPurchaseService
 	@Override
 	public int insertPurchase(Purchase purchase)
 	{
-	    return purchaseMapper.insertPurchase(purchase);
+		if(StringUtils.isNotBlank(purchase.getDeptId())){
+			purchase.setDeptId("0");
+		}
+	    int result= purchaseMapper.insertPurchase(purchase);
+	    Purchase param=new Purchase();
+	    param.setPurchaseOrderno(purchase.getPurchaseOrderno());
+	    param.setPurchaseStatus(purchase.getPurchaseStatus());
+	    Purchase obj=this.purchaseMapper.selectPurchaseList(param).get(0);
+	    purchase.getList().forEach(detail->{
+	    	detail.setPurchaseId(obj.getPurchaseId());
+	    	this.detailMapper.insertPurchaseDetail(detail);
+	    });
+	    return result;
 	}
 	
 	/**

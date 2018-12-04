@@ -105,7 +105,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="ftwoprice != null  ">ftwoprice,</if>
 			<if test="fplace != null  and fplace != ''  ">fplace,</if>
 			<if test="fstatus != null  and fstatus != ''  ">fstatus,</if>
-			<if test="fintegral != null  ">fintegral,</if>
+			<if test="fintegral != null  and fintegral!=''">fintegral,</if>
 			<if test="fdescription != null  and fdescription != ''  ">fdescription,</if>
 			<if test="fuserid != null  and fuserid != ''  ">fuserid,</if>
 			<if test="fcreatetime != null  ">fcreatetime,</if>
@@ -136,7 +136,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="ftwoprice != null  ">#{ftwoprice},</if>
 			<if test="fplace != null  and fplace != ''  ">#{fplace},</if>
 			<if test="fstatus != null  and fstatus != ''  ">#{fstatus},</if>
-			<if test="fintegral != null  ">#{fintegral},</if>
+			<if test="fintegral != null and fintegral!='' ">#{fintegral},</if>
 			<if test="fdescription != null  and fdescription != ''  ">#{fdescription},</if>
 			<if test="fuserid != null  and fuserid != ''  ">#{fuserid},</if>
 			<if test="fcreatetime != null  ">#{fcreatetime},</if>

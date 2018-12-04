@@ -92,11 +92,14 @@ public class ItemController extends BaseController
 	{
 		SysUser user=ShiroUtils.getUser();
 		Itemcategory category=new Itemcategory();
-		category.setFcu(user.getDeptId()+"");
+		if(!user.isAdmin()){
+			category.setFcu(user.getDeptId()+"");
+		}
 		List<Itemcategory> categoryList=this.categoryService.selectItemcategoryList(category);
 		model.put("category", categoryList);
 		Itemunit unit=new Itemunit();
 		unit.setFcu(user.getDeptId()+"");
+		
 		model.put("unit", this.unitService.selectItemunitList(unit));
 	    return prefix + "/add";
 	}
@@ -122,11 +125,13 @@ public class ItemController extends BaseController
 	public String edit(@PathVariable("fid") Integer fid, ModelMap mmap)
 	{
 		Item item = itemService.selectItemById(fid);
-		mmap.put("item", item);
+		
 		
 		SysUser user=ShiroUtils.getUser();
 		Itemcategory category=new Itemcategory();
-		category.setFcu(user.getDeptId()+"");
+		if(!user.isAdmin()){
+			category.setFcu(user.getDeptId()+"");
+		}
 		List<Itemcategory> categoryList=this.categoryService.selectItemcategoryList(category);
 		mmap.put("category", categoryList);
 		/** 商品分类的选择框是否选中***/
@@ -149,6 +154,13 @@ public class ItemController extends BaseController
 				}
 			});
 		}
+		if(item.getFintegral()!=0){
+			item.setIntegralFlag(true);
+		}else{
+			item.setIntegralFlag(true);
+		}
+		
+		mmap.put("item", item);
 	    return prefix + "/edit";
 	}
 	

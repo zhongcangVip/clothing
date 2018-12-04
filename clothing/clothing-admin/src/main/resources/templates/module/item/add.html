@@ -62,31 +62,31 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">零售价：</label>
 					<div class="col-sm-8">
-						<input id="fretailprice" name="fretailprice" class="form-control" type="text">
+						<input id="fretailprice" name="fretailprice" class="form-control" type="number">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-3 control-label">进货价：</label>
 					<div class="col-sm-8">
-						<input id="fbuyingprice" name="fbuyingprice" class="form-control" type="text">
+						<input id="fbuyingprice" name="fbuyingprice" class="form-control" type="number">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-3 control-label">会员价：</label>
 					<div class="col-sm-8">
-						<input id="fvipprice" name="fvipprice" class="form-control" type="text">
+						<input id="fvipprice" name="fvipprice" class="form-control" type="number">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-3 control-label">配送价：</label>
 					<div class="col-sm-8">
-						<input id="fdistributionprice" name="fdistributionprice" class="form-control" type="text">
+						<input id="fdistributionprice" name="fdistributionprice" class="form-control" type="number">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-3 control-label">商品类别：</label>
 					<div class="col-sm-8">
-						<select id="fkcategoryid" name="fkcategoryid" class="form-control select2-hidden-accessible" multiple="">
+						<select id="fkcategoryid" name="fkcategoryid" class="form-control" >
 							<option th:each="obj:${category}" th:value="${obj.fid}" th:text="${obj.fname}" ></option>
 						</select>
 					</div>
@@ -109,13 +109,13 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">最低售价：</label>
 					<div class="col-sm-8">
-						<input id="fminprice" name="fminprice" class="form-control" type="text">
+						<input id="fminprice" name="fminprice" class="form-control" type="number">
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="col-sm-3 control-label">第二件售价：</label>
 					<div class="col-sm-8">
-						<input id="ftwoprice" name="ftwoprice" class="form-control" type="text">
+						<input id="ftwoprice" name="ftwoprice" class="form-control" type="number">
 					</div>
 				</div>
 				<div class="form-group">
@@ -135,7 +135,7 @@
 						<label class="col-sm-3 control-label">是否参与积分 ：</label>
 						<div class="col-sm-9">
 							<div class="onoffswitch">
-								<input id="fintegral" name="fintegral" type="checkbox" th:checked="true" class="onoffswitch-checkbox">
+								<input id="fintegral" name="fintegral" type="checkbox" th:checked="true" class="onoffswitch-checkbox" value="1">
 								<label class="onoffswitch-label" for="fintegral"> <span class="onoffswitch-inner"></span> <span class="onoffswitch-switch"></span> </label>
 							</div>
 						</div>
@@ -146,7 +146,7 @@
 						<label class="col-sm-3 control-label">是否参与折扣：</label>
 						<div class="col-sm-9">
 							<div class="onoffswitch">
-								<input id="fdisCount" name="fdisCount" type="checkbox" th:checked="true" class="onoffswitch-checkbox">
+								<input id="fdisCount" name="fdisCount" type="checkbox" th:checked="true" class="onoffswitch-checkbox" value="1">
 								<label class="onoffswitch-label" for="fdisCount"> <span class="onoffswitch-inner"></span> <span class="onoffswitch-switch"></span> </label>
 							</div>
 						</div>

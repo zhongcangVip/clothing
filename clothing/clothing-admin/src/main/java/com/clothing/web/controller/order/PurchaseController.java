@@ -3,8 +3,12 @@ package com.clothing.web.controller.order;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.clothing.common.OrderNoConstants;
 import com.clothing.common.annotation.Log;
 import com.clothing.common.base.AjaxResult;
 import com.clothing.common.enums.BusinessType;
@@ -28,6 +33,7 @@ import com.clothing.module.service.IPurchaseDetailService;
 import com.clothing.module.service.IPurchaseService;
 import com.clothing.system.domain.SysUser;
 
+
 /**
  * 采购单据 信息操作处理
  * 
@@ -36,8 +42,9 @@ import com.clothing.system.domain.SysUser;
  */
 @Controller
 @RequestMapping("/module/purchase")
-public class PurchaseController extends BaseController
-{
+public class PurchaseController extends BaseController{
+	
+	private static final Logger logger=LoggerFactory.getLogger(PurchaseController.class);
     private String prefix = "module/purchase";
 	
 	@Autowired
@@ -96,13 +103,19 @@ public class PurchaseController extends BaseController
 	@Log(title = "采购单据", businessType = BusinessType.INSERT)
 	@PostMapping("/add")
 	@ResponseBody
-	public AjaxResult addSave(Purchase purchase)
+	public AjaxResult addSave(Purchase purchase,HttpServletRequest request)
 	{		
 		SysUser user=ShiroUtils.getUser();
 		purchase.setCreateby(user.getUserId().intValue());
 		purchase.setCreatetime(new Date());
 		purchase.setLastupdateby(user.getUserId().intValue());
 		purchase.setLastupdatetime(new Date());
+		String orderNo=super.getOrderNo(OrderNoConstants.PURCHASE_PREFIX);
+		logger.info(orderNo);
+		purchase.setPurchaseOrderno(orderNo);
+		
+		
+		
 		return toAjax(purchaseService.insertPurchase(purchase));
 	}
 

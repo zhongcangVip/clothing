@@ -1,29 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <groupId>com.clothing</groupId>
-        <version>3.0</version>
-        <artifactId>clothing</artifactId>
-    </parent>
-    <modelVersion>4.0.0</modelVersion>
-	
-    <artifactId>clothing-framework</artifactId>
-	
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<groupId>com.clothing</groupId>
+		<version>3.0</version>
+		<artifactId>clothing</artifactId>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>clothing-framework</artifactId>
+
 	<description>
 	    framework框架核心
 	</description>
-    
-    <dependencies>
 
-        <!-- SpringBoot Web容器 -->
-	     <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
+	<dependencies>
 
-        <!-- SpringBoot 拦截器 -->
+		<!-- SpringBoot Web容器 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<!-- SpringBoot 拦截器 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
@@ -31,11 +30,11 @@
 
 		<!--阿里数据库连接池 -->
 		<dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid-spring-boot-starter</artifactId>
-            <version>${druid.version}</version>
-        </dependency>
-		
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid-spring-boot-starter</artifactId>
+			<version>${druid.version}</version>
+		</dependency>
+
 		<!--验证码 -->
 		<dependency>
 			<groupId>com.github.penggle</groupId>
@@ -49,11 +48,11 @@
 			</exclusions>
 		</dependency>
 
-        <!-- SpringBoot集成thymeleaf模板 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
-        </dependency>
+		<!-- SpringBoot集成thymeleaf模板 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
 
 		<!--Shiro核心框架 -->
 		<dependency>
@@ -90,26 +89,26 @@
 			<version>${bitwalker.version}</version>
 		</dependency>
 
-        <!-- 系统模块-->
-        <dependency>
-            <groupId>com.clothing</groupId>
-            <artifactId>clothing-system</artifactId>
-            <version>${ruoyi.version}</version>
-        </dependency>
-        
-        <!-- 定时任务-->
-        <dependency>
-            <groupId>com.clothing</groupId>
-            <artifactId>clothing-quartz</artifactId>
-            <version>${ruoyi.version}</version>
-        </dependency>
-        
-        <!-- 代码生成-->
-        <dependency>
-            <groupId>com.clothing</groupId>
-            <artifactId>clothing-generator</artifactId>
-            <version>${ruoyi.version}</version>
-        </dependency>
+		<!-- 系统模块 -->
+		<dependency>
+			<groupId>com.clothing</groupId>
+			<artifactId>clothing-system</artifactId>
+			<version>${ruoyi.version}</version>
+		</dependency>
+
+		<!-- 定时任务 -->
+		<dependency>
+			<groupId>com.clothing</groupId>
+			<artifactId>clothing-quartz</artifactId>
+			<version>${ruoyi.version}</version>
+		</dependency>
+
+		<!-- 代码生成 -->
+		<dependency>
+			<groupId>com.clothing</groupId>
+			<artifactId>clothing-generator</artifactId>
+			<version>${ruoyi.version}</version>
+		</dependency>
 
 
 		<!-- pagehelper 分页插件 -->
@@ -118,7 +117,13 @@
 			<artifactId>pagehelper-spring-boot-starter</artifactId>
 			<version>${pagehelper.boot.version}</version>
 		</dependency>
+		<!--汉语转拼音 -->
+		<!-- https://mvnrepository.com/artifact/com.belerweb/pinyin4j -->
+		<dependency>
+			<groupId>com.belerweb</groupId>
+			<artifactId>pinyin4j</artifactId>
+			<version>2.5.0</version>
+		</dependency>
+	</dependencies>
 
-    </dependencies>
-    
 </project>
