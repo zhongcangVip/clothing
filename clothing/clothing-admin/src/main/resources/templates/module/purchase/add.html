@@ -1,6 +1,8 @@
 <!DOCTYPE HTML>
 <html  lang="zh" xmlns:th="http://www.thymeleaf.org">
 	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+	
 	<head th:include="include :: header"></head>
 	<body class="white-bg">
 		<div class="wrapper wrapper-content animated fadeInRight ibox-content">
@@ -43,43 +45,52 @@
 				</table>
 
 				<div class="col-sm-12 select-table table-striped">
-					<table id="bootstrap-table_add" data-toggle="table" data-striped="true"  
-					data-showRefresh="true" data-cache="false">
+					<!--data-toggle="table"-->
+					<table id="bootstrap-table_add"   class="display" style="width:100%" data-striped="true"
+					data-showRefresh="true" data-cache="false" data-editable="true">
 						<thead>
-						<tr data-height="26">
-							<th data-field="id">序号</th>
-							<th data-field="operator">操作</th>
-							<th  data-field="code">商品条码</th>
-							<th data-field="itemName" >商品名称</th>
-							<th data-field="size">规格</th>
-							<th data-field="unit">单位</th>
-							<th data-field="num">件数</th>
-							<th data-field="quantity">数量</th>
-							<th data-field="give_quantity">赠送数量</th>
-							<th data-field="price">价格</th>
-							<th data-field="amount" >小计金额</th>
-							<th data-field="description">备注</th>
-						</tr>
+							<tr data-height="26">
+								<th data-field="id">序号</th>
+								<th data-field="operator">操作</th>
+								<th data-field="code">商品条码</th>
+								<th data-field="itemName" >商品名称</th>
+								<th data-field="size">规格</th>
+								<th data-field="unit">单位</th>
+								<th data-field="num">件数</th>
+								<th data-field="quantity">数量</th>
+								<th data-field="give_quantity">赠送数量</th>
+								<th data-field="price">价格</th>
+								<th data-field="amount" >小计金额</th>
+								<th data-field="description">备注</th>
+							</tr>
 						</thead>
 						<tbody>
 							<tr data-uniqueid="1">
 								<td >1</td>
-								<td >
-									<a class="btn btn-success btn-xs " href="#" onclick="addRow(this);"><i class="fa fa-add"></i>+</a>
-									<a class="btn btn-success btn-xs " href="#" onclick="remove(this);"><i class="fa fa-remove"></i></a></td>
+								<td ><a class="btn btn-success btn-xs " href="#" onclick="addRow(this);"><i class="fa fa-add"></i>+</a><a class="btn btn-success btn-xs " href="#" onclick="remove(this);"><i class="fa fa-remove"></i></a></td>
 								<td>
-									<input id="item_barCode_1" name="item_barCode" class="form-control" type="text" th:readOnly="true" style="width:100px;" onclick="selectItem(1);">
-									<input type="hidden"  id="item_id_1" name="item_id"/>
+								<input id="item_barCode_1" name="item_barCode" class="form-control" type="text" th:readOnly="true" style="width:100px;" onclick="selectItem(1);">
+								<input type="hidden"  id="item_id_1" name="item_id"/>
 								</td>
 								<td key="itemName"></td>
 								<td  key="size"></td>
 								<td  key="unit"></td>
-								<td  key="num"><input id="num" name="num" class="form-control" type="number" style="width:80px;" value="1" ></td>
-								<td  key="quantity"><input id="quantity" name="quantity" class="form-control" type="number"  style="width:80px;"  value="1" ></td>
-								<td  key="give_quantity"><input id="giveQuantity" name="giveQuantity" class="form-control" type="number"   value="1"  style="width:80px;"></td>
-								<td  key="price"><input id="price" name="price" class="form-control" type="number"  style="width:80px;"  value="0" ></td>
+								<td  key="num">
+								<input id="num" name="num" class="form-control" type="number" style="width:80px;" value="1" >
+								</td>
+								<td  key="quantity">
+								<input id="quantity" name="quantity" class="form-control" type="number"  style="width:80px;"  value="1" >
+								</td>
+								<td  key="give_quantity">
+								<input id="giveQuantity" name="giveQuantity" class="form-control" type="number"   value="1"  style="width:80px;">
+								</td>
+								<td  key="price">
+								<input id="price" name="price" class="form-control" type="number"  style="width:80px;"  value="0" >
+								</td>
 								<td key="amount"></td>
-								<td  key="description"><input id="description" name="description" class="form-control" type="text"  ></td>
+								<td  key="description">
+								<input id="description" name="description" class="form-control" type="text"  >
+								</td>
 							</tr>
 						</tbody>
 					</table>
@@ -88,12 +99,13 @@
 			</form>
 		</div>
 		<div th:include="include::footer"></div>
+		<script src="http://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 		<script type="text/javascript">
 			var prefix = ctx + "module/purchase"
-			
-			var rowIndex=0;
-			
-			 $("#form-purchase-add").validate({
+
+			var rowIndex = 0;
+
+			$("#form-purchase-add").validate({
 				rules : {
 					xxxx : {
 						required : true,
@@ -107,6 +119,26 @@
 				}
 			}
 
+
+			$(document).ready(function() {
+				$('#bootstrap-table_add').DataTable({
+					paging:false,
+					columns:[
+						{data:'idx'},
+						{data:'operator'},
+						{data:'code'},
+						{data:'itemName'},
+						{data:'size'},
+						{data:'unit'},
+						{data:'num'},
+						{data:'quantity'},
+						{data:'give_quantity'},
+						{data:'price'},
+						{data:'amount'},
+						{data:'description'}
+					]
+				});
+			});
 			function selectSupplier() {
 				var options = {
 					title : '选择供应商',
@@ -115,7 +147,7 @@
 					callBack : doSubmit
 				};
 				$.modal.openOptions(options);
-				
+
 			}
 
 			function doSubmit(index, layero) {
@@ -124,8 +156,8 @@
 				$("#purchaseSupplierName").val(body.find('#treeName').val());
 				layer.close(index);
 			}
-			
-			function selectItem(obj){
+
+			function selectItem(obj) {
 				var options = {
 					title : '选择商品',
 					width : "780",
@@ -133,46 +165,59 @@
 					callBack : doItemSubmit
 				};
 				$.modal.openOptions(options);
-				rowIndex=obj;
-				
+				rowIndex = obj;
+
 			}
-			
-			function doItemSubmit(index,layero){
+
+			function doItemSubmit(index, layero) {
 				var body = layer.getChildFrame('body', index);
-				var id=body.find("#treeId").val();
-				var name=body.find("#treeName").val()
-				var barCode=body.find("#itemBarCode").val();
-				var itemSpec=body.find("#itemSpec").val();
-				var itemUnit=body.find("#itemUnit").val();
-				var row=$("tr[data-index='"+(rowIndex-1)+"']");
-				$(row).find("#item_id_"+rowIndex).val(id);
-				$(row).find("#item_barCode_"+rowIndex).val(barCode);
+				var id = body.find("#treeId").val();
+				var name = body.find("#treeName").val()
+				var barCode = body.find("#itemBarCode").val();
+				var itemSpec = body.find("#itemSpec").val();
+				var itemUnit = body.find("#itemUnit").val();
+				var row = $("tr[data-index='" + (rowIndex - 1) + "']");
+				$(row).find("#item_id_" + rowIndex).val(id);
+				$(row).find("#item_barCode_" + rowIndex).val(barCode);
 				$($(row).find("td")[3]).html(name);
 				$($(row).find("td")[4]).html(itemSpec);
 				$($(row).find("td")[5]).html(itemUnit);
 				layer.close(index);
 			}
-			function addRow(obj){
-				var tds=$(obj).parent().parent().parent().find("tr");
-				var index=tds.length+1;
-				var row={
-					id:index,
-					uniqueId:index,
-					operator:'<a  class="btn btn-success btn-xs " href="#" onclick="addRow(this);"><i class="fa fa-add"></i>+</a>'+
-							 '<a class="btn btn-success btn-xs " href="#" onclick="remove(this);"><i class="fa fa-remove"></i></a></td>',
-					code:'<input id="item_barCode_'+index+'" name="item_barCode" class="form-control" type="text" readOnly="true" style="width:100px;" onclick="selectItem('+index+');">'+
-									'<input type="hidden"  id="item_id_'+index+'" name="item_id"/>',
-					itemName:'',
-					size:'',
-					unit:'',
-					num:'<input id="num_'+index+'" name="num" class="form-control" type="number" style="width:80px;"  value="1"  >',
-					quantity:'<input id="quantity_'+index+'" name="quantity" class="form-control" type="number"  style="width:80px;"  value="1" >',
-					give_quantity:'<input id="giveQuantity"_'+index+' name="giveQuantity" class="form-control" type="number"  style="width:80px;"  value="1" >',
-					price:'<input id="price_'+index+'" name="price" class="form-control" type="number"  style="width:80px;"  value="0" >',
-					amount:'',
-					description:'<input id="description_'+index+'" name="description" class="form-control" type="text"  >'
+
+			function addRow(obj) {
+				var tds = $(obj).parent().parent().parent().find("tr");
+				var index = tds.length + 1;
+				var row = {
+					idx:index,
+					operator : '<a  class="btn btn-success btn-xs " href="#" onclick="addRow(this);"><i class="fa fa-add"></i>+</a>' + '<a class="btn btn-success btn-xs " href="#" onclick="remove(this);"><i class="fa fa-remove"></i></a></td>',
+					code : '<input id="item_barCode_' + index + '" name="item_barCode" class="form-control" type="text" readOnly="true" style="width:100px;" onclick="selectItem(' + index + ');">' + '<input type="hidden"  id="item_id_' + index + '" name="item_id"/>',
+					itemName : '',
+					size : '',
+					unit : '',
+					num : '<input id="num_' + index + '" name="num" class="form-control" type="number" style="width:80px;"  value="1"  >',
+					quantity : '<input id="quantity_' + index + '" name="quantity" class="form-control" type="number"  style="width:80px;"  value="1" >',
+					give_quantity : '<input id="giveQuantity"_' + index + ' name="giveQuantity" class="form-control" type="number"  style="width:80px;"  value="1" >',
+					price : '<input id="price_' + index + '" name="price" class="form-control" type="number"  style="width:80px;"  value="0" >',
+					amount : '',
+					description : '<input id="description_' + index + '" name="description" class="form-control" type="text"  >'
 				}
-				$("#bootstrap-table_add").bootstrapTable('insertRow',{index:index,row:row});
+				/*$("#bootstrap-table_add").bootstrapTable('insertRow', {
+					index : index,
+					row : row
+				});*/
+				var table = $('#bootstrap-table_add').DataTable();
+				var rowNode = table .row.add( row ).draw(false);
+			}
+			function remove(obj){
+				var table = $('#bootstrap-table_add').DataTable();
+				var row=table.page.info().recordsTotal;
+				if(row==1){
+					$.modal.alertError("最后一行数据不能删除!");
+					return ;
+				}else{
+					table .row($(obj).parents('tr')).remove( ).draw(false);
+				}
 			}
 		</script>
 	</body>
