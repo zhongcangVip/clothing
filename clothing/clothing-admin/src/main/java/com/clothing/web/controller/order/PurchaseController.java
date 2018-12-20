@@ -1,7 +1,11 @@
 package com.clothing.web.controller.order;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -27,6 +31,8 @@ import com.clothing.framework.web.base.BaseController;
 import com.clothing.framework.web.page.TableDataInfo;
 import com.clothing.module.domain.Itemsupplier;
 import com.clothing.module.domain.Purchase;
+import com.clothing.module.domain.PurchaseDetail;
+import com.clothing.module.enums.StatusEnum;
 import com.clothing.module.service.IItemsupplierService;
 import com.clothing.module.service.IItemunitService;
 import com.clothing.module.service.IPurchaseDetailService;
@@ -69,8 +75,10 @@ public class PurchaseController extends BaseController{
 	@RequiresPermissions("module:purchase:list")
 	@PostMapping("/list")
 	@ResponseBody
-	public TableDataInfo list(Purchase purchase)
+	public TableDataInfo list(Purchase purchase,HttpServletRequest request)
 	{
+		String searchValue=request.getParameter("searchValue");
+		purchase.setSearchValue(searchValue);
 		SysUser user=ShiroUtils.getUser();
 		if(!user.isAdmin()){
 			purchase.setDeptId(user.getDeptId()+"");
@@ -106,17 +114,51 @@ public class PurchaseController extends BaseController{
 	public AjaxResult addSave(Purchase purchase,HttpServletRequest request)
 	{		
 		SysUser user=ShiroUtils.getUser();
+		
+		buildPurchaseDetailInfo(purchase, request);
 		purchase.setCreateby(user.getUserId().intValue());
 		purchase.setCreatetime(new Date());
 		purchase.setLastupdateby(user.getUserId().intValue());
 		purchase.setLastupdatetime(new Date());
+		purchase.setPurchaseStatus(StatusEnum.NORMAL.getKey());
 		String orderNo=super.getOrderNo(OrderNoConstants.PURCHASE_PREFIX);
 		logger.info(orderNo);
 		purchase.setPurchaseOrderno(orderNo);
-		
-		
-		
 		return toAjax(purchaseService.insertPurchase(purchase));
+	}
+	/**
+	 * 构建代购单的明细信息
+	 * @param purchase
+	 * @param request
+	 */
+	private void buildPurchaseDetailInfo(Purchase purchase, HttpServletRequest request) {
+		String[] itemId=request.getParameterValues("item_id");
+		String[] num=request.getParameterValues("num");//件数
+		String[] quantity=request.getParameterValues("quantity");//数量
+		String[] giveQuantity=request.getParameterValues("giveQuantity");//赠送数据
+		String[] price=request.getParameterValues("price");
+		String[] description=request.getParameterValues("description");
+		String[] amount=request.getParameterValues("amount");
+		String[] detailNo=request.getParameterValues("detailNo");
+		List<PurchaseDetail> list=new ArrayList<PurchaseDetail>();
+		for(int i=0;itemId!=null && i<itemId.length;i++){
+			PurchaseDetail detail=new PurchaseDetail();
+			detail.setDetailItemId(Integer.valueOf(itemId[i]));
+			if(description.length>i && StringUtils.isNoneBlank(description[i])){
+				detail.setDetailDescription(description[i]);
+			}
+			if(amount !=null && amount.length>i && StringUtils.isNoneBlank(amount[i])){
+				detail.setDetailAmount(new BigDecimal(amount[i]));
+			}
+			detail.setDetailItemGiveQuantity(Double.valueOf(giveQuantity[i]));
+			detail.setDetailItemQuantity(Double.valueOf(quantity[i]));
+			detail.setDetailPrice(new BigDecimal(price[i]));
+			if(detailNo !=null && detailNo.length>i && StringUtils.isNoneBlank(detailNo[i])){
+				detail.setDetailNo(Integer.valueOf(detailNo[i]));
+			}
+			list.add(detail);
+		}
+		purchase.setList(list);
 	}
 
 	/**
@@ -126,7 +168,13 @@ public class PurchaseController extends BaseController{
 	public String edit(@PathVariable("purchaseId") Integer purchaseId, ModelMap mmap)
 	{
 		Purchase purchase = purchaseService.selectPurchaseById(purchaseId);
+		PurchaseDetail purchaseDetail=new PurchaseDetail();
+		purchaseDetail.setPurchaseId(purchaseId);
+		List<PurchaseDetail> list=purchaseDetailService.selectPurchaseDetailList(purchaseDetail);
+		Itemsupplier supplier=this.supplierService.selectItemsupplierById(Integer.valueOf(purchase.getPurchaseSupplierId()));
+		purchase.setPurchaseSupplierName(supplier.getFname());
 		mmap.put("purchase", purchase);
+		mmap.put("list", list);
 	    return prefix + "/edit";
 	}
 	

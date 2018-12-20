@@ -36,6 +36,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
              <if test="createby != null "> and createby = #{createby}</if>
              <if test="lastupdatetime != null "> and lastupdatetime = #{lastupdatetime}</if>
              <if test="lastupdateby != null "> and lastupdateby = #{lastupdateby}</if>
+             <if test="searchValue!=null and searchValue!=''">and (purchase_orderno=#{searchValue})</if>
          </where>
     </select>
     

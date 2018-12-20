@@ -1,89 +1,237 @@
 <!DOCTYPE HTML>
 <html  lang="zh" xmlns:th="http://www.thymeleaf.org">
-<meta charset="utf-8">
-<head th:include="include :: header"></head>
-<body class="white-bg">
-    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
-        <form class="form-horizontal m" id="form-purchase-edit" th:object="${purchase}">
-            <input id="purchaseId" name="purchaseId" th:field="*{purchaseId}"  type="hidden">
-            <div class="form-group">	
-                <label class="col-sm-3 control-label">采购单号：</label>
-                <div class="col-sm-8">
-                    <input id="purchaseOrderno" name="purchaseOrderno" th:field="*{purchaseOrderno}" class="form-control" type="text">
-                </div>
-            </div>
-            <div class="form-group">	
-                <label class="col-sm-3 control-label">供应商编号：</label>
-                <div class="col-sm-8">
-                    <input id="purchaseSupplierId" name="purchaseSupplierId" th:field="*{purchaseSupplierId}" class="form-control" type="text">
-                </div>
-            </div>
-            <div class="form-group">	
-                <label class="col-sm-3 control-label">所属门店编号：</label>
-                <div class="col-sm-8">
-                    <input id="deptId" name="deptId" th:field="*{deptId}" class="form-control" type="text">
-                </div>
-            </div>
-            <div class="form-group">	
-                <label class="col-sm-3 control-label">来源单据编号：</label>
-                <div class="col-sm-8">
-                    <input id="purchaseSourceId" name="purchaseSourceId" th:field="*{purchaseSourceId}" class="form-control" type="text">
-                </div>
-            </div>
-            <div class="form-group">	
-                <label class="col-sm-3 control-label">描述：</label>
-                <div class="col-sm-8">
-                    <input id="purchaseDescription" name="purchaseDescription" th:field="*{purchaseDescription}" class="form-control" type="text">
-                </div>
-            </div>
-            <div class="form-group">	
-                <label class="col-sm-3 control-label">单据状态，是否要经过审核：</label>
-                <div class="col-sm-8">
-                    <input id="purchaseStatus" name="purchaseStatus" th:field="*{purchaseStatus}" class="form-control" type="text">
-                </div>
-            </div>
-            <div class="form-group">	
-                <label class="col-sm-3 control-label">创建时间：</label>
-                <div class="col-sm-8">
-                    <input id="createtime" name="createtime" th:field="*{createtime}" class="form-control" type="text">
-                </div>
-            </div>
-            <div class="form-group">	
-                <label class="col-sm-3 control-label">创建人：</label>
-                <div class="col-sm-8">
-                    <input id="createby" name="createby" th:field="*{createby}" class="form-control" type="text">
-                </div>
-            </div>
-            <div class="form-group">	
-                <label class="col-sm-3 control-label">最后修改时间：</label>
-                <div class="col-sm-8">
-                    <input id="lastupdatetime" name="lastupdatetime" th:field="*{lastupdatetime}" class="form-control" type="text">
-                </div>
-            </div>
-            <div class="form-group">	
-                <label class="col-sm-3 control-label">最后修改人：</label>
-                <div class="col-sm-8">
-                    <input id="lastupdateby" name="lastupdateby" th:field="*{lastupdateby}" class="form-control" type="text">
-                </div>
-            </div>
-		</form>
-    </div>
-    <div th:include="include::footer"></div>
-    <script type="text/javascript">
-		var prefix = ctx + "module/purchase"
-		$("#form-purchase-edit").validate({
-			rules:{
-				xxxx:{
-					required:true,
-				},
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+	
+	<head th:include="include :: header"></head>
+	<body class="white-bg">
+		<div class="wrapper wrapper-content animated fadeInRight ibox-content">
+			<form class="form-horizontal m" id="form-purchase-add" th:object="${purchase}">
+				<table>
+					<tr>
+						<td>
+						<div class="form-group">
+							<label class="col-sm-4 control-label">供应商：</label>
+							<div class="col-sm-8">
+								<input id="purchaseSupplierName" name="purchaseSupplierName" th:field="*{purchaseSupplierName}" class="form-control" type="text" th:readOnly="true"  onclick="selectSupplier()">
+								<input type="hidden"  id="purchaseSupplierId" th:field="*{purchaseId}" name="purchaseSupplierId"/>
+							</div>
+						</div></td>
+						<td>
+						<div class="form-group">
+							<label class="col-sm-4 control-label">门店：</label>
+							<div class="col-sm-8">
+								<input id="deptId" name="deptId" class="form-control" type="text" th:readOnly="true">
+							</div>
+						</div></td>
+
+					</tr>
+					<tr>
+						<td>
+						<div class="form-group">
+							<label class="col-sm-4 control-label">来源单据：</label>
+							<div class="col-sm-8">
+								<input id="purchaseSourceId" name="purchaseSourceId" class="form-control" type="text" th:readOnly="true">
+							</div>
+						</div></td>
+						<td>
+						<div class="form-group">
+							<label class="col-sm-4 control-label">描述：</label>
+							<div class="col-sm-8">
+								<input id="purchaseDescription" name="purchaseDescription" class="form-control" type="text">
+							</div>
+						</div></td>
+					</tr>
+				</table>
+
+				<div class="col-sm-12 select-table table-striped">
+					<!--data-toggle="table"-->
+					<table id="bootstrap-table_add"   class="display" style="width:100%" data-striped="true"
+					data-showRefresh="true" data-cache="false" data-editable="true">
+						<thead>
+							<tr data-height="26">
+								<th data-field="id">序号</th>
+								<th data-field="operator">操作</th>
+								<th data-field="code">商品条码</th>
+								<th data-field="itemName" >商品名称</th>
+								<th data-field="size">规格</th>
+								<th data-field="unit">单位</th>
+								<th data-field="num">件数</th>
+								<th data-field="quantity">数量</th>
+								<th data-field="give_quantity">赠送数量</th>
+								<th data-field="price">价格</th>
+								<th data-field="amount" >小计金额</th>
+								<th data-field="description">备注</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr idx="1">
+								<td >1<input type="hidden" id="detail_no_1" name="detailNo" value="1"/>
+								</td>
+								<td ><a class="btn btn-success btn-xs " href="#" onclick="addRow(this);"><i class="fa fa-add"></i>+</a><a class="btn btn-success btn-xs " href="#" onclick="remove(this);"><i class="fa fa-remove"></i></a></td>
+								<td>
+								<input id="item_barCode_1" name="item_barCode" class="form-control" type="text" th:readOnly="true" style="width:100px;" onclick="selectItem(1);">
+								<input type="hidden"  id="item_id_1" name="item_id"/>
+								</td>
+								<td key="itemName"></td>
+								<td  key="size"></td>
+								<td  key="unit"></td>
+								<td  key="num">
+								<input id="num_1" name="num" class="form-control" type="number" style="width:80px;" value="1" onchange="calcAmount(this);">
+								</td>
+								<td  key="quantity">
+								<input id="quantity_1" name="quantity" class="form-control" type="number"  style="width:80px;"  value="1" onchange="calcAmount(this);">
+								</td>
+								<td  key="give_quantity">
+								<input id="giveQuantity_1" name="giveQuantity" class="form-control" type="number"   value="1"  style="width:80px;">
+								</td>
+								<td  key="price">
+								<input id="price_1" name="price" class="form-control" type="number"  style="width:80px;"  value="0"  onchange="calcAmount(this);">
+								</td>
+								<td key="amount"><span key="amount">0</span>
+									<input type="hidden" id="amount_1" name="amount" />
+								</td>
+								<td  key="description">
+								<input id="description" name="description" class="form-control" type="text"  >
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+			</form>
+		</div>
+		<div th:include="include::footer"></div>
+		<script src="http://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+		<script type="text/javascript">
+			var prefix = ctx + "module/purchase"
+
+			var rowIndex = 0;
+
+			$("#form-purchase-add").validate({
+				rules : {
+					xxxx : {
+						required : true,
+					},
+				}
+			});
+
+			function submitHandler() {
+				if ($.validate.form()) {
+					$.operate.save(prefix + "/add", $('#form-purchase-add').serialize());
+				}
 			}
-		});
-		
-		function submitHandler() {
-	        if ($.validate.form()) {
-	            $.operate.save(prefix + "/edit", $('#form-purchase-edit').serialize());
-	        }
-	    }
-	</script>
-</body>
+
+
+			$(document).ready(function() {
+				$('#bootstrap-table_add').DataTable({
+					paging:false,
+					columns:[
+						{data:'idx'},
+						{data:'operator'},
+						{data:'code'},
+						{data:'itemName'},
+						{data:'size'},
+						{data:'unit'},
+						{data:'num'},
+						{data:'quantity'},
+						{data:'give_quantity'},
+						{data:'price'},
+						{data:'amount'},
+						{data:'description'}
+					]
+				});
+			});
+			function selectSupplier() {
+				var options = {
+					title : '选择供应商',
+					width : "580",
+					url : ctx + "module/itemsupplier/selectSupplier",
+					callBack : doSubmit
+				};
+				$.modal.openOptions(options);
+
+			}
+
+			function doSubmit(index, layero) {
+				var body = layer.getChildFrame('body', index);
+				$("#purchaseSupplierId").val(body.find('#treeId').val());
+				$("#purchaseSupplierName").val(body.find('#treeName').val());
+				layer.close(index);
+			}
+
+			function selectItem(obj) {
+				var options = {
+					title : '选择商品',
+					width : "780",
+					url : ctx + "module/item/selectItem",
+					callBack : doItemSubmit
+				};
+				$.modal.openOptions(options);
+				rowIndex = obj;
+
+			}
+
+			function doItemSubmit(index, layero) {
+				var body = layer.getChildFrame('body', index);
+				var id = body.find("#treeId").val();
+				var name = body.find("#treeName").val()
+				var barCode = body.find("#itemBarCode").val();
+				var itemSpec = body.find("#itemSpec").val();
+				var itemUnit = body.find("#itemUnit").val();
+				var row = $("#bootstrap-table_add").find("tr")[rowIndex];
+				$(row).find("#item_id_" + rowIndex).val(id);
+				$(row).find("#item_barCode_" + rowIndex).val(barCode);
+				$(row).find("#detail_no_" + rowIndex).val(rowIndex);
+				$($(row).find("td")[3]).html(name);
+				$($(row).find("td")[4]).html(itemSpec);
+				$($(row).find("td")[5]).html(itemUnit);
+				layer.close(index);
+			}
+
+			function addRow(obj) {
+				var tds = $(obj).parent().parent().parent().find("tr");
+				var index = tds.length + 1;
+				var row = {
+					idx:index+'<input type="hidden" id="detail_no_'+index+'" name="detailNo" value="'+index+'"/>',
+					operator : '<a  class="btn btn-success btn-xs " href="#" onclick="addRow(this);"><i class="fa fa-add"></i>+</a>' + '<a class="btn btn-success btn-xs " href="#" onclick="remove(this);"><i class="fa fa-remove"></i></a></td>',
+					code : '<input id="item_barCode_' + index + '" name="item_barCode" class="form-control" type="text" readOnly="true" style="width:100px;" onclick="selectItem(' + index + ');">' + '<input type="hidden"  id="item_id_' + index + '" name="item_id"/>',
+					itemName : '',
+					size : '',
+					unit : '',
+					num : '<input id="num_' + index + '" name="num" class="form-control" type="number" style="width:80px;"  value="1"  onchange="calcAmount(this);">',
+					quantity : '<input id="quantity_' + index + '" name="quantity" class="form-control" type="number"  style="width:80px;"  value="1" onchange="calcAmount(this);">',
+					give_quantity : '<input id="giveQuantity"_' + index + ' name="giveQuantity" class="form-control" type="number"  style="width:80px;"  value="1" >',
+					price : '<input id="price_' + index + '" name="price" class="form-control" type="number"  style="width:80px;"  value="0" onchange="calcAmount(this);">',
+					amount : '<span key="amount">0</span><input type="hidden" id="amount_'+index+'" name="amount" />',
+					description : '<input id="description_' + index + '" name="description" class="form-control" type="text"  >'
+				}
+				/*$("#bootstrap-table_add").bootstrapTable('insertRow', {
+					index : index,
+					row : row
+				});*/
+				var table = $('#bootstrap-table_add').DataTable();
+				var rowNode = table .row.add( row ).draw(false);
+			}
+			function remove(obj){
+				var table = $('#bootstrap-table_add').DataTable();
+				var row=table.page.info().recordsTotal;
+				if(row==1){
+					$.modal.alertError("最后一行数据不能删除!");
+					return ;
+				}else{
+					table .row($(obj).parents('tr')).remove( ).draw(false);
+				}
+			}
+			
+			function calcAmount(obj){
+				var row=$(obj).parent().parent();
+				var quantity=$(row).find("input[name='quantity']").val();
+				var price=$(row).find("input[name='price']").val();
+				var amount=quantity*price;
+				$(row).find("span[key='amount']").html(amount);
+				$(row).find("input[name='amount']").val(amount);
+			}
+		</script>
+	</body>
 </html>

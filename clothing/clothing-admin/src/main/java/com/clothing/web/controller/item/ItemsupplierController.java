@@ -1,6 +1,9 @@
 package com.clothing.web.controller.item;
 
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -49,8 +52,10 @@ public class ItemsupplierController extends BaseController
 	@RequiresPermissions("module:itemsupplier:list")
 	@PostMapping("/list")
 	@ResponseBody
-	public TableDataInfo list(Itemsupplier itemsupplier)
+	public TableDataInfo list(Itemsupplier itemsupplier,HttpServletRequest request)
 	{
+		String searchValue=request.getParameter("searchValue");
+		itemsupplier.setSearchValue(searchValue);
 		SysUser user=ShiroUtils.getUser();
 		if(!user.isAdmin()){
 			itemsupplier.setFcu(user.getDeptId()+"");

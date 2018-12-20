@@ -24,12 +24,7 @@ button{font-family: "SimSun","Helvetica Neue",Helvetica,Arial;}
             var options = {
                 url: prefix + "/list",
                 modalName: "商品供应商",
-                striped:true,
-                clickToSelect:true,
-                singleSelect:true,
-                showExport:false,
-                showToggle:false,
-                showColumns:false,
+                
                 columns: [
 				{
 					field : 'fid', 
@@ -72,6 +67,7 @@ button{font-family: "SimSun","Helvetica Neue",Helvetica,Arial;}
 		        }]
             };
             $.table.init(options);
+            
             $('#bootstrap-table').on('click-row.bs.table', function(e, row, element) {
 					doSelect(row);
 			});

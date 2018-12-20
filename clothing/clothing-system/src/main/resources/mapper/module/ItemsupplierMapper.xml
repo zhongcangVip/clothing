@@ -44,6 +44,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
              <if test="flastupdateuserid != null  and flastupdateuserid != '' "> and flastupdateuserid = #{flastupdateuserid}</if>
              <if test="flastupdatetime != null "> and flastupdatetime = #{flastupdatetime}</if>
              <if test="fcu != null  and fcu != '' "> and fcu = #{fcu}</if>
+             <if test="searchValue!=null and searchValue!=''">and (
+             	fcode=#{searchValue} or
+             	fname =#{searchValue}
+             	
+             )</if>
          </where>
     </select>
     

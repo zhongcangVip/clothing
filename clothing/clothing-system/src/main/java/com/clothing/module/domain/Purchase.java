@@ -24,6 +24,7 @@ public class Purchase extends BaseEntity
 	private String purchaseOrderno;
 	/** 供应商编号 */
 	private String purchaseSupplierId;
+	private String purchaseSupplierName;
 	/** 所属门店编号 */
 	private String deptId;
 	/** 来源单据编号 */
@@ -149,6 +150,16 @@ public class Purchase extends BaseEntity
 
 	public void setList(List<PurchaseDetail> list) {
 		this.list = list;
+	}
+
+	
+	
+	public String getPurchaseSupplierName() {
+		return purchaseSupplierName;
+	}
+
+	public void setPurchaseSupplierName(String purchaseSupplierName) {
+		this.purchaseSupplierName = purchaseSupplierName;
 	}
 
 	public String toString() {

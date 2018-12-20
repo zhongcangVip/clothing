@@ -65,8 +65,9 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr data-uniqueid="1">
-								<td >1</td>
+							<tr idx="1">
+								<td >1<input type="hidden" id="detail_no_1" name="detailNo" value="1"/>
+								</td>
 								<td ><a class="btn btn-success btn-xs " href="#" onclick="addRow(this);"><i class="fa fa-add"></i>+</a><a class="btn btn-success btn-xs " href="#" onclick="remove(this);"><i class="fa fa-remove"></i></a></td>
 								<td>
 								<input id="item_barCode_1" name="item_barCode" class="form-control" type="text" th:readOnly="true" style="width:100px;" onclick="selectItem(1);">
@@ -76,18 +77,20 @@
 								<td  key="size"></td>
 								<td  key="unit"></td>
 								<td  key="num">
-								<input id="num" name="num" class="form-control" type="number" style="width:80px;" value="1" >
+								<input id="num_1" name="num" class="form-control" type="number" style="width:80px;" value="1" onchange="calcAmount(this);">
 								</td>
 								<td  key="quantity">
-								<input id="quantity" name="quantity" class="form-control" type="number"  style="width:80px;"  value="1" >
+								<input id="quantity_1" name="quantity" class="form-control" type="number"  style="width:80px;"  value="1" onchange="calcAmount(this);">
 								</td>
 								<td  key="give_quantity">
-								<input id="giveQuantity" name="giveQuantity" class="form-control" type="number"   value="1"  style="width:80px;">
+								<input id="giveQuantity_1" name="giveQuantity" class="form-control" type="number"   value="1"  style="width:80px;">
 								</td>
 								<td  key="price">
-								<input id="price" name="price" class="form-control" type="number"  style="width:80px;"  value="0" >
+								<input id="price_1" name="price" class="form-control" type="number"  style="width:80px;"  value="0"  onchange="calcAmount(this);">
 								</td>
-								<td key="amount"></td>
+								<td key="amount"><span key="amount">0</span>
+									<input type="hidden" id="amount_1" name="amount" />
+								</td>
 								<td  key="description">
 								<input id="description" name="description" class="form-control" type="text"  >
 								</td>
@@ -176,9 +179,10 @@
 				var barCode = body.find("#itemBarCode").val();
 				var itemSpec = body.find("#itemSpec").val();
 				var itemUnit = body.find("#itemUnit").val();
-				var row = $("tr[data-index='" + (rowIndex - 1) + "']");
+				var row = $("#bootstrap-table_add").find("tr")[rowIndex];
 				$(row).find("#item_id_" + rowIndex).val(id);
 				$(row).find("#item_barCode_" + rowIndex).val(barCode);
+				$(row).find("#detail_no_" + rowIndex).val(rowIndex);
 				$($(row).find("td")[3]).html(name);
 				$($(row).find("td")[4]).html(itemSpec);
 				$($(row).find("td")[5]).html(itemUnit);
@@ -189,17 +193,17 @@
 				var tds = $(obj).parent().parent().parent().find("tr");
 				var index = tds.length + 1;
 				var row = {
-					idx:index,
+					idx:index+'<input type="hidden" id="detail_no_'+index+'" name="detailNo" value="'+index+'"/>',
 					operator : '<a  class="btn btn-success btn-xs " href="#" onclick="addRow(this);"><i class="fa fa-add"></i>+</a>' + '<a class="btn btn-success btn-xs " href="#" onclick="remove(this);"><i class="fa fa-remove"></i></a></td>',
 					code : '<input id="item_barCode_' + index + '" name="item_barCode" class="form-control" type="text" readOnly="true" style="width:100px;" onclick="selectItem(' + index + ');">' + '<input type="hidden"  id="item_id_' + index + '" name="item_id"/>',
 					itemName : '',
 					size : '',
 					unit : '',
-					num : '<input id="num_' + index + '" name="num" class="form-control" type="number" style="width:80px;"  value="1"  >',
-					quantity : '<input id="quantity_' + index + '" name="quantity" class="form-control" type="number"  style="width:80px;"  value="1" >',
+					num : '<input id="num_' + index + '" name="num" class="form-control" type="number" style="width:80px;"  value="1"  onchange="calcAmount(this);">',
+					quantity : '<input id="quantity_' + index + '" name="quantity" class="form-control" type="number"  style="width:80px;"  value="1" onchange="calcAmount(this);">',
 					give_quantity : '<input id="giveQuantity"_' + index + ' name="giveQuantity" class="form-control" type="number"  style="width:80px;"  value="1" >',
-					price : '<input id="price_' + index + '" name="price" class="form-control" type="number"  style="width:80px;"  value="0" >',
-					amount : '',
+					price : '<input id="price_' + index + '" name="price" class="form-control" type="number"  style="width:80px;"  value="0" onchange="calcAmount(this);">',
+					amount : '<span key="amount">0</span><input type="hidden" id="amount_'+index+'" name="amount" />',
 					description : '<input id="description_' + index + '" name="description" class="form-control" type="text"  >'
 				}
 				/*$("#bootstrap-table_add").bootstrapTable('insertRow', {
@@ -218,6 +222,15 @@
 				}else{
 					table .row($(obj).parents('tr')).remove( ).draw(false);
 				}
+			}
+			
+			function calcAmount(obj){
+				var row=$(obj).parent().parent();
+				var quantity=$(row).find("input[name='quantity']").val();
+				var price=$(row).find("input[name='price']").val();
+				var amount=quantity*price;
+				$(row).find("span[key='amount']").html(amount);
+				$(row).find("input[name='amount']").val(amount);
 			}
 		</script>
 	</body>
