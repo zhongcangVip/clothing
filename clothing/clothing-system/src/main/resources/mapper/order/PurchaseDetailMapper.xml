@@ -14,10 +14,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="detailDescription"    column="detail_description"    />
         <result property="detailAmount"    column="detail_amount"    />
         <result property="purchaseId"    column="purchase_id"    />
+        
+        <result property="detailNum" column="detail_num">
     </resultMap>
 	
 	<sql id="selectPurchaseDetailVo">
-        select detail_id, detail_no, detail_item_id, detail_item_quantity, detail_item_give_quantity, detail_price, detail_description, detail_amount, purchase_id from sys_purchase_detail
+        select detail_id, detail_no, detail_item_id,detail_num, detail_item_quantity, detail_item_give_quantity, detail_price, detail_description, detail_amount, purchase_id from sys_purchase_detail
     </sql>
 	
     <select id="selectPurchaseDetailList" parameterType="PurchaseDetail" resultMap="PurchaseDetailResult">
@@ -52,6 +54,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="detailDescription != null  and detailDescription != ''  ">detail_description,</if>
 			<if test="detailAmount != null  ">detail_amount,</if>
 			<if test="purchaseId != null  ">purchase_id,</if>
+			<if test="detailNum != null  ">detail_num,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="detailId != null  ">#{detailId},</if>
@@ -63,6 +66,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="detailDescription != null  and detailDescription != ''  ">#{detailDescription},</if>
 			<if test="detailAmount != null  ">#{detailAmount},</if>
 			<if test="purchaseId != null  ">#{purchaseId},</if>
+			<if test="detailNum != null  ">#{detailNum},</if>
          </trim>
     </insert>
 	 
@@ -77,6 +81,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="detailDescription != null  and detailDescription != ''  ">detail_description = #{detailDescription},</if>
             <if test="detailAmount != null  ">detail_amount = #{detailAmount},</if>
             <if test="purchaseId != null  ">purchase_id = #{purchaseId},</if>
+            <if test="detailNum != null  ">detail_num = #{detailNum},</if>
         </trim>
         where detail_id = #{detailId}
     </update>

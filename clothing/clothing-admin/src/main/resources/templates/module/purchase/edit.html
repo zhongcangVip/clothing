@@ -65,34 +65,34 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr idx="1">
-								<td >1<input type="hidden" id="detail_no_1" name="detailNo" value="1"/>
+							<tr idx="1" th:each="obj:${list}">
+								<td th:text="${obj.detailNo}">${obj.detailNo}<input type="hidden" id="detail_no_1" name="detailNo" th:value="${obj.detailNo}" />
 								</td>
 								<td ><a class="btn btn-success btn-xs " href="#" onclick="addRow(this);"><i class="fa fa-add"></i>+</a><a class="btn btn-success btn-xs " href="#" onclick="remove(this);"><i class="fa fa-remove"></i></a></td>
 								<td>
-								<input id="item_barCode_1" name="item_barCode" class="form-control" type="text" th:readOnly="true" style="width:100px;" onclick="selectItem(1);">
-								<input type="hidden"  id="item_id_1" name="item_id"/>
+								<input id="item_barCode_1" name="item_barCode" class="form-control" type="text" th:readOnly="true" style="width:100px;" onclick="selectItem(1);" th:value="${obj.barCode}">
+								<input type="hidden"  id="item_id_1" name="item_id" value="${obj.detailItemId}"/>
 								</td>
-								<td key="itemName"></td>
-								<td  key="size"></td>
-								<td  key="unit"></td>
+								<td key="itemName">${obj.itemName}</td>
+								<td  key="size">${obj.size}</td>
+								<td  key="unit">${obj.unit}</td>
 								<td  key="num">
-								<input id="num_1" name="num" class="form-control" type="number" style="width:80px;" value="1" onchange="calcAmount(this);">
+								<input id="num_1" name="num" class="form-control" type="number" style="width:80px;"  onchange="calcAmount(this);" th:value="${obj.detailNum}">
 								</td>
 								<td  key="quantity">
-								<input id="quantity_1" name="quantity" class="form-control" type="number"  style="width:80px;"  value="1" onchange="calcAmount(this);">
+								<input id="quantity_1" name="quantity" class="form-control" type="number"  style="width:80px;"  th:value="${obj.detailItemQuantity}" onchange="calcAmount(this);">
 								</td>
 								<td  key="give_quantity">
-								<input id="giveQuantity_1" name="giveQuantity" class="form-control" type="number"   value="1"  style="width:80px;">
+								<input id="giveQuantity_1" name="giveQuantity" class="form-control" type="number"   th:value="${obj.detailItemGiveQuantity}"  style="width:80px;">
 								</td>
 								<td  key="price">
-								<input id="price_1" name="price" class="form-control" type="number"  style="width:80px;"  value="0"  onchange="calcAmount(this);">
+								<input id="price_1" name="price" class="form-control" type="number"  style="width:80px;"  th:value="${obj.detailPrice}"  onchange="calcAmount(this);">
 								</td>
 								<td key="amount"><span key="amount">0</span>
-									<input type="hidden" id="amount_1" name="amount" />
+									<input type="hidden" id="amount_1" name="amount"  th:value="${obj.detailAmount}"/>
 								</td>
 								<td  key="description">
-								<input id="description" name="description" class="form-control" type="text"  >
+								<input id="description" name="description" class="form-control" type="text"  th:value="${obj.detailDescription}">
 								</td>
 							</tr>
 						</tbody>

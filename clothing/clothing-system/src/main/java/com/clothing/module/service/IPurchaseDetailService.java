@@ -1,6 +1,8 @@
 package com.clothing.module.service;
 
 import com.clothing.module.domain.PurchaseDetail;
+import com.clothing.module.vo.PurchaseDetailVo;
+
 import java.util.List;
 
 /**
@@ -26,6 +28,8 @@ public interface IPurchaseDetailService
      * @return 采购单据明细集合
      */
 	public List<PurchaseDetail> selectPurchaseDetailList(PurchaseDetail purchaseDetail);
+	
+	public List<PurchaseDetailVo> selectPurchaseDetailVoList(PurchaseDetail purchaseDetail);
 	
 	/**
      * 新增采购单据明细

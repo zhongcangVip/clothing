@@ -1,4 +1,4 @@
-package com.clothing.module.domain;
+package com.clothing.module.vo;
 
 import java.math.BigDecimal;
 
@@ -8,12 +8,12 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import com.clothing.common.base.BaseEntity;
 
 /**
- * 采购单据明细表 sys_purchase_detail
+ * 采购单据明细表
  * 
  * @author yangmin
  * @date 2018-12-01
  */
-public class PurchaseDetail extends BaseEntity
+public class PurchaseDetailVo extends BaseEntity
 {
 	private static final long serialVersionUID = 1L;
 	
@@ -23,7 +23,15 @@ public class PurchaseDetail extends BaseEntity
 	private Integer detailNo;
 	/** 采购商品ID */
 	private Integer detailItemId;
-	/********件数*****/
+	/**商品名称**/
+	private String itemName;
+	/****条码****/
+	private String barCode;
+	/****单位****/
+	private String unit;
+	/******尺寸*******/
+	private String size;
+	
 	private Double detailNum;
 	/** 采购商品数量 */
 	private Double detailItemQuantity;
@@ -119,11 +127,40 @@ public class PurchaseDetail extends BaseEntity
 	{
 		return purchaseId;
 	}
-	
-	
-	
+    public String getItemName() {
+		return itemName;
+	}
 
-    public Double getDetailNum() {
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
+
+	public String getBarCode() {
+		return barCode;
+	}
+
+	public void setBarCode(String barCode) {
+		this.barCode = barCode;
+	}
+
+	public String getUnit() {
+		return unit;
+	}
+
+	public void setUnit(String unit) {
+		this.unit = unit;
+	}
+
+	public String getSize() {
+		return size;
+	}
+
+	public void setSize(String size) {
+		this.size = size;
+	}
+
+	
+	public Double getDetailNum() {
 		return detailNum;
 	}
 

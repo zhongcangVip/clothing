@@ -3,9 +3,7 @@ package com.clothing.web.controller.order;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -37,6 +35,7 @@ import com.clothing.module.service.IItemsupplierService;
 import com.clothing.module.service.IItemunitService;
 import com.clothing.module.service.IPurchaseDetailService;
 import com.clothing.module.service.IPurchaseService;
+import com.clothing.module.vo.PurchaseDetailVo;
 import com.clothing.system.domain.SysUser;
 
 
@@ -170,7 +169,7 @@ public class PurchaseController extends BaseController{
 		Purchase purchase = purchaseService.selectPurchaseById(purchaseId);
 		PurchaseDetail purchaseDetail=new PurchaseDetail();
 		purchaseDetail.setPurchaseId(purchaseId);
-		List<PurchaseDetail> list=purchaseDetailService.selectPurchaseDetailList(purchaseDetail);
+		List<PurchaseDetailVo> list=purchaseDetailService.selectPurchaseDetailVoList(purchaseDetail);
 		Itemsupplier supplier=this.supplierService.selectItemsupplierById(Integer.valueOf(purchase.getPurchaseSupplierId()));
 		purchase.setPurchaseSupplierName(supplier.getFname());
 		mmap.put("purchase", purchase);
