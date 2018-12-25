@@ -152,6 +152,7 @@ public class PurchaseController extends BaseController{
 			detail.setDetailItemGiveQuantity(Double.valueOf(giveQuantity[i]));
 			detail.setDetailItemQuantity(Double.valueOf(quantity[i]));
 			detail.setDetailPrice(new BigDecimal(price[i]));
+			detail.setDetailNum(Double.valueOf(num[i]));
 			if(detailNo !=null && detailNo.length>i && StringUtils.isNoneBlank(detailNo[i])){
 				detail.setDetailNo(Integer.valueOf(detailNo[i]));
 			}
